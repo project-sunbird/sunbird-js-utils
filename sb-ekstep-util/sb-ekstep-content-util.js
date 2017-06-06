@@ -109,6 +109,13 @@ uploadMedia = function(formData, cb) {
     sendRequest(options, cb);
 };
 
+resourseBundleForLanguage = function(languageCode, cb) {
+    
+    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_RESOURCE_BUNDLE_URI') + '/' + languageCode;
+    var options = getHttpOptions(url, null, "GET", false);
+    sendRequest(options, cb);
+};
+
 function sendRequest(http_options, cb) {
     httpUtil.sendRequest(http_options, function(err, resp, body) {
         if (resp && resp.statusCode && body) {
@@ -133,6 +140,7 @@ module.exports = {
     contentHierarchy: contentHierarchy,
     getContentUsingQuery: getContentUsingQuery,
     uploadMedia: uploadMedia,
-    contentHierarchyUsingQuery: contentHierarchyUsingQuery
+    contentHierarchyUsingQuery: contentHierarchyUsingQuery,
+    resourseBundleForLanguage: resourseBundleForLanguage
 
 };

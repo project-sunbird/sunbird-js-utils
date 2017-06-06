@@ -28,6 +28,8 @@ getConfig = function (configuration_name) {
         EKSTEP_HIERARCHY_CONTENT_URI: "/learning/v2/content/hierarchy",
         
         EKSTEP_UPLOAD_MEDIA_URI: "/language/v1/language/dictionary/word/media/upload",
+        
+        EKSTEP_RESOURCE_BUNDLE_URI: "/config/v2/config/resourcebundles",
 
         //Micro Service configuration for Course and Content service
         PREFIX_CODE : 'org.sunbird.'

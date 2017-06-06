@@ -13,5 +13,6 @@ module.exports = {
     contentHierarchy: ekStepContentUtil.contentHierarchy,
     getContentUsingQuery: ekStepContentUtil.getContentUsingQuery,
     uploadMedia: ekStepContentUtil.uploadMedia,
-    contentHierarchyUsingQuery: ekStepContentUtil.contentHierarchyUsingQuery
+    contentHierarchyUsingQuery: ekStepContentUtil.contentHierarchyUsingQuery,
+    resourseBundleForLanguage: ekStepContentUtil.resourseBundleForLanguage
 };
