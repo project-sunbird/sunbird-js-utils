@@ -30,11 +30,11 @@ getConfig = function (configuration_name) {
         EKSTEP_UPLOAD_MEDIA_URI: "/language/v1/language/dictionary/word/media/upload",
         
         //Micro Service configuration for Course and Content service
-        PREFIX_CODE : 'org.sunbird.'
+        PREFIX_CODE : 'org.sunbird.',
 
         //Configuration for setting ownership for content created from Sunbird
-        CREATED_FOR: 'sunbird',
-        CONTENT_CHANNEL: 'sunbird',
+        CREATED_FOR: ['sunbird'],
+        CONTENT_CHANNEL: ['sunbird']
 
     };
     return config_data[configuration_name];
