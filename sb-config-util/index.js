@@ -31,6 +31,11 @@ getConfig = function (configuration_name) {
         
         //Micro Service configuration for Course and Content service
         PREFIX_CODE : 'org.sunbird.'
+
+        //Configuration for setting ownership for content created from Sunbird
+        CREATED_FOR: 'sunbird',
+        CONTENT_CHANNEL: 'sunbird',
+
     };
     return config_data[configuration_name];
 };
