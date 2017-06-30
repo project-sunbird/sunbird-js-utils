@@ -29,6 +29,10 @@ getConfig = function (configuration_name) {
         
         EKSTEP_UPLOAD_MEDIA_URI: "/language/v1/language/dictionary/word/media/upload",
         
+        //Domains API
+        EKSTEP_GET_DOMAIN_URI: "/learning/v2/domains",
+        EKSTEP_GET_CONCEPT_URI: "/learning/v2/concepts",
+        
         //Micro Service configuration for Course and Content service
         PREFIX_CODE : 'org.sunbird.',
 

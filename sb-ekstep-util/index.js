@@ -13,5 +13,15 @@ module.exports = {
     contentHierarchy: ekStepContentUtil.contentHierarchy,
     getContentUsingQuery: ekStepContentUtil.getContentUsingQuery,
     uploadMedia: ekStepContentUtil.uploadMedia,
-    contentHierarchyUsingQuery: ekStepContentUtil.contentHierarchyUsingQuery
+    contentHierarchyUsingQuery: ekStepContentUtil.contentHierarchyUsingQuery,
+    getDomains: ekStepContentUtil.getDomains,
+    getDomainById: ekStepContentUtil.getDomainById,
+    getObjects: ekStepContentUtil.getObjects,
+    getObjectById: ekStepContentUtil.getObjectById,
+    getConceptById: ekStepContentUtil.getConceptById,
+    searchObjectsType: ekStepContentUtil.searchObjectsType,
+    createObjectType: ekStepContentUtil.createObjectType,
+    updateObjectType: ekStepContentUtil.updateObjectType,
+    retireObjectType: ekStepContentUtil.retireObjectType
+    
 };

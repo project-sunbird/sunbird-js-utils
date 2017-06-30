@@ -109,6 +109,60 @@ uploadMedia = function(formData, cb) {
     sendRequest(options, cb);
 };
 
+getDomains = function(cb) {
+    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_GET_DOMAIN_URI');
+    var options = getHttpOptions(url, null, "GET", false);
+    sendRequest(options, cb);
+};
+
+getDomainById = function(domainId, cb) {
+    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_GET_DOMAIN_URI') + '/' + domainId;
+    var options = getHttpOptions(url, null, "GET", false);
+    sendRequest(options, cb);
+};
+
+getObjects = function(domainId, objectType, cb) {
+    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_GET_DOMAIN_URI') + '/' + domainId + '/' + objectType;
+    var options = getHttpOptions(url, null, "GET", false);
+    sendRequest(options, cb);
+};
+
+getObjectById = function(domainId, objectType, objectId, cb) {
+    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_GET_DOMAIN_URI') + '/' + domainId + '/' + objectType + '/' + objectId;
+    var options = getHttpOptions(url, null, "GET", false);
+    sendRequest(options, cb);
+};
+
+getConceptById = function(conceptId, cb) {
+    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_GET_CONCEPT_URI') + '/' + conceptId;
+    var options = getHttpOptions(url, null, "GET", false);
+    sendRequest(options, cb);
+};
+
+searchObjectsType = function(data, domainId, objectType, cb) {
+    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_GET_DOMAIN_URI') + '/' + domainId + '/' + objectType + '/' + 'search';
+    var options = getHttpOptions(url, data, "POST", false);
+    sendRequest(options, cb);
+};
+
+createObjectType = function(data, domainId, objectType, cb) {
+    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_GET_DOMAIN_URI') + '/' + domainId + '/' + objectType + '/';
+    var options = getHttpOptions(url, data, "POST", false);
+    sendRequest(options, cb);
+};
+
+updateObjectType = function(data, domainId, objectType, objectId, cb) {
+    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_GET_DOMAIN_URI') + '/' + domainId + '/' + objectType + '/' + objectId;
+    var options = getHttpOptions(url, data, "PATCH", false);
+    sendRequest(options, cb);
+};
+
+retireObjectType = function(data, domainId, objectType, objectId, cb) {
+    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_GET_DOMAIN_URI') + '/' + domainId + '/' + objectType + '/' + objectId + '/retire' ;
+    var options = getHttpOptions(url, data, "POST", false);
+    sendRequest(options, cb);
+};
+
 function sendRequest(http_options, cb) { 
     httpUtil.sendRequest(http_options, function(err, resp, body) { 
         if (resp && resp.statusCode && body) { 
@@ -133,6 +187,15 @@ module.exports = {
     contentHierarchy: contentHierarchy,
     getContentUsingQuery: getContentUsingQuery,
     uploadMedia: uploadMedia,
-    contentHierarchyUsingQuery: contentHierarchyUsingQuery
+    contentHierarchyUsingQuery: contentHierarchyUsingQuery,
+    getDomains: getDomains,
+    getDomainById: getDomainById,
+    getObjects: getObjects,
+    getObjectById: getObjectById,
+    getConceptById: getConceptById,
+    searchObjectsType: searchObjectsType,
+    createObjectType: createObjectType,
+    updateObjectType: updateObjectType,
+    retireObjectType: retireObjectType
 
 };
