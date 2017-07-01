@@ -2,7 +2,6 @@
     "appenders": [{
         "type": "clustered",
         "appenders": [
-
             {
                 "type": "console"
             }, {
@@ -11,8 +10,7 @@
                 "category": "api",
                 "appender": {
                     "type": "file",
-                    "maxLogSize": 409600,
-                    "backups": 5,
+                    "maxLogSize": 26214400,
                     "filename": "../../log/microService.log"
                 }
             }

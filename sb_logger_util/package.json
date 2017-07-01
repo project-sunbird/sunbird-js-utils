@@ -10,7 +10,6 @@
     "license": "ISC",
     "dependencies": {
         "log4js": "^0.6.29",
-        "log4js-extend": "^0.1.2",
         "path": "^0.12.7"
     }
 }
