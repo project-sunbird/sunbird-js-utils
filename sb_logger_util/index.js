@@ -4,7 +4,6 @@
  * @desc: using log4s, enables application wide logging.
  */
 var log4js = require('log4js');
-var path = require('path');
 var fs = require('fs');
 var dir = '../../log';
 
@@ -12,9 +11,27 @@ if (!fs.existsSync(dir)){
     fs.mkdirSync(dir);
 }
 
-var logdir = path.join(__dirname, '../../');
-var logconfig = require('./log4js.json', { cwd: logdir });
-log4js.configure(logconfig);
+var options = {
+    "appenders": [{
+        "type": "clustered",
+        "appenders": [
+            {
+                "type": "console"
+            }, {
+                "type": "logLevelFilter",
+                "level": "TRACE",
+                "category": "api",
+                "appender": {
+                    "type": "file",
+                    "maxLogSize": 26214400,
+                    "filename": "../../log/microService.log"
+                }
+            }
+        ]
+    }]
+};
+
+log4js.configure(options);
 var logger = log4js.getLogger('api');
 
 var info = function (data) {

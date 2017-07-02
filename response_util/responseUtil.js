@@ -8,7 +8,7 @@ const uuidV1 = require('uuid/v1');
 function successResponse(data) {
 
     var response = {};
-    response.id = getAppIDForRESP(data.path);
+    response.id = data.apiId;
     response.ver = data.apiVersion;
     response.ts = new Date();
     response.params = getParams(data.msgid, "successful", null, null);
@@ -26,7 +26,7 @@ function successResponse(data) {
 function errorResponse(data) {
 
     var response = {};
-    response.id = getAppIDForRESP(data.path);
+    response.id = data.apiId;
     response.ver = data.apiVersion;
     response.ts = new Date();
     response.params = getParams(data.msgId, "failed", data.errCode, data.errMsg);
@@ -54,20 +54,6 @@ function getParams(msgId, status, errCode, msg) {
     params.errmsg = msg;
 
     return params;
-}
-
-/**
- * this function helps to create apiId for error and success responseresponse
- * @param {String} path
- * @returns {getAppIDForRESP.appId|String}
- */
-function getAppIDForRESP(path) {
-
-    var arr = path.split(":")[0].split('/').filter(function(n) {
-        return n !== "";
-    });
-    var appId = 'api.' + arr[arr.length - 2] + '.' + arr[arr.length - 1];
-    return appId;
 }
 
 /**
