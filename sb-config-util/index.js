@@ -14,7 +14,7 @@
 getConfig = function (configuration_name) {
     var config_data = {
 
-        EKSTEP_BASE_URL: "https://dev.ekstep.in/api",
+        EKSTEP_BASE_URL: "https://qa.ekstep.in/api",
         
         EKSTEP_CREATE_CONTENT_URI: "/learning/v2/content",
         EKSTEP_SEARCH_CONTENT_URI: "/search/v2/search",
