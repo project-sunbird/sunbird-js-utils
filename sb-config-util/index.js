@@ -16,7 +16,7 @@ getConfig = function (configuration_name) {
 
         EKSTEP_BASE_URL: "https://qa.ekstep.in/api",
         
-        EKSTEP_CREATE_CONTENT_URI: "/learning/v3/content",
+        EKSTEP_CREATE_CONTENT_URI: "/learning/v2/content",
         EKSTEP_SEARCH_CONTENT_URI: "/search/v2/search",
         EKSTEP_UPDATE_CONTENT_URI: "/learning/v2/content",
         EKSTEP_GET_CONTENT_URI: "/learning/v2/content",
