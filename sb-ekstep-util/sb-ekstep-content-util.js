@@ -6,7 +6,8 @@ getHttpOptions = function(url, data, method, formData) {
     var http_options = {
         url: url,
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': configUtil.Authorization_TOKEN
         },
         method: method,
         json: true
