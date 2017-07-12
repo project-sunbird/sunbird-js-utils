@@ -64,10 +64,10 @@ reviewContent = function(data, content_id, cb) {
     sendRequest(options, cb);
 };
 
-publishContent = function(content_id, cb) {
+publishContent = function(data, content_id,cb) {
 
     var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_PUBLISH_CONTENT_URI') + "/" + content_id;
-    var options = getHttpOptions(url, null, "GET", false);
+    var options = getHttpOptions(url, data, "POST", false);
     sendRequest(options, cb);
 };
 
