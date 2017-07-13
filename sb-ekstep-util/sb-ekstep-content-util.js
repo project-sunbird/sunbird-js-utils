@@ -78,7 +78,7 @@ listContent = function(data, cb) {
     sendRequest(options, cb);
 };
 
-retireContent = function(data, content_id, cb) {
+retireContent = function(content_id, cb) {
     var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_RETIRE_CONTENT_URI') + '/' + content_id;
     var options = getHttpOptions(url, null, "DELETE", false);
     sendRequest(options, cb);
