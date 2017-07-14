@@ -42,7 +42,7 @@ getConfig = function (configuration_name) {
 
         //Configuration for setting ownership for content created from Sunbird
         CREATED_FOR: ['sunbird'],
-        CONTENT_CHANNEL: ['sunbird'],
+        CONTENT_CHANNEL: 'sunbird',
         
         Authorization_TOKEN : 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiI2MzExMTYwNTMzOGY0Zjc5YTgwZTM3YjcyZjVjMmUwZiJ9.azmj_AHmndeJz0h6yIkOJz1XjeZR6Gzd-OrZzR66I0A'
 
