@@ -23,6 +23,7 @@ module.exports = {
     createObjectType: ekStepContentUtil.createObjectType,
     updateObjectType: ekStepContentUtil.updateObjectType,
     retireObjectType: ekStepContentUtil.retireObjectType,
+    rejectContent: ekStepContentUtil.rejectContent,
     listTerms: ekStepContentUtil.listTerms,
     listResourceBundles: ekStepContentUtil.listResourceBundles,
     listOrdinals: ekStepContentUtil.listOrdinals

@@ -164,6 +164,12 @@ retireObjectType = function(data, domainId, objectType, objectId, cb) {
     sendRequest(options, cb);
 };
 
+rejectContent = function(data, content_id, cb) {
+    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_REJECT_CONTENT_URI') + '/' + content_id;
+    var options = getHttpOptions(url, data, "POST", false);
+    sendRequest(options, cb);
+};
+
 listTerms = function(cb) {
     var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_LIST_TERMS_URI');
     var options = getHttpOptions(url, null, "GET", false);
@@ -216,6 +222,7 @@ module.exports = {
     createObjectType: createObjectType,
     updateObjectType: updateObjectType,
     retireObjectType: retireObjectType,
+    rejectContent: rejectContent,
     listTerms: listTerms,
     listResourceBundles: listResourceBundles,
     listOrdinals: listOrdinals

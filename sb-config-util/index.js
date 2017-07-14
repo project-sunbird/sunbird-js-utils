@@ -26,6 +26,7 @@ getConfig = function (configuration_name) {
         EKSTEP_RETIRE_CONTENT_URI: "/learning/v2/content",
         EKSTEP_UPLOAD_CONTENT_URI: "/content/v3/upload",
         EKSTEP_HIERARCHY_CONTENT_URI: "/content/v3/hierarchy",
+        EKSTEP_REJECT_CONTENT_URI: "/content/v3/reject",
         
         EKSTEP_UPLOAD_MEDIA_URI: "/language/v1/language/dictionary/word/media/upload",
         
