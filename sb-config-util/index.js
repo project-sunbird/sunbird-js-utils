@@ -32,6 +32,9 @@ getConfig = function (configuration_name) {
         //Domains API
         EKSTEP_GET_DOMAIN_URI: "/learning/v2/domains",
         EKSTEP_GET_CONCEPT_URI: "/learning/v2/concepts",
+        EKSTEP_LIST_TERMS_URI: "/domain/v3/terms/list",
+        EKSTEP_LIST_RESOURCE_BUNDLES_URI: "/meta/v3/resourcebundles/list",
+        EKSTEP_LIST_ORDINALS_URI: "/meta/v3/ordinals/list",
         
         //Micro Service configuration for Course and Content service
         PREFIX_CODE : 'org.sunbird.',

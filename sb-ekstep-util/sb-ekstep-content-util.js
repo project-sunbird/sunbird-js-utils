@@ -164,6 +164,24 @@ retireObjectType = function(data, domainId, objectType, objectId, cb) {
     sendRequest(options, cb);
 };
 
+listTerms = function(cb) {
+    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_LIST_TERMS_URI');
+    var options = getHttpOptions(url, null, "GET", false);
+    sendRequest(options, cb);
+};
+
+listResourceBundles = function(cb) {
+    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_LIST_RESOURCE_BUNDLES_URI');
+    var options = getHttpOptions(url, null, "GET", false);
+    sendRequest(options, cb);
+};
+
+listOrdinals = function(cb) {
+    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_LIST_ORDINALS_URI');
+    var options = getHttpOptions(url, null, "GET", false);
+    sendRequest(options, cb);
+};
+
 function sendRequest(http_options, cb) { 
     httpUtil.sendRequest(http_options, function(err, resp, body) { 
         if (resp && resp.statusCode && body) { 
@@ -197,6 +215,8 @@ module.exports = {
     searchObjectsType: searchObjectsType,
     createObjectType: createObjectType,
     updateObjectType: updateObjectType,
-    retireObjectType: retireObjectType
-
+    retireObjectType: retireObjectType,
+    listTerms: listTerms,
+    listResourceBundles: listResourceBundles,
+    listOrdinals: listOrdinals
 };

@@ -22,6 +22,8 @@ module.exports = {
     searchObjectsType: ekStepContentUtil.searchObjectsType,
     createObjectType: ekStepContentUtil.createObjectType,
     updateObjectType: ekStepContentUtil.updateObjectType,
-    retireObjectType: ekStepContentUtil.retireObjectType
-    
+    retireObjectType: ekStepContentUtil.retireObjectType,
+    listTerms: ekStepContentUtil.listTerms,
+    listResourceBundles: ekStepContentUtil.listResourceBundles,
+    listOrdinals: ekStepContentUtil.listOrdinals
 };
