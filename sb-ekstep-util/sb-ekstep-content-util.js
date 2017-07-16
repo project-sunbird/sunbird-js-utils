@@ -7,6 +7,7 @@ getHttpOptions = function(url, data, method, formData) {
         url: url,
         headers: {
             'Content-Type': 'application/json',
+            'X-Channel-Id': configUtil.getConfig('CONTENT_CHANNEL'),
             'Authorization': configUtil.getConfig('Authorization_TOKEN')
         },
         method: method,
