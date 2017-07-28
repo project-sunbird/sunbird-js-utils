@@ -5,7 +5,6 @@ getHttpOptions = function(url, data, method, formData, headers) {
 
     var defaultHeaders = {
         'Content-Type': 'application/json',
-        'X-Channel-Id': configUtil.getConfig('CONTENT_CHANNEL'),
         'Authorization': configUtil.getConfig('Authorization_TOKEN')
     };
 
@@ -18,7 +17,6 @@ getHttpOptions = function(url, data, method, formData, headers) {
 
     if (headers) {
         headers['Content-Type'] = headers['Content-Type'] ? headers['Content-Type'] : defaultHeaders['Content-Type'];
-        headers['X-Channel-Id'] = headers['X-Channel-Id'] ? headers['X-Channel-Id'] : defaultHeaders['X-Channel-Id'];
         headers['Authorization'] = defaultHeaders['Authorization'];
         http_options.headers = headers;
     }
@@ -96,7 +94,6 @@ retireContent = function(content_id, headers, cb) {
 uploadContent = function(formData, content_id, headers, cb) {
     var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_UPLOAD_CONTENT_URI') + '/' + content_id;
     var options = getHttpOptions(url, null, "POST", formData, headers);
-    console.log("uploadContent", options);
     sendRequest(options, cb);
 };
 
