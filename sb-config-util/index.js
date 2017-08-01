@@ -23,6 +23,7 @@ var config_data = {
     EKSTEP_UPLOAD_CONTENT_URI: "/content/v3/upload",
     EKSTEP_HIERARCHY_CONTENT_URI: "/content/v3/hierarchy",
     EKSTEP_REJECT_CONTENT_URI: "/content/v3/reject",
+    EKSTEP_FLAG_CONTENT_URI: "/content/v3/flag",
     
     EKSTEP_UPLOAD_MEDIA_URI: "/language/v1/language/dictionary/word/media/upload",
     

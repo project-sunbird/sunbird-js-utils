@@ -195,6 +195,12 @@ listOrdinals = function(headers, cb) {
     sendRequest(options, cb);
 };
 
+flagContent = function(data, contentId, headers, cb) {
+    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_FLAG_CONTENT_URI') + '/' + contentId;
+    var options = getHttpOptions(url, data, "POST", false, headers);
+    sendRequest(options, cb);
+};
+
 function sendRequest(http_options, cb) {
     httpUtil.sendRequest(http_options, function(err, resp, body) {
         if (resp && resp.statusCode && body) {
@@ -232,5 +238,6 @@ module.exports = {
     rejectContent: rejectContent,
     listTerms: listTerms,
     listResourceBundles: listResourceBundles,
-    listOrdinals: listOrdinals
+    listOrdinals: listOrdinals,
+    flagContent: flagContent
 };
