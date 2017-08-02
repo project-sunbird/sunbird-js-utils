@@ -27,5 +27,7 @@ module.exports = {
     listTerms: ekStepContentUtil.listTerms,
     listResourceBundles: ekStepContentUtil.listResourceBundles,
     listOrdinals: ekStepContentUtil.listOrdinals,
-    flagContent: ekStepContentUtil.flagContent
+    flagContent: ekStepContentUtil.flagContent,
+    acceptFlagContent: ekStepContentUtil.acceptFlagContent,
+    rejectFlagContent: ekStepContentUtil.acceptFlagContent
 };
