@@ -22,6 +22,12 @@ module.exports = {
     searchObjectsType: ekStepContentUtil.searchObjectsType,
     createObjectType: ekStepContentUtil.createObjectType,
     updateObjectType: ekStepContentUtil.updateObjectType,
-    retireObjectType: ekStepContentUtil.retireObjectType
-    
+    retireObjectType: ekStepContentUtil.retireObjectType,
+    rejectContent: ekStepContentUtil.rejectContent,
+    listTerms: ekStepContentUtil.listTerms,
+    listResourceBundles: ekStepContentUtil.listResourceBundles,
+    listOrdinals: ekStepContentUtil.listOrdinals,
+    flagContent: ekStepContentUtil.flagContent,
+    acceptFlagContent: ekStepContentUtil.acceptFlagContent,
+    rejectFlagContent: ekStepContentUtil.rejectFlagContent
 };
