@@ -219,6 +219,14 @@ uploadContentUrl = function(data, content_id, headers, cb) {
     sendRequest(options, cb);
 };
 
+uploadContentWithFileUrl = function(content_id, query, headers, cb) {
+    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_UPLOAD_CONTENT_URI') + '/' + content_id;
+    var options = getHttpOptions(url, null, "POST", false, headers);
+    options.formData = {};
+    options.qs = query;
+    sendRequest(options, cb);
+};
+
 function sendRequest(http_options, cb) {
     httpUtil.sendRequest(http_options, function(err, resp, body) {
         if (resp && resp.statusCode && body) {
@@ -260,5 +268,6 @@ module.exports = {
     flagContent: flagContent,
     acceptFlagContent: acceptFlagContent,
     rejectFlagContent: rejectFlagContent,
-    uploadContentUrl: uploadContentUrl
+    uploadContentUrl: uploadContentUrl,
+    uploadContentWithFileUrl: uploadContentWithFileUrl
 };
