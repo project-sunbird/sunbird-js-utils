@@ -35,6 +35,8 @@ var config_data = {
     EKSTEP_LIST_TERMS_URI: "/domain/v3/terms/list",
     EKSTEP_LIST_RESOURCE_BUNDLES_URI: "/meta/v3/resourcebundles/list",
     EKSTEP_LIST_ORDINALS_URI: "/meta/v3/ordinals/list",
+
+    EKSTEP_CONTENT_UPLOAD_URL_URI: "/content/v3/upload/url",
     
     //Micro Service configuration for Course and Content service
     PREFIX_CODE : 'org.sunbird.',

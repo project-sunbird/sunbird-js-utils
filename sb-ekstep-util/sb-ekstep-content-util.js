@@ -213,6 +213,12 @@ rejectFlagContent = function(data, contentId, headers, cb) {
     sendRequest(options, cb);
 };
 
+uploadContentUrl = function(data, content_id, headers, cb) {
+    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_CONTENT_UPLOAD_URL_URI') + '/' + content_id;
+    var options = getHttpOptions(url, data, "POST", false, headers);
+    sendRequest(options, cb);
+};
+
 function sendRequest(http_options, cb) {
     httpUtil.sendRequest(http_options, function(err, resp, body) {
         if (resp && resp.statusCode && body) {
@@ -253,5 +259,6 @@ module.exports = {
     listOrdinals: listOrdinals,
     flagContent: flagContent,
     acceptFlagContent: acceptFlagContent,
-    rejectFlagContent: rejectFlagContent
+    rejectFlagContent: rejectFlagContent,
+    uploadContentUrl: uploadContentUrl
 };
