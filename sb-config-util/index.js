@@ -19,7 +19,7 @@ var config_data = {
     EKSTEP_REVIEW_CONTENT_URI: "/content/v3/review",
     EKSTEP_PUBLISH_CONTENT_URI: "/content/v3/publish",
     EKSTEP_LIST_CONTENT_URI: "/content/v3/list",
-    EKSTEP_RETIRE_CONTENT_URI: "/learning/v2/content",
+    EKSTEP_RETIRE_CONTENT_URI: "/content/v3/retire",
     EKSTEP_UPLOAD_CONTENT_URI: "/content/v3/upload",
     EKSTEP_HIERARCHY_CONTENT_URI: "/content/v3/hierarchy",
     EKSTEP_REJECT_CONTENT_URI: "/content/v3/reject",
