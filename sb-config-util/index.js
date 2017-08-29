@@ -45,7 +45,11 @@ var config_data = {
     CREATED_FOR: ['sunbird'],
     CONTENT_CHANNEL: 'sunbird',
     
-    Authorization_TOKEN : ''
+    Authorization_TOKEN : '',
+
+    LEARNER_SERVICE_BASE_URL: "https://dev.open-sunbird.org/api",
+    LEARNER_SERVICE_AUTHORIZATION_TOKEN: '',
+    LS_SEND_EMAIL: '/user/v1/notification/email'
 
 };
 
