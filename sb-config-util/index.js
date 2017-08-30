@@ -37,6 +37,7 @@ var config_data = {
     EKSTEP_LIST_ORDINALS_URI: "/meta/v3/ordinals/list",
 
     EKSTEP_CONTENT_UPLOAD_URL_URI: "/content/v3/upload/url",
+    EKSTEP_HEALTH_CHECK: "/health",
     
     //Micro Service configuration for Course and Content service
     PREFIX_CODE : 'org.sunbird.',
@@ -49,7 +50,9 @@ var config_data = {
 
     LEARNER_SERVICE_BASE_URL: "https://dev.open-sunbird.org/api",
     LEARNER_SERVICE_AUTHORIZATION_TOKEN: '',
-    LS_SEND_EMAIL: '/user/v1/notification/email'
+    LS_SEND_EMAIL: '/user/v1/notification/email',
+    LS_HEALTH_CHECK: "/health"
+
 
 };
 

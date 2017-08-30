@@ -261,6 +261,18 @@ sendEmail = function(data, headers, cb) {
     sendRequest(options, cb);
 };
 
+ekStepHealthCheck = function(cb) {
+    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_HEALTH_CHECK');
+    var options = getHttpOptions(url, null, "GET", false, false);
+    sendRequest(options, cb);
+}
+
+leanerServiceHealthCheck = function(cb) {
+    var url = configUtil.getConfig('LEARNER_SERVICE_BASE_URL') + configUtil.getConfig('LS_HEALTH_CHECK');
+    var options = getHttpOptionsForLS(url, null, "GET", false, false);
+    sendRequest(options, cb);
+}
+
 function sendRequest(http_options, cb) {
     httpUtil.sendRequest(http_options, function(err, resp, body) {
         if (resp && resp.statusCode && body) {
@@ -304,5 +316,7 @@ module.exports = {
     rejectFlagContent: rejectFlagContent,
     uploadContentUrl: uploadContentUrl,
     uploadContentWithFileUrl: uploadContentWithFileUrl,
-    sendEmail: sendEmail
+    sendEmail: sendEmail,
+    ekStepHealthCheck: ekStepHealthCheck,
+    leanerServiceHealthCheck: leanerServiceHealthCheck
 };

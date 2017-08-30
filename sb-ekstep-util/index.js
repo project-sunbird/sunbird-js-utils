@@ -32,5 +32,7 @@ module.exports = {
     rejectFlagContent: ekStepContentUtil.rejectFlagContent,
     uploadContentUrl: ekStepContentUtil.uploadContentUrl,
     uploadContentWithFileUrl: ekStepContentUtil.uploadContentWithFileUrl,
-    sendEmail: ekStepContentUtil.sendEmail
+    sendEmail: ekStepContentUtil.sendEmail,
+    ekStepHealthCheck: ekStepContentUtil.ekStepHealthCheck,
+    leanerServiceHealthCheck: ekStepContentUtil.leanerServiceHealthCheck
 };
