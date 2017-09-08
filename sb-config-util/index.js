@@ -19,7 +19,7 @@ var config_data = {
     EKSTEP_REVIEW_CONTENT_URI: "/content/v3/review",
     EKSTEP_PUBLISH_CONTENT_URI: "/content/v3/publish",
     EKSTEP_LIST_CONTENT_URI: "/content/v3/list",
-    EKSTEP_RETIRE_CONTENT_URI: "/learning/v2/content",
+    EKSTEP_RETIRE_CONTENT_URI: "/content/v3/retire",
     EKSTEP_UPLOAD_CONTENT_URI: "/content/v3/upload",
     EKSTEP_HIERARCHY_CONTENT_URI: "/content/v3/hierarchy",
     EKSTEP_REJECT_CONTENT_URI: "/content/v3/reject",
@@ -35,6 +35,9 @@ var config_data = {
     EKSTEP_LIST_TERMS_URI: "/domain/v3/terms/list",
     EKSTEP_LIST_RESOURCE_BUNDLES_URI: "/meta/v3/resourcebundles/list",
     EKSTEP_LIST_ORDINALS_URI: "/meta/v3/ordinals/list",
+
+    EKSTEP_CONTENT_UPLOAD_URL_URI: "/content/v3/upload/url",
+    EKSTEP_HEALTH_CHECK: "/health",
     
     //Micro Service configuration for Course and Content service
     PREFIX_CODE : 'org.sunbird.',
@@ -43,7 +46,13 @@ var config_data = {
     CREATED_FOR: ['sunbird'],
     CONTENT_CHANNEL: 'sunbird',
     
-    Authorization_TOKEN : ''
+    Authorization_TOKEN : '',
+
+    LEARNER_SERVICE_BASE_URL: "https://dev.open-sunbird.org/api",
+    LEARNER_SERVICE_AUTHORIZATION_TOKEN: '',
+    LS_SEND_EMAIL: '/user/v1/notification/email',
+    LS_HEALTH_CHECK: "/user/v1/health"
+
 
 };
 

@@ -29,5 +29,10 @@ module.exports = {
     listOrdinals: ekStepContentUtil.listOrdinals,
     flagContent: ekStepContentUtil.flagContent,
     acceptFlagContent: ekStepContentUtil.acceptFlagContent,
-    rejectFlagContent: ekStepContentUtil.rejectFlagContent
+    rejectFlagContent: ekStepContentUtil.rejectFlagContent,
+    uploadContentUrl: ekStepContentUtil.uploadContentUrl,
+    uploadContentWithFileUrl: ekStepContentUtil.uploadContentWithFileUrl,
+    sendEmail: ekStepContentUtil.sendEmail,
+    ekStepHealthCheck: ekStepContentUtil.ekStepHealthCheck,
+    leanerServiceHealthCheck: ekStepContentUtil.leanerServiceHealthCheck
 };

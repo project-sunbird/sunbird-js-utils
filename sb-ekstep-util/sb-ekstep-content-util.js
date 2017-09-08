@@ -30,6 +30,35 @@ getHttpOptions = function(url, data, method, formData, headers) {
     return http_options;
 };
 
+getHttpOptionsForLS = function(url, data, method, formData, headers) {
+    
+        var defaultHeaders = {
+            'Content-Type': 'application/json',
+            'Authorization': configUtil.getConfig('LEARNER_SERVICE_AUTHORIZATION_TOKEN')
+        };
+    
+        var http_options = {
+            url: url,
+            headers: defaultHeaders,
+            method: method,
+            json: true
+        };
+    
+        if (headers) {
+            headers['Content-Type'] = headers['Content-Type'] ? headers['Content-Type'] : defaultHeaders['Content-Type'];
+            headers['Authorization'] = defaultHeaders['Authorization'];
+            http_options.headers = headers;
+        }
+        
+        if (data) 
+            http_options.body = data;
+    
+        if (formData)
+            http_options.formData = formData;
+    
+        return http_options;
+    };
+
 
 createContent = function(data, headers, cb) {
     var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_CREATE_CONTENT_URI');
@@ -213,6 +242,37 @@ rejectFlagContent = function(data, contentId, headers, cb) {
     sendRequest(options, cb);
 };
 
+uploadContentUrl = function(data, content_id, headers, cb) {
+    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_CONTENT_UPLOAD_URL_URI') + '/' + content_id;
+    var options = getHttpOptions(url, data, "POST", false, headers);
+    sendRequest(options, cb);
+};
+
+uploadContentWithFileUrl = function(content_id, query, headers, cb) {
+    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_UPLOAD_CONTENT_URI') + '/' + content_id;
+    var options = getHttpOptions(url, null, "POST", {}, headers);
+    options.qs = query;
+    sendRequest(options, cb);
+};
+
+sendEmail = function(data, headers, cb) {
+    var url = configUtil.getConfig('LEARNER_SERVICE_BASE_URL') + configUtil.getConfig('LS_SEND_EMAIL');
+    var options = getHttpOptionsForLS(url, data, "POST", false, headers);
+    sendRequest(options, cb);
+};
+
+ekStepHealthCheck = function(cb) {
+    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_HEALTH_CHECK');
+    var options = getHttpOptions(url, null, "GET", false, false);
+    sendRequest(options, cb);
+}
+
+leanerServiceHealthCheck = function(cb) {
+    var url = configUtil.getConfig('LEARNER_SERVICE_BASE_URL') + configUtil.getConfig('LS_HEALTH_CHECK');
+    var options = getHttpOptionsForLS(url, null, "GET", false, false);
+    sendRequest(options, cb);
+}
+
 function sendRequest(http_options, cb) {
     httpUtil.sendRequest(http_options, function(err, resp, body) {
         if (resp && resp.statusCode && body) {
@@ -253,5 +313,10 @@ module.exports = {
     listOrdinals: listOrdinals,
     flagContent: flagContent,
     acceptFlagContent: acceptFlagContent,
-    rejectFlagContent: rejectFlagContent
+    rejectFlagContent: rejectFlagContent,
+    uploadContentUrl: uploadContentUrl,
+    uploadContentWithFileUrl: uploadContentWithFileUrl,
+    sendEmail: sendEmail,
+    ekStepHealthCheck: ekStepHealthCheck,
+    leanerServiceHealthCheck: leanerServiceHealthCheck
 };
