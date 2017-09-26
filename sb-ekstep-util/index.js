@@ -2,6 +2,7 @@ var ekStepContentUtil = require('./sb-ekstep-content-util');
 
 module.exports = {
     createContent: ekStepContentUtil.createContent,
+    compositeSearch: ekStepContentUtil.compositeSearch,
     searchContent: ekStepContentUtil.searchContent,
     updateContent: ekStepContentUtil.updateContent,
     getContent: ekStepContentUtil.getContent,

@@ -72,6 +72,13 @@ searchContent = function(data, headers, cb) {
     sendRequest(options, cb);
 };
 
+compositeSearch = function(data, headers, cb) {
+    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_COMPOSITE_SEARCH_URI');
+    var options = getHttpOptions(url, data, "POST", false, headers);
+    sendRequest(options, cb);
+};
+
+
 updateContent = function(data, content_id, headers, cb) {
     var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_UPDATE_CONTENT_URI') + "/" + content_id;
     var options = getHttpOptions(url, data, "PATCH", false, headers);
@@ -287,6 +294,7 @@ function sendRequest(http_options, cb) {
 module.exports = {
     createContent: createContent,
     searchContent: searchContent,
+    compositeSearch: compositeSearch,
     updateContent: updateContent,
     getContent: getContent,
     reviewContent: reviewContent,

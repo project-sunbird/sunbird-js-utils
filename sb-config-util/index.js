@@ -13,7 +13,8 @@ var config_data = {
     EKSTEP_BASE_URL: "https://qa.ekstep.in/api",
     
     EKSTEP_CREATE_CONTENT_URI: "/content/v3/create",
-    EKSTEP_SEARCH_CONTENT_URI: "/composite/v3/search",
+    EKSTEP_SEARCH_CONTENT_URI: "/content/v3/search",
+    EKSTEP_COMPOSITE_SEARCH_URI: "/composite/v3/search",
     EKSTEP_UPDATE_CONTENT_URI: "/content/v3/update",
     EKSTEP_GET_CONTENT_URI: "/content/v3/read",
     EKSTEP_REVIEW_CONTENT_URI: "/content/v3/review",
