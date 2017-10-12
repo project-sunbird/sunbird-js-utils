@@ -38,6 +38,7 @@ var config_data = {
     EKSTEP_LIST_ORDINALS_URI: "/meta/v3/ordinals/list",
 
     EKSTEP_CONTENT_UPLOAD_URL_URI: "/content/v3/upload/url",
+    EKSTEP_CONTENT_HIERARCHY_UPDATE_URI: "/content/v3/hierarchy/update",
     EKSTEP_HEALTH_CHECK: "/health",
     
     //Micro Service configuration for Course and Content service
