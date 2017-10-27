@@ -53,7 +53,8 @@ var config_data = {
     LEARNER_SERVICE_BASE_URL: "https://dev.open-sunbird.org/api",
     LEARNER_SERVICE_AUTHORIZATION_TOKEN: '',
     LS_SEND_EMAIL: '/user/v1/notification/email',
-    LS_HEALTH_CHECK: "/user/v1/health"
+    LS_HEALTH_CHECK: "/user/v1/health",
+    EKSTEP_UNLISTED_PUBLISH_CONTENT_URI: "/content/v3/unlisted/publish"
 
 
 };

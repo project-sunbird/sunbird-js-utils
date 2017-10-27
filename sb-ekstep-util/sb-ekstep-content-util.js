@@ -280,6 +280,13 @@ learnerServiceHealthCheck = function(cb) {
     sendRequest(options, cb);
 }
 
+unlistedPublishContent = function(data, content_id, headers, cb) {
+
+    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_UNLISTED_PUBLISH_CONTENT_URI') + "/" + content_id;
+    var options = getHttpOptions(url, data, "POST", false, headers);
+    sendRequest(options, cb);
+};
+
 function sendRequest(http_options, cb) {
     httpUtil.sendRequest(http_options, function(err, resp, body) {
         if (resp && resp.statusCode && body) {
@@ -326,5 +333,6 @@ module.exports = {
     uploadContentWithFileUrl: uploadContentWithFileUrl,
     sendEmail: sendEmail,
     ekStepHealthCheck: ekStepHealthCheck,
-    learnerServiceHealthCheck: learnerServiceHealthCheck
+    learnerServiceHealthCheck: learnerServiceHealthCheck,
+    unlistedPublishContent: unlistedPublishContent
 };
