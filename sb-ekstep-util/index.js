@@ -36,5 +36,10 @@ module.exports = {
     sendEmail: ekStepContentUtil.sendEmail,
     ekStepHealthCheck: ekStepContentUtil.ekStepHealthCheck,
     learnerServiceHealthCheck: ekStepContentUtil.learnerServiceHealthCheck,
-    unlistedPublishContent: ekStepContentUtil.unlistedPublishContent
+    unlistedPublishContent: ekStepContentUtil.unlistedPublishContent,
+    generateDialCode: ekStepContentUtil.generateDialCode,
+    getDialCode: ekStepContentUtil.getDialCode,
+    updateDialCode: ekStepContentUtil.updateDialCode,
+    dialCodeList: ekStepContentUtil.dialCodeList,
+    contentLinkDialCode: ekStepContentUtil.contentLinkDialCode
 };

@@ -43,10 +43,6 @@ var config_data = {
     
     //Micro Service configuration for Course and Content service
     PREFIX_CODE : 'org.sunbird.',
-
-    //Configuration for setting ownership for content created from Sunbird
-    CREATED_FOR: ['sunbird'],
-    CONTENT_CHANNEL: 'sunbird',
     
     Authorization_TOKEN : '',
 
@@ -54,9 +50,14 @@ var config_data = {
     LEARNER_SERVICE_AUTHORIZATION_TOKEN: '',
     LS_SEND_EMAIL: '/user/v1/notification/email',
     LS_HEALTH_CHECK: "/user/v1/health",
-    EKSTEP_UNLISTED_PUBLISH_CONTENT_URI: "/content/v3/unlisted/publish"
+    EKSTEP_UNLISTED_PUBLISH_CONTENT_URI: "/content/v3/unlisted/publish",
 
-
+    //Dial code related API
+    EKSTEP_GENERATE_DIALCODE_URI: '/dialcode/v3/generate',
+    EKSTEP_GET_DIALCODE_URI: '/dialcode/v3/read',
+    EKSTEP_UPDATE_DIALCODE_URI: '/dialcode/v3/update',
+    EKSTEP_LIST_DIALCODE_URI: '/dialcode/v3/list',
+    EKSTEP_CONTENT_LINK_DIALCODE_URI: '/dialcode/v3/content/link'
 };
 
 setConfig = function (name, value) {

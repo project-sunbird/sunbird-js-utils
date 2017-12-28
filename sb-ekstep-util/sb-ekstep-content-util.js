@@ -287,6 +287,41 @@ unlistedPublishContent = function(data, content_id, headers, cb) {
     sendRequest(options, cb);
 };
 
+generateDialCode = function(data, headers, cb) {
+
+    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_GENERATE_DIALCODE_URI');
+    var options = getHttpOptions(url, data, "POST", false, headers);
+    sendRequest(options, cb);
+};
+
+getDialCode = function(dialCode_id, headers, cb) {
+
+    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_GET_DIALCODE_URI') + '/' + dialCode_id;
+    var options = getHttpOptions(url, null, "GET", false, headers);
+    sendRequest(options, cb);
+};
+
+updateDialCode = function(data, dialCode_id, headers, cb) {
+
+    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_UPDATE_DIALCODE_URI') + '/' + dialCode_id;
+    var options = getHttpOptions(url, data, "PATCH", false, headers);
+    sendRequest(options, cb);
+};
+
+dialCodeList = function(data, headers, cb) {
+
+    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_LIST_DIALCODE_URI');
+    var options = getHttpOptions(url, data, "POST", false, headers);
+    sendRequest(options, cb);
+};
+
+contentLinkDialCode = function(data, content_id, headers, cb) {
+
+    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_CONTENT_LINK_DIALCODE_URI') + '/' + content_id;
+    var options = getHttpOptions(url, data, "PATCH", false, headers);
+    sendRequest(options, cb);
+};
+
 function sendRequest(http_options, cb) {
     httpUtil.sendRequest(http_options, function(err, resp, body) {
         if (resp && resp.statusCode && body) {
@@ -334,5 +369,10 @@ module.exports = {
     sendEmail: sendEmail,
     ekStepHealthCheck: ekStepHealthCheck,
     learnerServiceHealthCheck: learnerServiceHealthCheck,
-    unlistedPublishContent: unlistedPublishContent
+    unlistedPublishContent: unlistedPublishContent,
+    generateDialCode: generateDialCode,
+    getDialCode: getDialCode,
+    updateDialCode: updateDialCode,
+    dialCodeList: dialCodeList,
+    contentLinkDialCode: contentLinkDialCode
 };
