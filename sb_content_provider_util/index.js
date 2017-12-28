@@ -1,4 +1,4 @@
-var ekStepContentUtil = require('./sb-ekstep-content-util');
+var ekStepContentUtil = require('./sb_content_provider_util');
 
 module.exports = {
     createContent: ekStepContentUtil.createContent,

@@ -3,61 +3,16 @@
  * 
  * @module      ::js-utils
  * @description :: Represent utility functions for config requests and acts as entry file for config utility package
- * @author      :: Loganathan
+ * @author      :: Anuj Gupta
  */
 
 
 
 var config_data = {
-
-    EKSTEP_BASE_URL: "https://qa.ekstep.in/api",
-    
-    EKSTEP_CREATE_CONTENT_URI: "/content/v3/create",
-    EKSTEP_SEARCH_CONTENT_URI: "/content/v3/search",
-    EKSTEP_COMPOSITE_SEARCH_URI: "/composite/v3/search",
-    EKSTEP_UPDATE_CONTENT_URI: "/content/v3/update",
-    EKSTEP_GET_CONTENT_URI: "/content/v3/read",
-    EKSTEP_REVIEW_CONTENT_URI: "/content/v3/review",
-    EKSTEP_PUBLISH_CONTENT_URI: "/content/v3/publish",
-    EKSTEP_LIST_CONTENT_URI: "/content/v3/list",
-    EKSTEP_RETIRE_CONTENT_URI: "/content/v3/retire",
-    EKSTEP_UPLOAD_CONTENT_URI: "/content/v3/upload",
-    EKSTEP_HIERARCHY_CONTENT_URI: "/content/v3/hierarchy",
-    EKSTEP_REJECT_CONTENT_URI: "/content/v3/reject",
-    EKSTEP_FLAG_CONTENT_URI: "/content/v3/flag",
-    EKSTEP_ACCEPT_FLAG_CONTENT_URI: "/content/v3/flag/accept",
-    EKSTEP_REJECT_FLAG_CONTENT_URI: "/content/v3/flag/reject",
-    
-    EKSTEP_UPLOAD_MEDIA_URI: "/language/v1/language/dictionary/word/media/upload",
-    
-    //Domains API
-    EKSTEP_GET_DOMAIN_URI: "/learning/v2/domains",
-    EKSTEP_GET_CONCEPT_URI: "/learning/v2/concepts",
-    EKSTEP_LIST_TERMS_URI: "/domain/v3/terms/list",
-    EKSTEP_LIST_RESOURCE_BUNDLES_URI: "/meta/v3/resourcebundles/list",
-    EKSTEP_LIST_ORDINALS_URI: "/meta/v3/ordinals/list",
-
-    EKSTEP_CONTENT_UPLOAD_URL_URI: "/content/v3/upload/url",
-    EKSTEP_CONTENT_HIERARCHY_UPDATE_URI: "/content/v3/hierarchy/update",
-    EKSTEP_HEALTH_CHECK: "/health",
-    
-    //Micro Service configuration for Course and Content service
-    PREFIX_CODE : 'org.sunbird.',
-    
-    Authorization_TOKEN : '',
-
     LEARNER_SERVICE_BASE_URL: "https://dev.open-sunbird.org/api",
     LEARNER_SERVICE_AUTHORIZATION_TOKEN: '',
     LS_SEND_EMAIL: '/user/v1/notification/email',
-    LS_HEALTH_CHECK: "/user/v1/health",
-    EKSTEP_UNLISTED_PUBLISH_CONTENT_URI: "/content/v3/unlisted/publish",
-
-    //Dial code related API
-    EKSTEP_GENERATE_DIALCODE_URI: '/dialcode/v3/generate',
-    EKSTEP_GET_DIALCODE_URI: '/dialcode/v3/read',
-    EKSTEP_UPDATE_DIALCODE_URI: '/dialcode/v3/update',
-    EKSTEP_LIST_DIALCODE_URI: '/dialcode/v3/list',
-    EKSTEP_CONTENT_LINK_DIALCODE_URI: '/dialcode/v3/content/link'
+    LS_HEALTH_CHECK: "/user/v1/health"
 };
 
 setConfig = function (name, value) {
@@ -68,8 +23,13 @@ getConfig = function (configuration_name) {
     return config_data[configuration_name];
 };
 
+setApiConfig = function(api) {
+    Object.assign(config_data, api);
+}
+
 
 module.exports = {
     setConfig: setConfig,
-    getConfig: getConfig
+    getConfig: getConfig,
+    setApiConfig: setApiConfig
 };

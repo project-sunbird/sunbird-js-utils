@@ -61,40 +61,40 @@ getHttpOptionsForLS = function(url, data, method, formData, headers) {
 
 
 createContent = function(data, headers, cb) {
-    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_CREATE_CONTENT_URI');
+    var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('CREATE_CONTENT_URI');
     var options = getHttpOptions(url, data, "POST", false, headers);
     sendRequest(options, cb);
 };
 
 searchContent = function(data, headers, cb) {
-    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_SEARCH_CONTENT_URI');
+    var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('SEARCH_CONTENT_URI');
     var options = getHttpOptions(url, data, "POST", false, headers);
     sendRequest(options, cb);
 };
 
 compositeSearch = function(data, headers, cb) {
-    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_COMPOSITE_SEARCH_URI');
+    var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('COMPOSITE_SEARCH_URI');
     var options = getHttpOptions(url, data, "POST", false, headers);
     sendRequest(options, cb);
 };
 
 
 updateContent = function(data, content_id, headers, cb) {
-    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_UPDATE_CONTENT_URI') + "/" + content_id;
+    var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('UPDATE_CONTENT_URI') + "/" + content_id;
     var options = getHttpOptions(url, data, "PATCH", false, headers);
     sendRequest(options, cb);
 };
 
 getContent = function(content_id, headers, cb) {
 
-    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_GET_CONTENT_URI') + "/" + content_id;
+    var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('GET_CONTENT_URI') + "/" + content_id;
     var options = getHttpOptions(url, null, "GET", false, headers);
     sendRequest(options, cb);
 };
 
 getContentUsingQuery = function(content_id, query, headers, cb) {
 
-    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_GET_CONTENT_URI') + "/" + content_id;
+    var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('GET_CONTENT_URI') + "/" + content_id;
     var options = getHttpOptions(url, null, "GET", false, headers);
     options.qs = query;
     sendRequest(options, cb);
@@ -102,161 +102,161 @@ getContentUsingQuery = function(content_id, query, headers, cb) {
 
 reviewContent = function(data, content_id, headers, cb) {
 
-    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_REVIEW_CONTENT_URI') + "/" + content_id;
+    var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('REVIEW_CONTENT_URI') + "/" + content_id;
     var options = getHttpOptions(url, data, "POST", false, headers);
     sendRequest(options, cb);
 };
 
 publishContent = function(data, content_id, headers, cb) {
 
-    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_PUBLISH_CONTENT_URI') + "/" + content_id;
+    var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('PUBLISH_CONTENT_URI') + "/" + content_id;
     var options = getHttpOptions(url, data, "POST", false, headers);
     sendRequest(options, cb);
 };
 
 listContent = function(data, headers, cb) {
 
-    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_LIST_CONTENT_URI');
+    var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('LIST_CONTENT_URI');
     var options = getHttpOptions(url, null, "POST", false, headers);
     sendRequest(options, cb);
 };
 
 retireContent = function(content_id, headers, cb) {
-    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_RETIRE_CONTENT_URI') + '/' + content_id;
+    var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('RETIRE_CONTENT_URI') + '/' + content_id;
     var options = getHttpOptions(url, null, "DELETE", false, headers);
     sendRequest(options, cb);
 };
 
 uploadContent = function(formData, content_id, headers, cb) {
-    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_UPLOAD_CONTENT_URI') + '/' + content_id;
+    var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('UPLOAD_CONTENT_URI') + '/' + content_id;
     var options = getHttpOptions(url, null, "POST", formData, headers);
     sendRequest(options, cb);
 };
 
 contentHierarchy = function(content_id, headers, cb) {
-    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_HIERARCHY_CONTENT_URI') + '/' + content_id;
+    var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('HIERARCHY_CONTENT_URI') + '/' + content_id;
     var options = getHttpOptions(url, null, "GET", false, headers);
     sendRequest(options, cb);
 };
 
 contentHierarchyUsingQuery = function(content_id, query, headers, cb) {
 
-    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_HIERARCHY_CONTENT_URI') + '/' + content_id;
+    var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('HIERARCHY_CONTENT_URI') + '/' + content_id;
     var options = getHttpOptions(url, null, "GET", false, headers);
     options.qs = query;
     sendRequest(options, cb);
 };
 
 uploadMedia = function(formData, headers, cb) {
-    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_UPLOAD_MEDIA_URI');
+    var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('UPLOAD_MEDIA_URI');
     var options = getHttpOptions(url, null, "POST", formData, headers);
     sendRequest(options, cb);
 };
 
 getDomains = function(headers, cb) {
-    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_GET_DOMAIN_URI');
+    var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('GET_DOMAIN_URI');
     var options = getHttpOptions(url, null, "GET", false, headers);
     sendRequest(options, cb);
 };
 
 getDomainById = function(domainId, headers, cb) {
-    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_GET_DOMAIN_URI') + '/' + domainId;
+    var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('GET_DOMAIN_URI') + '/' + domainId;
     var options = getHttpOptions(url, null, "GET", false, headers);
     sendRequest(options, cb);
 };
 
 getObjects = function(domainId, objectType, headers, cb) {
-    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_GET_DOMAIN_URI') + '/' + domainId + '/' + objectType;
+    var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('GET_DOMAIN_URI') + '/' + domainId + '/' + objectType;
     var options = getHttpOptions(url, null, "GET", false, headers);
     sendRequest(options, cb);
 };
 
 getObjectById = function(domainId, objectType, objectId, headers, cb) {
-    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_GET_DOMAIN_URI') + '/' + domainId + '/' + objectType + '/' + objectId;
+    var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('GET_DOMAIN_URI') + '/' + domainId + '/' + objectType + '/' + objectId;
     var options = getHttpOptions(url, null, "GET", false, headers);
     sendRequest(options, cb);
 };
 
 getConceptById = function(conceptId, headers, cb) {
-    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_GET_CONCEPT_URI') + '/' + conceptId;
+    var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('GET_CONCEPT_URI') + '/' + conceptId;
     var options = getHttpOptions(url, null, "GET", false, headers);
     sendRequest(options, cb);
 };
 
 searchObjectsType = function(data, domainId, objectType, headers, cb) {
-    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_GET_DOMAIN_URI') + '/' + domainId + '/' + objectType + '/' + 'search';
+    var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('GET_DOMAIN_URI') + '/' + domainId + '/' + objectType + '/' + 'search';
     var options = getHttpOptions(url, data, "POST", false, headers);
     sendRequest(options, cb);
 };
 
 createObjectType = function(data, domainId, objectType, headers, cb) {
-    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_GET_DOMAIN_URI') + '/' + domainId + '/' + objectType + '/';
+    var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('GET_DOMAIN_URI') + '/' + domainId + '/' + objectType + '/';
     var options = getHttpOptions(url, data, "POST", false, headers);
     sendRequest(options, cb);
 };
 
 updateObjectType = function(data, domainId, objectType, objectId, headers, cb) {
-    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_GET_DOMAIN_URI') + '/' + domainId + '/' + objectType + '/' + objectId;
+    var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('GET_DOMAIN_URI') + '/' + domainId + '/' + objectType + '/' + objectId;
     var options = getHttpOptions(url, data, "PATCH", false, headers);
     sendRequest(options, cb);
 };
 
 retireObjectType = function(data, domainId, objectType, objectId, headers, cb) {
-    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_GET_DOMAIN_URI') + '/' + domainId + '/' + objectType + '/' + objectId + '/retire';
+    var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('GET_DOMAIN_URI') + '/' + domainId + '/' + objectType + '/' + objectId + '/retire';
     var options = getHttpOptions(url, data, "POST", false, headers);
     sendRequest(options, cb);
 };
 
 rejectContent = function(data, content_id, headers, cb) {
-    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_REJECT_CONTENT_URI') + '/' + content_id;
+    var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('REJECT_CONTENT_URI') + '/' + content_id;
     var options = getHttpOptions(url, data, "POST", false, headers);
     sendRequest(options, cb);
 };
 
 listTerms = function(headers, cb) {
-    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_LIST_TERMS_URI');
+    var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('LIST_TERMS_URI');
     var options = getHttpOptions(url, null, "GET", false, headers);
     sendRequest(options, cb);
 };
 
 listResourceBundles = function(headers, cb) {
-    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_LIST_RESOURCE_BUNDLES_URI');
+    var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('LIST_RESOURCE_BUNDLES_URI');
     var options = getHttpOptions(url, null, "GET", false, headers);
     sendRequest(options, cb);
 };
 
 listOrdinals = function(headers, cb) {
-    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_LIST_ORDINALS_URI');
+    var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('LIST_ORDINALS_URI');
     var options = getHttpOptions(url, null, "GET", false, headers);
     sendRequest(options, cb);
 };
 
 flagContent = function(data, contentId, headers, cb) {
-    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_FLAG_CONTENT_URI') + '/' + contentId;
+    var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('FLAG_CONTENT_URI') + '/' + contentId;
     var options = getHttpOptions(url, data, "POST", false, headers);
     sendRequest(options, cb);
 };
 
 acceptFlagContent = function(data, contentId, headers, cb) {
-    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_ACCEPT_FLAG_CONTENT_URI') + '/' + contentId;
+    var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('ACCEPT_FLAG_CONTENT_URI') + '/' + contentId;
     var options = getHttpOptions(url, data, "POST", false, headers);
     sendRequest(options, cb);
 };
 
 rejectFlagContent = function(data, contentId, headers, cb) {
-    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_REJECT_FLAG_CONTENT_URI') + '/' + contentId;
+    var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('REJECT_FLAG_CONTENT_URI') + '/' + contentId;
     var options = getHttpOptions(url, data, "POST", false, headers);
     sendRequest(options, cb);
 };
 
 uploadContentUrl = function(data, content_id, headers, cb) {
-    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_CONTENT_UPLOAD_URL_URI') + '/' + content_id;
+    var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('CONTENT_UPLOAD_URL_URI') + '/' + content_id;
     var options = getHttpOptions(url, data, "POST", false, headers);
     sendRequest(options, cb);
 };
 
 uploadContentWithFileUrl = function(content_id, query, headers, cb) {
-    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_UPLOAD_CONTENT_URI') + '/' + content_id;
+    var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('UPLOAD_CONTENT_URI') + '/' + content_id;
     var options = getHttpOptions(url, null, "POST", {}, headers);
     options.qs = query;
     sendRequest(options, cb);
@@ -269,7 +269,7 @@ sendEmail = function(data, headers, cb) {
 };
 
 ekStepHealthCheck = function(cb) {
-    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_HEALTH_CHECK');
+    var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('HEALTH_CHECK');
     var options = getHttpOptions(url, null, "GET", false, false);
     sendRequest(options, cb);
 }
@@ -282,42 +282,42 @@ learnerServiceHealthCheck = function(cb) {
 
 unlistedPublishContent = function(data, content_id, headers, cb) {
 
-    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_UNLISTED_PUBLISH_CONTENT_URI') + "/" + content_id;
+    var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('UNLISTED_PUBLISH_CONTENT_URI') + "/" + content_id;
     var options = getHttpOptions(url, data, "POST", false, headers);
     sendRequest(options, cb);
 };
 
 generateDialCode = function(data, headers, cb) {
 
-    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_GENERATE_DIALCODE_URI');
+    var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('GENERATE_DIALCODE_URI');
     var options = getHttpOptions(url, data, "POST", false, headers);
     sendRequest(options, cb);
 };
 
 getDialCode = function(dialCode_id, headers, cb) {
 
-    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_GET_DIALCODE_URI') + '/' + dialCode_id;
+    var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('GET_DIALCODE_URI') + '/' + dialCode_id;
     var options = getHttpOptions(url, null, "GET", false, headers);
     sendRequest(options, cb);
 };
 
 updateDialCode = function(data, dialCode_id, headers, cb) {
 
-    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_UPDATE_DIALCODE_URI') + '/' + dialCode_id;
+    var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('UPDATE_DIALCODE_URI') + '/' + dialCode_id;
     var options = getHttpOptions(url, data, "PATCH", false, headers);
     sendRequest(options, cb);
 };
 
 dialCodeList = function(data, headers, cb) {
 
-    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_LIST_DIALCODE_URI');
+    var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('LIST_DIALCODE_URI');
     var options = getHttpOptions(url, data, "POST", false, headers);
     sendRequest(options, cb);
 };
 
 contentLinkDialCode = function(data, content_id, headers, cb) {
 
-    var url = configUtil.getConfig('EKSTEP_BASE_URL') + configUtil.getConfig('EKSTEP_CONTENT_LINK_DIALCODE_URI') + '/' + content_id;
+    var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('CONTENT_LINK_DIALCODE_URI') + '/' + content_id;
     var options = getHttpOptions(url, data, "PATCH", false, headers);
     sendRequest(options, cb);
 };
