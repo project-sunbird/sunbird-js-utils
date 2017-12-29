@@ -23,7 +23,7 @@ getConfig = function (configuration_name) {
     return config_data[configuration_name];
 };
 
-setApiConfig = function(api) {
+setContentProviderApi = function(api) {
     Object.assign(config_data, api);
 }
 
@@ -31,5 +31,5 @@ setApiConfig = function(api) {
 module.exports = {
     setConfig: setConfig,
     getConfig: getConfig,
-    setApiConfig: setApiConfig
+    setContentProviderApi: setContentProviderApi
 };
