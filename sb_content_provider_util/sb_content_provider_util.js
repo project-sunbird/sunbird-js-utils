@@ -315,10 +315,10 @@ dialCodeList = function(data, headers, cb) {
     sendRequest(options, cb);
 };
 
-contentLinkDialCode = function(data, content_id, headers, cb) {
+contentLinkDialCode = function(data, headers, cb) {
 
-    var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('CONTENT_LINK_DIALCODE_URI') + '/' + content_id;
-    var options = getHttpOptions(url, data, "PATCH", false, headers);
+    var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('CONTENT_LINK_DIALCODE_URI');
+    var options = getHttpOptions(url, data, "POST", false, headers);
     sendRequest(options, cb);
 };
 
