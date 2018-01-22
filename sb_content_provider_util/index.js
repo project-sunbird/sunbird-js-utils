@@ -57,6 +57,7 @@ module.exports = {
   frameworklList: ekStepFrameworkUtil.frameworklList,
   frameworkCreate: ekStepFrameworkUtil.frameworkCreate,
   frameworkUpdate: ekStepFrameworkUtil.frameworkUpdate,
+  frameworkCopy: ekStepFrameworkUtil.frameworkCopy,
   getFrameworkTerm: ekStepFrameworkUtil.getFrameworkTerm,
   frameworkTermSearch: ekStepFrameworkUtil.frameworkTermSearch,
   frameworkTermCreate: ekStepFrameworkUtil.frameworkTermCreate,
