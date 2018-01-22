@@ -81,6 +81,12 @@ frameworkUpdate = function (data, frameworkId, headers, cb) {
   sendRequest(options, cb)
 }
 
+frameworkCopy = function (data, frameworkId, headers, cb) {
+  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('FRAMEWORK_COPY_URI') + '/' + frameworkId
+  var options = getHttpOptions(url, data, 'POST', false, headers)
+  sendRequest(options, cb)
+}
+
 getFrameworkTerm = function (query, category, headers, cb) {
   var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('FRAMEWORK_TERM_URI') + '/' + category
   var options = getHttpOptions(url, null, 'GET', false, headers)
@@ -158,6 +164,7 @@ module.exports = {
   frameworklList: frameworklList,
   frameworkCreate: frameworkCreate,
   frameworkUpdate: frameworkUpdate,
+  frameworkCopy: frameworkCopy,
   getFrameworkTerm: getFrameworkTerm,
   frameworkTermSearch: frameworkTermSearch,
   frameworkTermCreate: frameworkTermCreate,
