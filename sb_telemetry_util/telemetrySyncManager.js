@@ -27,7 +27,7 @@ telemetrySyncManager.prototype.init = function (config) {
  * desc: Responsible for store data and call sync
  */
 telemetrySyncManager.prototype.dispatch = function (telemetryEvent) {
-  this.teleData.push(telemetryEvent)
+  this.teleData.push(Object.assign({}, telemetryEvent));
   if ((telemetryEvent.eid.toUpperCase() == 'END') || (this.teleData.length >= this.config.batchsize)) {
     this.sync(function (err, res) { })
   }
