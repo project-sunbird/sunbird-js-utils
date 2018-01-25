@@ -1,5 +1,7 @@
 var httpUtil = require('sb-http-util');
 var configUtil = require('sb-config-util');
+const TelemetryUtil = require('sb_telemetry_util') 
+const telemetry = new TelemetryUtil() 
 
 getHttpOptions = function(url, data, method, formData, headers) {
 
@@ -352,16 +354,38 @@ updatePublisher = function(data, publisher_id, headers, cb) {
     sendRequest(options, cb);
 };
 
-function sendRequest(http_options, cb) {
-    httpUtil.sendRequest(http_options, function(err, resp, body) {
-        if (resp && resp.statusCode && body) {
-            body.statusCode = resp.statusCode ? resp.statusCode : 500;
-            cb(null, body);
-        } else {
-            cb(true, null);
-        }
-    });
-}
+/**
+ * This function used to generate api_call log event
+ * @param {Object} data
+ */
+function generateApiCallLogEvent (http_options) {
+    const telemetryData = Object.assign({}, http_options.headers.telemetryData)
+    const message = telemetryData.message || 'Calling content provider api'
+    const level = 'api_call'
+    const edata = telemetry.logEventData('INFO', level, message, telemetryData.params)
+    telemetry.log({
+      edata: edata,
+      context: telemetryData && telemetryData.context && telemetry.getContextData(telemetryData.context),
+      actor: telemetryData && telemetryData.actor,
+      tags: telemetryData && telemetryData.tags,
+      object: telemetryData && telemetryData.object
+    })
+  }
+  
+  function sendRequest (http_options, cb) {
+    var options = Object.assign({}, http_options)
+    generateApiCallLogEvent(http_options)
+    delete options.headers['telemetryData']
+  
+    httpUtil.sendRequest(options, function (err, resp, body) {
+      if (resp && resp.statusCode && body) {
+        body.statusCode = resp.statusCode ? resp.statusCode : 500
+        cb(null, body)
+      } else {
+        cb(true, null)
+      }
+    })
+  }
 
 module.exports = {
     createContent: createContent,

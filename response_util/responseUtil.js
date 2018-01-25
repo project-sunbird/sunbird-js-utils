@@ -1,4 +1,40 @@
 const uuidV1 = require('uuid/v1')
+const TelemetryUtil = require('sb_telemetry_util')
+const telemetry = new TelemetryUtil()
+
+/**
+ * This function used to generate error event
+ * @param {Object} data
+ */
+function generateErrorEvent (data, stacktrace) {
+  const trace = JSON.stringify(data.stacktrace || stacktrace)
+  const edata = telemetry.errorEventData(data.errCode, data.responseCode, trace)
+  telemetry.error({
+    edata: edata,
+    context: data.telemetryData && telemetry.getContextData(data.telemetryData.context),
+    actor: data.telemetryData && data.telemetryData.actor,
+    tags: data.telemetryData && data.telemetryData.tags,
+    object: data.telemetryData && data.telemetryData.object
+  })
+}
+
+/**
+ * This function used to generate api_access log event
+ * @param {Object} data
+ */
+function generateApiAccessLogEvent (data, status) {
+  const telemetryData = data.telemetryData
+  const message = data.message || status
+  const level = 'api_access'
+  const edata = telemetry.logEventData('INFO', level, message, telemetryData.params)
+  telemetry.log({
+    edata: edata,
+    context: telemetry.getContextData(telemetryData.context),
+    actor: telemetryData && telemetryData.actor,
+    tags: telemetryData && telemetryData.tags,
+    object: telemetryData && telemetryData.object
+  })
+}
 
 /**
  * this function create success response body.
@@ -13,6 +49,9 @@ function successResponse (data) {
   response.params = getParams(data.msgid, 'successful', null, null)
   response.responseCode = data.responseCode || 'OK'
   response.result = data.result
+  if (data.telemetryData) {
+    generateApiAccessLogEvent(data, response.params.status)
+  }
 
   return response
 }
@@ -30,7 +69,9 @@ function errorResponse (data) {
   response.params = getParams(data.msgId, 'failed', data.errCode, data.errMsg)
   response.responseCode = data.responseCode
   response.result = data.result
-
+  if (data.telemetryData) {
+    generateErrorEvent(data, response)
+  }
   return response
 }
 
