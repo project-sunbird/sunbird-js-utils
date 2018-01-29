@@ -61,7 +61,8 @@ telemetryService.prototype.audit = function (data) {
     context: data.context,
     actor: data.actor,
     object: data.object,
-    tags: data.tags
+    tags: data.tags,
+    runningEnv: 'server'
   })
 }
 
