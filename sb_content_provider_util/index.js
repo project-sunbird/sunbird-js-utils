@@ -65,5 +65,6 @@ module.exports = {
   getFrameworkCategoryInstance: ekStepFrameworkUtil.getFrameworkCategoryInstance,
   frameworkCategoryInstanceSearch: ekStepFrameworkUtil.frameworkCategoryInstanceSearch,
   frameworkCategoryInstanceCreate: ekStepFrameworkUtil.frameworkCategoryInstanceCreate,
-  frameworkCategoryInstanceUpdate: ekStepFrameworkUtil.frameworkCategoryInstanceUpdate
+  frameworkCategoryInstanceUpdate: ekStepFrameworkUtil.frameworkCategoryInstanceUpdate,
+  contentHierarchyUpdate: ekStepContentUtil.contentHierarchyUpdate
 }

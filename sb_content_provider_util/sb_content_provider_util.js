@@ -354,6 +354,12 @@ updatePublisher = function(data, publisher_id, headers, cb) {
     sendRequest(options, cb);
 };
 
+contentHierarchyUpdate = function(data, headers, cb) {
+    var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('CONTENT_HIERARCHY_UPDATE_URI') + '/';
+    var options = getHttpOptions(url, data, "PATCH", false, headers);
+    sendRequest(options, cb);
+};
+
 /**
  * This function used to generate api_call log event
  * @param {Object} data
@@ -433,5 +439,6 @@ module.exports = {
     publishDialCode: publishDialCode,
     createPublisher: createPublisher,
     getPublisher: getPublisher,
-    updatePublisher: updatePublisher
+    updatePublisher: updatePublisher,
+    contentHierarchyUpdate: contentHierarchyUpdate
 };
