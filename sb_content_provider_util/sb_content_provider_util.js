@@ -277,7 +277,7 @@ ekStepHealthCheck = function(cb) {
 }
 
 learnerServiceHealthCheck = function(cb) {
-    var url = configUtil.getConfig('LEARNER_SERVICE_BASE_URL') + configUtil.getConfig('LS_HEALTH_CHECK');
+    var url = configUtil.getConfig('LEARNER_SERVICE_LOCAL_BASE_URL') + configUtil.getConfig('LS_HEALTH_CHECK');
     var options = getHttpOptionsForLS(url, null, "GET", false, false);
     sendRequest(options, cb);
 }
