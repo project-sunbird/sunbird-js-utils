@@ -360,6 +360,25 @@ contentHierarchyUpdate = function(data, headers, cb) {
     sendRequest(options, cb);
 };
 
+submitDataSetRequest = function(data, headers, cb) {
+    var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('SUBMIT_DATA_EXHAUST_URI');
+    var options = getHttpOptions(url, data, "POST", false, headers);
+    sendRequest(options, cb);
+};
+
+getListOfDataSetRequest = function(query, clientKey, headers, cb) {
+    var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('LIST_DATA_EXHAUST_URI') + '/' + clientKey;
+    var options = getHttpOptions(url, null, "GET", false, headers);
+    options.qs = query;
+    sendRequest(options, cb);
+}
+
+getDataSetDetailRequest = function(clientKey, requestId, headers, cb) {
+    var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('READ_DATA_EXHAUST_URI') + '/' + clientKey + '/' + requestId;
+    var options = getHttpOptions(url, null, "GET", false, headers);
+    sendRequest(options, cb);
+}
+ 
 /**
  * This function used to generate api_call log event
  * @param {Object} data
@@ -440,5 +459,8 @@ module.exports = {
     createPublisher: createPublisher,
     getPublisher: getPublisher,
     updatePublisher: updatePublisher,
-    contentHierarchyUpdate: contentHierarchyUpdate
+    contentHierarchyUpdate: contentHierarchyUpdate,
+    submitDataSetRequest: submitDataSetRequest,
+    getListOfDataSetRequest: getListOfDataSetRequest,
+    getDataSetDetailRequest: getDataSetDetailRequest
 };

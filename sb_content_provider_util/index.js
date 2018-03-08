@@ -66,5 +66,8 @@ module.exports = {
   frameworkCategoryInstanceSearch: ekStepFrameworkUtil.frameworkCategoryInstanceSearch,
   frameworkCategoryInstanceCreate: ekStepFrameworkUtil.frameworkCategoryInstanceCreate,
   frameworkCategoryInstanceUpdate: ekStepFrameworkUtil.frameworkCategoryInstanceUpdate,
-  contentHierarchyUpdate: ekStepContentUtil.contentHierarchyUpdate
+  contentHierarchyUpdate: ekStepContentUtil.contentHierarchyUpdate,
+  submitDataSetRequest: ekStepContentUtil.submitDataSetRequest,
+  getListOfDataSetRequest: ekStepContentUtil.getListOfDataSetRequest,
+  getDataSetDetailRequest: ekStepContentUtil.getDataSetDetailRequest
 }
