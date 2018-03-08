@@ -378,6 +378,13 @@ getDataSetDetailRequest = function(clientKey, requestId, headers, cb) {
     var options = getHttpOptions(url, null, "GET", false, headers);
     sendRequest(options, cb);
 }
+
+getChannelDataSetRequest = function(query, dataSetId, channel, headers, cb) {
+    var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('CHANNEL_DATA_EXHAUST_URI') + '/' + dataSetId + '/' + channel;
+    var options = getHttpOptions(url, null, "GET", false, headers);
+    options.qs = query;
+    sendRequest(options, cb);
+}
  
 /**
  * This function used to generate api_call log event
@@ -462,5 +469,6 @@ module.exports = {
     contentHierarchyUpdate: contentHierarchyUpdate,
     submitDataSetRequest: submitDataSetRequest,
     getListOfDataSetRequest: getListOfDataSetRequest,
-    getDataSetDetailRequest: getDataSetDetailRequest
+    getDataSetDetailRequest: getDataSetDetailRequest,
+    getChannelDataSetRequest: getChannelDataSetRequest
 };

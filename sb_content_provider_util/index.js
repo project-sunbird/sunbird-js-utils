@@ -69,5 +69,6 @@ module.exports = {
   contentHierarchyUpdate: ekStepContentUtil.contentHierarchyUpdate,
   submitDataSetRequest: ekStepContentUtil.submitDataSetRequest,
   getListOfDataSetRequest: ekStepContentUtil.getListOfDataSetRequest,
-  getDataSetDetailRequest: ekStepContentUtil.getDataSetDetailRequest
+  getDataSetDetailRequest: ekStepContentUtil.getDataSetDetailRequest,
+  getChannelDataSetRequest: ekStepContentUtil.getChannelDataSetRequest
 }
