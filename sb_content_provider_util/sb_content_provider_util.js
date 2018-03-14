@@ -454,5 +454,6 @@ module.exports = {
   submitDataSetRequest: submitDataSetRequest,
   getListOfDataSetRequest: getListOfDataSetRequest,
   getDataSetDetailRequest: getDataSetDetailRequest,
-  getChannelDataSetRequest: getChannelDataSetRequest
+  getChannelDataSetRequest: getChannelDataSetRequest,
+  systemUpdateContent: systemUpdateContent
 }
