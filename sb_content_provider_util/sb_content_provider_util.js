@@ -370,6 +370,13 @@ systemUpdateContent = function (data, contentId, headers, cb) {
   var options = getHttpOptions(url, data, 'PATCH', false, headers)
   sendRequest(options, cb)
 }
+
+learnerServiceGetForm = function (data, headers, cb) {
+  var url = configUtil.getConfig('LEARNER_SERVICE_LOCAL_BASE_URL') + configUtil.getConfig('LS_FORM_READ')
+  var options = getHttpOptionsForLS(url, data, 'POST', false, headers)
+  sendRequest(options, cb)
+}
+
 /**
  * This function used to generate api_call log event
  * @param {Object} data
@@ -455,5 +462,6 @@ module.exports = {
   getListOfDataSetRequest: getListOfDataSetRequest,
   getDataSetDetailRequest: getDataSetDetailRequest,
   getChannelDataSetRequest: getChannelDataSetRequest,
-  systemUpdateContent: systemUpdateContent
+  systemUpdateContent: systemUpdateContent,
+  learnerServiceGetForm: learnerServiceGetForm
 }

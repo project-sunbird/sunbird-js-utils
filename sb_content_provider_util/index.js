@@ -71,5 +71,6 @@ module.exports = {
   getListOfDataSetRequest: ekStepContentUtil.getListOfDataSetRequest,
   getDataSetDetailRequest: ekStepContentUtil.getDataSetDetailRequest,
   getChannelDataSetRequest: ekStepContentUtil.getChannelDataSetRequest,
-  systemUpdateContent: ekStepContentUtil.systemUpdateContent
+  systemUpdateContent: ekStepContentUtil.systemUpdateContent,
+  learnerServiceGetForm: ekStepContentUtil.learnerServiceGetForm
 }
