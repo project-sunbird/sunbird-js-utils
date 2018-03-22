@@ -377,6 +377,18 @@ learnerServiceGetForm = function (data, headers, cb) {
   sendRequest(options, cb)
 }
 
+learnerServiceCreateForm = function (data, headers, cb) {
+  var url = configUtil.getConfig('LEARNER_SERVICE_LOCAL_BASE_URL') + configUtil.getConfig('LS_FORM_CREATE')
+  var options = getHttpOptionsForLS(url, data, 'POST', false, headers)
+  sendRequest(options, cb)
+}
+
+learnerServiceUpdateForm = function (data, headers, cb) {
+  var url = configUtil.getConfig('LEARNER_SERVICE_LOCAL_BASE_URL') + configUtil.getConfig('LS_FORM_UPDATE')
+  var options = getHttpOptionsForLS(url, data, 'POST', false, headers)
+  sendRequest(options, cb)
+}
+
 /**
  * This function used to generate api_call log event
  * @param {Object} data
@@ -463,5 +475,7 @@ module.exports = {
   getDataSetDetailRequest: getDataSetDetailRequest,
   getChannelDataSetRequest: getChannelDataSetRequest,
   systemUpdateContent: systemUpdateContent,
-  learnerServiceGetForm: learnerServiceGetForm
+  learnerServiceGetForm: learnerServiceGetForm,
+  learnerServiceCreateForm: learnerServiceCreateForm,
+  learnerServiceUpdateForm: learnerServiceUpdateForm
 }
