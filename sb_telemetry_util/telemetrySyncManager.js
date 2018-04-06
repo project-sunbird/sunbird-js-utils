@@ -27,7 +27,7 @@ telemetrySyncManager.prototype.init = function (config) {
  * desc: Responsible for store data and call sync
  */
 telemetrySyncManager.prototype.dispatch = function (telemetryEvent) {
-  this.teleData.push(Object.assign({}, telemetryEvent));
+  this.teleData.push(Object.assign({}, telemetryEvent))
   if ((telemetryEvent.eid.toUpperCase() == 'END') || (this.teleData.length >= this.config.batchsize)) {
     this.sync(function (err, res) { })
   }
@@ -79,15 +79,13 @@ telemetrySyncManager.prototype.sync = function (callback) {
     var self = this
     const options = this.getHttpOption()
 
-    console.log('Sync', JSON.stringify(options.body))
-
     request(options, function (err, res, body) {
       if (body && body.params && body.params.status === 'successful') {
         self.teleData.splice(0, self.config.batchsize)
         console.log('Telemetry submitted successfully')
         callback(null, body)
       } else {
-        console.log('Telemetry submitting failed, due to ', JSON.stringify(body))
+        console.log('Telemetry submitting failed, due to ', err)
         callback(err, null)
       }
     })
