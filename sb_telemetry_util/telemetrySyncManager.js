@@ -85,7 +85,7 @@ telemetrySyncManager.prototype.sync = function (callback) {
         console.log('Telemetry submitted successfully')
         callback(null, body)
       } else {
-        console.log('Telemetry submitting failed, due to ', err, body)
+        console.log('Telemetry submitting failed, due to ', err, JSON.stringify(body))
         callback(err, null)
       }
     })
