@@ -218,7 +218,7 @@ telemetryService.prototype.getActorData = function (userId, type) {
     return 'Required params are missing'
   }
   return {
-    id: userId,
+    id: userId.toString(),
     type: type
   }
 }
