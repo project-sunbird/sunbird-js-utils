@@ -389,6 +389,12 @@ learnerServiceUpdateForm = function (data, headers, cb) {
   sendRequest(options, cb)
 }
 
+copyContent = function (data, headers, cb) {
+  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('COPY_CONTENT_URI')
+  var options = getHttpOptions(url, data, 'POST', false, headers)
+  sendRequest(options, cb)
+}
+
 /**
  * This function used to generate api_call log event
  * @param {Object} data
@@ -477,5 +483,6 @@ module.exports = {
   systemUpdateContent: systemUpdateContent,
   learnerServiceGetForm: learnerServiceGetForm,
   learnerServiceCreateForm: learnerServiceCreateForm,
-  learnerServiceUpdateForm: learnerServiceUpdateForm
+  learnerServiceUpdateForm: learnerServiceUpdateForm,
+  copyContent: copyContent
 }
