@@ -389,8 +389,8 @@ learnerServiceUpdateForm = function (data, headers, cb) {
   sendRequest(options, cb)
 }
 
-copyContent = function (data, headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('COPY_CONTENT_URI')
+copyContent = function (data, content_id, headers, cb) {
+  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('COPY_CONTENT_URI') + '/' + content_id
   var options = getHttpOptions(url, data, 'POST', false, headers)
   sendRequest(options, cb)
 }
