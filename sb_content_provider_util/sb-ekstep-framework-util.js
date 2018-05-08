@@ -145,6 +145,12 @@ frameworkCategoryInstanceUpdate = function (data, query, category, headers, cb) 
   sendRequest(options, cb)
 }
 
+
+frameworkPublish = function (data, frameworkId, headers, cb) {
+  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('FRAMEWORK_PUBLISH_URI') + '/' + frameworkId
+  var options = getHttpOptions(url, data, 'POST', false, headers)
+  sendRequest(options, cb)
+}
 /**
  * This function used to generate api_call log event
  * @param {Object} data
@@ -196,5 +202,6 @@ module.exports = {
   getFrameworkCategoryInstance: getFrameworkCategoryInstance,
   frameworkCategoryInstanceSearch: frameworkCategoryInstanceSearch,
   frameworkCategoryInstanceCreate: frameworkCategoryInstanceCreate,
-  frameworkCategoryInstanceUpdate: frameworkCategoryInstanceUpdate
+  frameworkCategoryInstanceUpdate: frameworkCategoryInstanceUpdate,
+  frameworkPublish: frameworkPublish
 }
