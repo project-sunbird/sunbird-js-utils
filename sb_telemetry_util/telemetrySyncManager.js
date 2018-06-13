@@ -85,7 +85,7 @@ telemetrySyncManager.prototype.getHttpOption = function (events) {
  * desc: Responsible for call http api
  */
 telemetrySyncManager.prototype.sync = function (events, callback) {
-  if (this.teleData.length > 0) {
+  if (events && events.length) {
     var self = this
     const options = this.getHttpOption(events)
 
