@@ -204,6 +204,7 @@ telemetryService.prototype.getContextData = function (data) {
   cObj.env = data.env
   cObj.cdata = data.cdata
   cObj.rollup = data.rollup
+  cObj.did = data['did'] || ''
   return JSON.parse(JSON.stringify(cObj))
 }
 
