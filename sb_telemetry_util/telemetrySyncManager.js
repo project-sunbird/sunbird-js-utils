@@ -29,7 +29,7 @@ telemetrySyncManager.prototype.init = function (config) {
     if (telemetryBatchUtil.get()) {
       self.sync(function(){});
     }
-  }, 5000)
+  }, 2000)
 }
 
 /**
