@@ -6,8 +6,10 @@
  */
 
 var request = require('request')
+var _ = require('lodash');
+var telemetryBatchUtil = require('./telemetryBatchUtil');
 
-function telemetrySyncManager () {
+function telemetrySyncManager() {
 
 }
 
@@ -21,15 +23,22 @@ function telemetrySyncManager () {
 telemetrySyncManager.prototype.init = function (config) {
   this.config = config
   this.teleData = []
+  this.failedList = []
+  var self = this;
+  setInterval(function () {
+    if (telemetryBatchUtil.get()) {
+      self.syncBatches();
+    }
+  }, 10000)
 }
 
 /**
  * desc: Responsible for store data and call sync
  */
 telemetrySyncManager.prototype.dispatch = function (telemetryEvent) {
-  this.teleData.push(Object.assign({}, telemetryEvent))
+  this.teleData.push(telemetryEvent)
   if ((telemetryEvent.eid.toUpperCase() == 'END') || (this.teleData.length >= this.config.batchsize)) {
-    this.sync(function (err, res) { })
+    telemetryBatchUtil.add(this.teleData.splice(0, this.config.batchsize))
   }
 }
 
@@ -53,13 +62,14 @@ telemetrySyncManager.prototype.getHttpHeaders = function () {
 /**
  * Resposible for return http option for telemetry sync
  */
-telemetrySyncManager.prototype.getHttpOption = function () {
+telemetrySyncManager.prototype.getHttpOption = function (events) {
   const headers = this.getHttpHeaders()
+
   var telemetryObj = {
     'id': 'ekstep.telemetry',
     'ver': this.config.version || '3.0',
     'ets': Date.now(),
-    'events': this.teleData
+    'events': events
   }
   const apiPath = this.config.host + this.config.endpoint
   return {
@@ -74,24 +84,46 @@ telemetrySyncManager.prototype.getHttpOption = function () {
 /**
  * desc: Responsible for call http api
  */
-telemetrySyncManager.prototype.sync = function (callback) {
+telemetrySyncManager.prototype.sync = function (events, callback) {
   if (this.teleData.length > 0) {
     var self = this
-    const options = this.getHttpOption()
+    const options = this.getHttpOption(events)
 
     request(options, function (err, res, body) {
-      if (body && body.params && body.params.status === 'successful') {
-        self.teleData.splice(0, self.config.batchsize)
-        console.log('Telemetry submitted successfully')
+      if (body && body.params && _.toLower(body.params.status) === 'successful') {
+        callback(null, body)
+      } else if (_.get(body, 'params.err') === 'VALIDATION_ERROR') {
         callback(null, body)
       } else {
-        console.log('Telemetry submitting failed, due to ', err, body.params)
-        callback(err, null)
+        telemetryBatchUtil.add(options.body.events)
+        console.log('Telemetry sync failed, due to ', err, body.params)
+        callback(new Error('sync failed'), null)
       }
     })
   } else {
-    callback(null, true)
+    callback(null, null)
   }
 }
+
+/**
+ * desc: Responsible for call http api
+ */
+telemetrySyncManager.prototype.syncBatches = function (callback) {
+  var self = this;
+  var batches = telemetryBatchUtil.get();
+  _.forEach(batches, function (batch) {
+    (function (batch) {
+      self.sync(batch.events, function (error, response) {
+        if (error) {
+          telemetryBatchUtil.add(batch.events);
+        } else {
+          console.log('Telemetry batch submitted successfully with batch id: ', batch.id)
+          telemetryBatchUtil.delete(batch.id);
+        }
+      })
+    })(batch)
+  })
+}
+
 
 module.exports = telemetrySyncManager

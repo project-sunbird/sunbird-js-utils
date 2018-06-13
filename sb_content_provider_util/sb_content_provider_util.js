@@ -415,7 +415,8 @@ function generateApiCallLogEvent (http_options) {
 
 function sendRequest (http_options, cb) {
   var options = Object.assign({}, http_options)
-  generateApiCallLogEvent(http_options)
+  // removed api call event
+  //generateApiCallLogEvent(http_options)
   delete options.headers['telemetryData']
 
   httpUtil.sendRequest(options, function (err, resp, body) {
