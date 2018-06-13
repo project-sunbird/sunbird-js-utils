@@ -7,7 +7,7 @@ var log4js = require('log4js');
 var fs = require('fs');
 var dir = '../../log';
 
-if (!fs.existsSync(dir)){
+if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir);
 }
 
@@ -35,23 +35,35 @@ log4js.configure(options);
 var logger = log4js.getLogger('api');
 
 var info = function (data) {
-    logger.setLevel('INFO');
-    logger.info(JSON.stringify(data));
+    if (data) {
+        logger.setLevel('INFO');
+        logger.info(JSON.stringify(data));
+    }
+
 };
 
 var error = function (data) {
-    logger.setLevel('ERROR');
-    logger.error(JSON.stringify(data));
+    if (data) {
+        logger.setLevel('ERROR');
+        logger.error(JSON.stringify(data));
+    }
+
 };
 
 var warn = function (data) {
-    logger.setLevel('WARN');
-    logger.warn(JSON.stringify(data));
+    if (data) {
+        logger.setLevel('WARN');
+        logger.warn(JSON.stringify(data));
+    }
+
 };
 
 var trace = function (data) {
-    logger.setLevel('TRACE');
-    logger.trace(JSON.stringify(data));
+    if (data) {
+        logger.setLevel('TRACE');
+        logger.trace(JSON.stringify(data));
+    }
+
 };
 
 module.exports.info = info;

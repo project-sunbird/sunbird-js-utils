@@ -96,7 +96,7 @@ telemetrySyncManager.prototype.sync = function (events, callback) {
         callback(null, body)
       } else {
         telemetryBatchUtil.add(options.body.events)
-        console.log('Telemetry sync failed, due to ', err, body.params)
+        console.log('Telemetry sync failed, due to ', err, body.params, , res.statusCode)
         callback(new Error('sync failed'), null)
       }
     })
