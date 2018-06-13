@@ -1,6 +1,7 @@
 const uuidV1 = require('uuid/v1')
 const TelemetryUtil = require('sb_telemetry_util')
 const telemetry = new TelemetryUtil()
+var LOG = require('sb_logger_util')
 
 /**
  * This function used to generate error event
@@ -8,14 +9,16 @@ const telemetry = new TelemetryUtil()
  */
 function generateErrorEvent (data, stacktrace) {
   const trace = JSON.stringify(data.stacktrace || stacktrace)
-  const edata = telemetry.errorEventData(data.errCode, data.responseCode, trace)
-  telemetry.error({
+  const edata = telemetry.errorEventData(data.responseCode, 'SYSTEM' ,trace)
+  var errorEvent = {
     edata: edata,
     context: data.telemetryData && telemetry.getContextData(data.telemetryData.context),
     actor: data.telemetryData && data.telemetryData.actor,
     tags: data.telemetryData && data.telemetryData.tags,
     object: data.telemetryData && data.telemetryData.object
-  })
+  };
+  LOG.err(errorEvent);
+  telemetry.error(errorEvent)
 }
 
 /**
@@ -27,13 +30,15 @@ function generateApiAccessLogEvent (data, status) {
   const message = data.message || status
   const level = 'api_access'
   const edata = telemetry.logEventData('INFO', level, message, telemetryData.params)
-  telemetry.log({
+  var logEvent = {
     edata: edata,
     context: telemetry.getContextData(telemetryData.context),
     actor: telemetryData && telemetryData.actor,
     tags: telemetryData && telemetryData.tags,
     object: telemetryData && telemetryData.object
-  })
+  }
+  LOG.debug(logEvent)
+  telemetry.log(logEvent)
 }
 
 /**

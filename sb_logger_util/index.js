@@ -19,7 +19,7 @@ var options = {
                 "type": "console"
             }, {
                 "type": "logLevelFilter",
-                "level": "TRACE",
+                "level": "INFO",
                 "category": "api",
                 "appender": {
                     "type": "file",
@@ -47,6 +47,11 @@ var error = function (data) {
 var warn = function (data) {
     logger.setLevel('WARN');
     logger.warn(JSON.stringify(data));
+};
+
+var debug = function (data) {
+    logger.setLevel('DEBUG');
+    logger.debug(JSON.stringify(data));
 };
 
 var trace = function (data) {
