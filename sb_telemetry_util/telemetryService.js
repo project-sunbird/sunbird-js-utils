@@ -72,7 +72,6 @@ telemetryService.prototype.audit = function (data) {
  */
 
 telemetryService.prototype.error = function (data) {
-  console.log('Error event data')
   Telemetry.error(data.edata, {
     context: data.context,
     actor: data.actor,
