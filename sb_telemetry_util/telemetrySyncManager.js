@@ -7,8 +7,9 @@
 
 var request = require('request')
 var _ = require('lodash');
+var telemetryBatchUtil = require('./telemetryBatchUtil');
 
-function telemetrySyncManager () {
+function telemetrySyncManager() {
 
 }
 
@@ -22,6 +23,13 @@ function telemetrySyncManager () {
 telemetrySyncManager.prototype.init = function (config) {
   this.config = config
   this.teleData = []
+  this.failedList = []
+  var self = this;
+  setInterval(function () {
+    if (telemetryBatchUtil.get()) {
+      self.sync(function(){});
+    }
+  }, 5000)
 }
 
 /**
@@ -30,7 +38,7 @@ telemetrySyncManager.prototype.init = function (config) {
 telemetrySyncManager.prototype.dispatch = function (telemetryEvent) {
   this.teleData.push(telemetryEvent)
   if ((telemetryEvent.eid.toUpperCase() == 'END') || (this.teleData.length >= this.config.batchsize)) {
-    this.sync(function (err, res) { })
+    telemetryBatchUtil.add(this.teleData.splice(0, this.config.batchsize))
   }
 }
 
@@ -56,12 +64,14 @@ telemetrySyncManager.prototype.getHttpHeaders = function () {
  */
 telemetrySyncManager.prototype.getHttpOption = function () {
   const headers = this.getHttpHeaders()
+  var batch = telemetryBatchUtil.get();
   var telemetryObj = {
     'id': 'ekstep.telemetry',
     'ver': this.config.version || '3.0',
     'ets': Date.now(),
-    'events': this.teleData.splice(0, this.config.batchsize)
+    'events': _.clone(batch.events)
   }
+  telemetryBatchUtil.delete(batch.id);
   const apiPath = this.config.host + this.config.endpoint
   return {
     url: apiPath,
@@ -79,15 +89,15 @@ telemetrySyncManager.prototype.sync = function (callback) {
   if (this.teleData.length > 0) {
     var self = this
     const options = this.getHttpOption()
-    
+
     request(options, function (err, res, body) {
       if (body && body.params && _.toLower(body.params.status) === 'successful') {
         console.log('Telemetry submitted successfully')
         callback(null, body)
-      } else if(_.get(body, 'params.err') === 'VALIDATION_ERROR') {
+      } else if (_.get(body, 'params.err') === 'VALIDATION_ERROR') {
         callback(null, body)
       } else {
-        self.teleData = _.uniqBy(self.teleData.concat(options.body.events), 'mid')
+        telemetryBatchUtil.add(options.body.events)
         console.log('Telemetry sync failed, due to ', err, body.params)
         callback(err, null)
       }
