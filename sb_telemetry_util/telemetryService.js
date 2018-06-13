@@ -41,7 +41,6 @@ telemetryService.prototype.start = function (data) {
  * data object have these properties {'edata', context', 'object', 'tags'}
  */
 telemetryService.prototype.end = function (data) {
-  console.log('Portal end event')
   var context = this.context.pop()
   Telemetry.end(data.edata, {
     context: context,
