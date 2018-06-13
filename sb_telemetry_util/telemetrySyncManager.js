@@ -27,9 +27,9 @@ telemetrySyncManager.prototype.init = function (config) {
   var self = this;
   setInterval(function () {
     if (telemetryBatchUtil.get()) {
-      self.sync(function(){});
+      self.syncBatches();
     }
-  }, 2000)
+  }, 10000)
 }
 
 /**
@@ -62,16 +62,15 @@ telemetrySyncManager.prototype.getHttpHeaders = function () {
 /**
  * Resposible for return http option for telemetry sync
  */
-telemetrySyncManager.prototype.getHttpOption = function () {
+telemetrySyncManager.prototype.getHttpOption = function (events) {
   const headers = this.getHttpHeaders()
-  var batch = telemetryBatchUtil.get();
+
   var telemetryObj = {
     'id': 'ekstep.telemetry',
     'ver': this.config.version || '3.0',
     'ets': Date.now(),
-    'events': _.clone(batch.events)
+    'events': events
   }
-  telemetryBatchUtil.delete(batch.id);
   const apiPath = this.config.host + this.config.endpoint
   return {
     url: apiPath,
@@ -85,26 +84,46 @@ telemetrySyncManager.prototype.getHttpOption = function () {
 /**
  * desc: Responsible for call http api
  */
-telemetrySyncManager.prototype.sync = function (callback) {
+telemetrySyncManager.prototype.sync = function (events, callback) {
   if (this.teleData.length > 0) {
     var self = this
-    const options = this.getHttpOption()
+    const options = this.getHttpOption(events)
 
     request(options, function (err, res, body) {
       if (body && body.params && _.toLower(body.params.status) === 'successful') {
-        console.log('Telemetry submitted successfully')
         callback(null, body)
       } else if (_.get(body, 'params.err') === 'VALIDATION_ERROR') {
         callback(null, body)
       } else {
         telemetryBatchUtil.add(options.body.events)
         console.log('Telemetry sync failed, due to ', err, body.params)
-        callback(err, null)
+        callback(new Error('sync failed'), null)
       }
     })
   } else {
-    callback(null, true)
+    callback(null, null)
   }
 }
+
+/**
+ * desc: Responsible for call http api
+ */
+telemetrySyncManager.prototype.syncBatches = function (callback) {
+  var self = this;
+  var batches = telemetryBatchUtil.get();
+  _.forEach(batches, function (batch) {
+    (function (batch) {
+      self.sync(batch.events, function (error, response) {
+        if (error) {
+          telemetryBatchUtil.add(batch.events);
+        } else {
+          console.log('Telemetry batch submitted successfully with batch id: ', batch.id)
+          telemetryBatchUtil.delete(batch.id);
+        }
+      })
+    })(batch)
+  })
+}
+
 
 module.exports = telemetrySyncManager

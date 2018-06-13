@@ -19,12 +19,12 @@ function date() {
 }
 
 function dispose(key, events) {
-    if(!fs.existsSync(path.join(__dirname, 'failedTelemetry'))){
+    if (!fs.existsSync(path.join(__dirname, 'failedTelemetry'))) {
         fs.mkdirSync(path.join(__dirname, 'failedTelemetry'))
     }
-    fs.appendFile(path.join(__dirname, 'failedTelemetry','telemetry_' + date() + '.json'), JSON.stringify(events), function (err) {
+    fs.appendFile(path.join(__dirname, 'failedTelemetry', 'telemetry_' + date() + '.json'), JSON.stringify(events), function (err) {
         if (err) {
-            console.log('error while saving  failedTelemetry to file ,'+'telemetry_' + date() + '.json', err)
+            console.log('error while saving  failedTelemetry to file ,' + 'telemetry_' + date() + '.json', err)
         }
     })
 
@@ -37,11 +37,14 @@ module.exports = {
     },
 
     get: function () {
-        if(cache.keys().length <= 0){
+        if (cache.keys().length <= 0) {
             return undefined;
         }
-        var id = cache.keys()[0]
-        return { id: id, events: cache.get(id) };
+        var batches = [];
+        cache.forEach(function (events, id) {
+            batches.push({ id: id, events: events })
+        })
+        return batches;
     },
 
     delete: function (id) {
