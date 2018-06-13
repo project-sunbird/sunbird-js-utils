@@ -96,7 +96,7 @@ telemetrySyncManager.prototype.sync = function (events, callback) {
         callback(null, body)
       } else {
         telemetryBatchUtil.add(options.body.events)
-        console.log('Telemetry sync failed, due to ', err, body.params, , res.statusCode)
+        console.log('Telemetry sync failed, due to ', err, body.params, res.statusCode)
         callback(new Error('sync failed'), null)
       }
     })
@@ -114,9 +114,7 @@ telemetrySyncManager.prototype.syncBatches = function (callback) {
   _.forEach(batches, function (batch) {
     (function (batch) {
       self.sync(batch.events, function (error, response) {
-        if (error) {
-          telemetryBatchUtil.add(batch.events);
-        } else {
+        if (!error) {
           console.log('Telemetry batch submitted successfully with batch id: ', batch.id)
           telemetryBatchUtil.delete(batch.id);
         }
