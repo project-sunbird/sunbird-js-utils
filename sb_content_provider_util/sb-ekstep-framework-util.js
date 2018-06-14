@@ -59,8 +59,8 @@ ChannelUpdate = function (data, channelId, headers, cb) {
   sendRequest(options, cb)
 }
 
-getFrameworkById = function (frameworkId, headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('FRAMEWORK_URI') + '/' + frameworkId
+getFrameworkById = function (frameworkId, querystring, headers, cb) {
+  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('FRAMEWORK_URI') + '/' + frameworkId + querystring
   var options = getHttpOptions(url, null, 'GET', false, headers)
   sendRequest(options, cb)
 }
