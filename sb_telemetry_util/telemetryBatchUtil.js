@@ -5,6 +5,7 @@ var path = require('path')
 
 var options = {
     max: 50,
+    noDisposeOnSet: true,
     dispose: dispose
 };
 var cache = LRU(options);
