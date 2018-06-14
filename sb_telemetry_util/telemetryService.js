@@ -3,7 +3,8 @@ var telemetrySyncManager = require('./telemetrySyncManager.js')
 
 var default_config = {
   'runningEnv': 'server',
-  'dispatcher': undefined
+  'dispatcher': undefined,
+  'batchsize': 200
 }
 
 function telemetryService () {

@@ -39,7 +39,12 @@ telemetrySyncManager.prototype.dispatch = function (telemetryEvent) {
   var event = _.cloneDeep(telemetryEvent)
   this.teleData.push(event)
   if ((event.eid.toUpperCase() == 'END') || (this.teleData.length >= this.config.batchsize)) {
-    telemetryBatchUtil.add(this.teleData.splice(0, this.config.batchsize))
+    var events = this.teleData.splice(0, this.config.batchsize) 
+    this.sync(events, function(error, res){
+      if(error) {
+        telemetryBatchUtil.add(events)
+      }
+    })
   }
 }
 
@@ -96,7 +101,7 @@ telemetrySyncManager.prototype.sync = function (events, callback) {
       } else if (_.get(body, 'params.err') === 'VALIDATION_ERROR') {
         callback(null, body)
       } else {
-        console.log('Telemetry sync failed, due to ', err, body.params, res.statusCode)
+        console.log('Telemetry sync failed, due to ', err, res.statusCode)
         callback(new Error('sync failed'), null)
       }
     })
