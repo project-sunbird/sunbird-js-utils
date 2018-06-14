@@ -40,9 +40,9 @@ telemetrySyncManager.prototype.dispatch = function (telemetryEvent) {
   this.teleData.push(event)
   if ((event.eid.toUpperCase() == 'END') || (this.teleData.length >= this.config.batchsize)) {
     var events = this.teleData.splice(0, this.config.batchsize) 
-    this.sync(events, function(error, res){
+    this.sync(events, function(error, res, failedEvents){
       if(error) {
-        telemetryBatchUtil.add(events)
+        telemetryBatchUtil.add(failedEvents)
       }
     })
   }
@@ -102,7 +102,7 @@ telemetrySyncManager.prototype.sync = function (events, callback) {
         callback(null, body)
       } else {
         console.log('Telemetry sync failed, due to ', err, res.statusCode)
-        callback(new Error('sync failed'), null)
+        callback(new Error('sync failed'), null, options.body.events)
       }
     })
   } else {
