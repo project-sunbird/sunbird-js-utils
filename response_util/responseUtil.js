@@ -25,8 +25,8 @@ function generateErrorEvent (data, stacktrace) {
 function generateApiAccessLogEvent (data, status) {
   const telemetryData = data.telemetryData
   const message = data.message || status
-  const level = 'api_access'
-  const edata = telemetry.logEventData('INFO', level, message, telemetryData.params)
+  const type = 'api_access'
+  const edata = telemetry.logEventData(type, 'INFO', message, telemetryData.params)
   telemetry.log({
     edata: edata,
     context: telemetry.getContextData(telemetryData.context),
