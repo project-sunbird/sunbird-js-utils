@@ -256,6 +256,17 @@ sendEmail = function (data, headers, cb) {
   sendRequest(options, cb)
 }
 
+getChannel = function (defaultTenent, cb) {
+  var body = {
+    'request': {
+      'filters': { 'slug': defaultTenent }
+    }
+  }
+  var url = configUtil.getConfig('LEARNER_SERVICE_BASE_URL') + '/org/v1/search'
+  var options = getHttpOptionsForLS(url, body, 'POST', false)
+  postRequest(options, cb)
+}
+
 ekStepHealthCheck = function (cb) {
   var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('HEALTH_CHECK')
   var options = getHttpOptions(url, null, 'GET', false, false)
@@ -428,6 +439,20 @@ function sendRequest (http_options, cb) {
     }
   })
 }
+function postRequest(http_options, cb) {
+  var options = Object.assign({}, http_options)
+  // removed api call event
+  delete options.headers['telemetryData']
+
+  httpUtil.sendRequest(options, function (err, resp, body) {
+    if (resp && resp.statusCode && body) {
+      body.statusCode = resp.statusCode ? resp.statusCode : 500
+      cb(null, body)
+    } else {
+      cb(err, null)
+    }
+  })
+}
 
 module.exports = {
   createContent: createContent,
@@ -463,6 +488,7 @@ module.exports = {
   uploadContentUrl: uploadContentUrl,
   uploadContentWithFileUrl: uploadContentWithFileUrl,
   sendEmail: sendEmail,
+  getChannel: getChannel,
   ekStepHealthCheck: ekStepHealthCheck,
   learnerServiceHealthCheck: learnerServiceHealthCheck,
   unlistedPublishContent: unlistedPublishContent,

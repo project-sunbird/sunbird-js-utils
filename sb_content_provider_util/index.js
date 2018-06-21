@@ -35,6 +35,7 @@ module.exports = {
   uploadContentUrl: ekStepContentUtil.uploadContentUrl,
   uploadContentWithFileUrl: ekStepContentUtil.uploadContentWithFileUrl,
   sendEmail: ekStepContentUtil.sendEmail,
+  getChannel: ekStepContentUtil.getChannel,
   ekStepHealthCheck: ekStepContentUtil.ekStepHealthCheck,
   learnerServiceHealthCheck: ekStepContentUtil.learnerServiceHealthCheck,
   unlistedPublishContent: ekStepContentUtil.unlistedPublishContent,
