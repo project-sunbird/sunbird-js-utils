@@ -31,8 +31,7 @@ getHttpOptions = function (url, data, method, formData, headers) {
 
 getHttpOptionsForLS = function (url, data, method, formData, headers) {
   var defaultHeaders = {
-    'Content-Type': 'application/json',
-    'Authorization': configUtil.getConfig('LEARNER_SERVICE_AUTHORIZATION_TOKEN')
+    'Content-Type': 'application/json'
   }
 
   var http_options = {
@@ -251,7 +250,7 @@ uploadContentWithFileUrl = function (content_id, query, headers, cb) {
 }
 
 sendEmail = function (data, headers, cb) {
-  var url = configUtil.getConfig('LEARNER_SERVICE_BASE_URL') + configUtil.getConfig('LS_SEND_EMAIL')
+  var url = configUtil.getConfig('LEARNER_SERVICE_LOCAL_BASE_URL') + configUtil.getConfig('LS_SEND_EMAIL')
   var options = getHttpOptionsForLS(url, data, 'POST', false, headers)
   sendRequest(options, cb)
 }
@@ -262,7 +261,7 @@ getChannel = function (defaultTenent, cb) {
       'filters': { 'slug': defaultTenent }
     }
   }
-  var url = configUtil.getConfig('LEARNER_SERVICE_BASE_URL') + '/org/v1/search'
+  var url = configUtil.getConfig('LEARNER_SERVICE_LOCAL_BASE_URL') + '/v1/org/search'
   var options = getHttpOptionsForLS(url, body, 'POST', false)
   postRequest(options, cb)
 }

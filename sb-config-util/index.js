@@ -7,9 +7,7 @@
  */
 
 var config_data = {
-  LEARNER_SERVICE_BASE_URL: 'https://dev.open-sunbird.org/api',
-  LEARNER_SERVICE_AUTHORIZATION_TOKEN: '',
-  LS_SEND_EMAIL: '/user/v1/notification/email',
+  LS_SEND_EMAIL: '/v1/notification/email',
   LS_HEALTH_CHECK: '/health',
   LS_FORM_READ: '/v1/org/preferences/read',
   LS_FORM_CREATE: '/v1/org/preferences/create',
