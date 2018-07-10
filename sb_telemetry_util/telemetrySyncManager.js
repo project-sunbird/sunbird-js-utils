@@ -104,7 +104,7 @@ telemetrySyncManager.prototype.sync = function (events, callback) {
       if(res &&  _.includes([503, 502, 429, 401], res.statusCode)) {
         callback(new Error('Error while syncing telemetry with code: '+res.statusCode), null);
       } else {
-        console.log('Error while syncing telemetry', body);
+        console.log('Error while syncing telemetry from sync manager', res);
         callback(null, events);
       }
 
