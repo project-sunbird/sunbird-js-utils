@@ -98,19 +98,20 @@ telemetrySyncManager.prototype.sync = function (events, callback) {
     request(options, function (err, res, body) {
       
       if (res && res.statusCode === 200) {
-        callback(null, res)
+        callback(null, res);
+        return;
       }
-
       if(res &&  _.includes([503, 502, 429, 401], res.statusCode)) {
         callback(new Error('Error while syncing telemetry with code: '+res.statusCode), null);
+        return;
       } else {
-        console.log('Error while syncing telemetry from sync manager', body);
+        console.log('Error while syncing telemetry', body);
         callback(null, events);
+        return;
       }
-
     })
   } else {
-    callback(null, null)
+    return callback(null, null);
   }
 }
 
