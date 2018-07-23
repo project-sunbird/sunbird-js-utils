@@ -67,7 +67,7 @@ searchContent = function (data, headers, cb) {
 }
 
 compositeSearch = function (data, headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('COMPOSITE_SEARCH_URI')
+  var url = configUtil.getConfig('SEARCH_SERVICE_BASE_URL') + configUtil.getConfig('COMPOSITE_SEARCH_URI')
   var options = getHttpOptions(url, data, 'POST', false, headers)
   sendRequest(options, cb)
 }
@@ -285,25 +285,25 @@ unlistedPublishContent = function (data, content_id, headers, cb) {
 }
 
 generateDialCode = function (data, headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('GENERATE_DIALCODE_URI')
+  var url = configUtil.getConfig('DIAL_SERVICE_BASE_URL') + configUtil.getConfig('GENERATE_DIALCODE_URI')
   var options = getHttpOptions(url, data, 'POST', false, headers)
   sendRequest(options, cb)
 }
 
 getDialCode = function (dialCode_id, headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('GET_DIALCODE_URI') + '/' + dialCode_id
+  var url = configUtil.getConfig('DIAL_SERVICE_BASE_URL') + configUtil.getConfig('GET_DIALCODE_URI') + '/' + dialCode_id
   var options = getHttpOptions(url, null, 'GET', false, headers)
   sendRequest(options, cb)
 }
 
 updateDialCode = function (data, dialCode_id, headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('UPDATE_DIALCODE_URI') + '/' + dialCode_id
+  var url = configUtil.getConfig('DIAL_SERVICE_BASE_URL') + configUtil.getConfig('UPDATE_DIALCODE_URI') + '/' + dialCode_id
   var options = getHttpOptions(url, data, 'PATCH', false, headers)
   sendRequest(options, cb)
 }
 
 dialCodeList = function (data, headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('LIST_DIALCODE_URI')
+  var url = configUtil.getConfig('DIAL_SERVICE_BASE_URL') + configUtil.getConfig('LIST_DIALCODE_URI')
   var options = getHttpOptions(url, data, 'POST', false, headers)
   sendRequest(options, cb)
 }
@@ -315,31 +315,31 @@ contentLinkDialCode = function (data, headers, cb) {
 }
 
 searchDialCode = function (data, headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('SEARCH_DIALCODE_URI')
+  var url = configUtil.getConfig('DIAL_SERVICE_BASE_URL') + configUtil.getConfig('SEARCH_DIALCODE_URI')
   var options = getHttpOptions(url, data, 'POST', false, headers)
   sendRequest(options, cb)
 }
 
 publishDialCode = function (data, dialCode_id, headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('PUBLISH_DIALCODE_URI') + '/' + dialCode_id
+  var url = configUtil.getConfig('DIAL_SERVICE_BASE_URL') + configUtil.getConfig('PUBLISH_DIALCODE_URI') + '/' + dialCode_id
   var options = getHttpOptions(url, data, 'POST', false, headers)
   sendRequest(options, cb)
 }
 
 createPublisher = function (data, headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('CREATE_PUBLISHER_URI')
+  var url = configUtil.getConfig('DIAL_SERVICE_BASE_URL') + configUtil.getConfig('CREATE_PUBLISHER_URI')
   var options = getHttpOptions(url, data, 'POST', false, headers)
   sendRequest(options, cb)
 }
 
 getPublisher = function (publisher_id, headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('GET_PUBLISHER_URI') + '/' + publisher_id
+  var url = configUtil.getConfig('DIAL_SERVICE_BASE_URL') + configUtil.getConfig('GET_PUBLISHER_URI') + '/' + publisher_id
   var options = getHttpOptions(url, null, 'GET', false, headers)
   sendRequest(options, cb)
 }
 
 updatePublisher = function (data, publisher_id, headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('UPDATE_PUBLISHER_URI') + '/' + publisher_id
+  var url = configUtil.getConfig('DIAL_SERVICE_BASE_URL') + configUtil.getConfig('UPDATE_PUBLISHER_URI') + '/' + publisher_id
   var options = getHttpOptions(url, data, 'PATCH', false, headers)
   sendRequest(options, cb)
 }
