@@ -405,6 +405,12 @@ copyContent = function (data, content_id, headers, cb) {
   sendRequest(options, cb)
 }
 
+getAllRootOrgs = function (data, cb) {
+  var url = configUtil.getConfig('LEARNER_SERVICE_LOCAL_BASE_URL') + '/org/v1/search'
+  var options = getHttpOptionsForLS(url, data, 'POST', false)
+  postRequest(options, cb)
+}
+
 /**
  * This function used to generate api_call log event
  * @param {Object} data
@@ -510,5 +516,6 @@ module.exports = {
   learnerServiceGetForm: learnerServiceGetForm,
   learnerServiceCreateForm: learnerServiceCreateForm,
   learnerServiceUpdateForm: learnerServiceUpdateForm,
-  copyContent: copyContent
+  copyContent: copyContent,
+  getAllRootOrgs: getAllRootOrgs
 }
