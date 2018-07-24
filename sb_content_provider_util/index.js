@@ -77,5 +77,6 @@ module.exports = {
   learnerServiceCreateForm: ekStepContentUtil.learnerServiceCreateForm,
   learnerServiceUpdateForm: ekStepContentUtil.learnerServiceUpdateForm,
   copyContent: ekStepContentUtil.copyContent,
-  frameworkPublish: ekStepFrameworkUtil.frameworkPublish
+  frameworkPublish: ekStepFrameworkUtil.frameworkPublish,
+  getAllRootOrgs: ekStepContentUtil.getAllRootOrgs
 }
