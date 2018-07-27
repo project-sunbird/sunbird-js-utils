@@ -11,7 +11,8 @@ var config_data = {
   LS_HEALTH_CHECK: '/health',
   LS_FORM_READ: '/v1/org/preferences/read',
   LS_FORM_CREATE: '/v1/org/preferences/create',
-  LS_FORM_UPDATE: '/v1/org/preferences/update'
+  LS_FORM_UPDATE: '/v1/org/preferences/update',
+  LS_ORG_SEARCH: '/v1/org/search'
 }
 
 setConfig = function (name, value) {
