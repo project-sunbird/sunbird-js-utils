@@ -3,10 +3,10 @@ var configUtil = require('sb-config-util')
 const TelemetryUtil = require('sb_telemetry_util')
 const telemetry = new TelemetryUtil()
 
-getHttpOptions = function (url, data, method, formData, headers) {
+var getHttpOptions = function (url, data, method, formData, headers, authToken) {
   var defaultHeaders = {
     'Content-Type': 'application/json',
-    'Authorization': configUtil.getConfig('Authorization_TOKEN')
+    'Authorization': authToken || configUtil.getConfig('CONTENT_REPO_AUTHORIZATION_TOKEN')
   }
 
   var http_options = {
@@ -55,195 +55,195 @@ getHttpOptionsForLS = function (url, data, method, formData, headers) {
 }
 
 createContent = function (data, headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('CREATE_CONTENT_URI')
+  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('CREATE_CONTENT_URI')
   var options = getHttpOptions(url, data, 'POST', false, headers)
   sendRequest(options, cb)
 }
 
 searchContent = function (data, headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('SEARCH_CONTENT_URI')
+  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('SEARCH_CONTENT_URI')
   var options = getHttpOptions(url, data, 'POST', false, headers)
   sendRequest(options, cb)
 }
 
 compositeSearch = function (data, headers, cb) {
-  var url = configUtil.getConfig('SEARCH_SERVICE_BASE_URL') + configUtil.getConfig('COMPOSITE_SEARCH_URI')
-  var options = getHttpOptions(url, data, 'POST', false, headers)
+  var url = configUtil.getConfig('SEARCH_SERVICE_BASE_URL') + configUtil.getConfig('SEARCH_URI')
+  var options = getHttpOptions(url, data, 'POST', false, headers, configUtil.getConfig('SEARCH_SERVICE_AUTHORIZATION_TOKEN'))
   sendRequest(options, cb)
 }
 
 updateContent = function (data, content_id, headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('UPDATE_CONTENT_URI') + '/' + content_id
+  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('UPDATE_CONTENT_URI') + '/' + content_id
   var options = getHttpOptions(url, data, 'PATCH', false, headers)
   sendRequest(options, cb)
 }
 
 getContent = function (content_id, headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('GET_CONTENT_URI') + '/' + content_id
+  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('GET_CONTENT_URI') + '/' + content_id
   var options = getHttpOptions(url, null, 'GET', false, headers)
   sendRequest(options, cb)
 }
 
 getContentUsingQuery = function (content_id, query, headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('GET_CONTENT_URI') + '/' + content_id
+  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('GET_CONTENT_URI') + '/' + content_id
   var options = getHttpOptions(url, null, 'GET', false, headers)
   options.qs = query
   sendRequest(options, cb)
 }
 
 reviewContent = function (data, content_id, headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('REVIEW_CONTENT_URI') + '/' + content_id
+  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('REVIEW_CONTENT_URI') + '/' + content_id
   var options = getHttpOptions(url, data, 'POST', false, headers)
   sendRequest(options, cb)
 }
 
 publishContent = function (data, content_id, headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('PUBLISH_CONTENT_URI') + '/' + content_id
+  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('PUBLISH_CONTENT_URI') + '/' + content_id
   var options = getHttpOptions(url, data, 'POST', false, headers)
   sendRequest(options, cb)
 }
 
 listContent = function (data, headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('LIST_CONTENT_URI')
+  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('LIST_CONTENT_URI')
   var options = getHttpOptions(url, null, 'POST', false, headers)
   sendRequest(options, cb)
 }
 
 retireContent = function (content_id, headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('RETIRE_CONTENT_URI') + '/' + content_id
+  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('RETIRE_CONTENT_URI') + '/' + content_id
   var options = getHttpOptions(url, null, 'DELETE', false, headers)
   sendRequest(options, cb)
 }
 
 uploadContent = function (formData, content_id, headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('UPLOAD_CONTENT_URI') + '/' + content_id
+  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('UPLOAD_CONTENT_URI') + '/' + content_id
   var options = getHttpOptions(url, null, 'POST', formData, headers)
   sendRequest(options, cb)
 }
 
 contentHierarchy = function (content_id, headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('HIERARCHY_CONTENT_URI') + '/' + content_id
+  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('HIERARCHY_CONTENT_URI') + '/' + content_id
   var options = getHttpOptions(url, null, 'GET', false, headers)
   sendRequest(options, cb)
 }
 
 contentHierarchyUsingQuery = function (content_id, query, headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('HIERARCHY_CONTENT_URI') + '/' + content_id
+  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('HIERARCHY_CONTENT_URI') + '/' + content_id
   var options = getHttpOptions(url, null, 'GET', false, headers)
   options.qs = query
   sendRequest(options, cb)
 }
 
 uploadMedia = function (formData, headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('UPLOAD_MEDIA_URI')
+  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('UPLOAD_MEDIA_URI')
   var options = getHttpOptions(url, null, 'POST', formData, headers)
   sendRequest(options, cb)
 }
 
 getDomains = function (headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('GET_DOMAIN_URI')
+  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('GET_DOMAIN_URI')
   var options = getHttpOptions(url, null, 'GET', false, headers)
   sendRequest(options, cb)
 }
 
 getDomainById = function (domainId, headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('GET_DOMAIN_URI') + '/' + domainId
+  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('GET_DOMAIN_URI') + '/' + domainId
   var options = getHttpOptions(url, null, 'GET', false, headers)
   sendRequest(options, cb)
 }
 
 getObjects = function (domainId, objectType, headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('GET_DOMAIN_URI') + '/' + domainId + '/' + objectType
+  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('GET_DOMAIN_URI') + '/' + domainId + '/' + objectType
   var options = getHttpOptions(url, null, 'GET', false, headers)
   sendRequest(options, cb)
 }
 
 getObjectById = function (domainId, objectType, objectId, headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('GET_DOMAIN_URI') + '/' + domainId + '/' + objectType + '/' + objectId
+  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('GET_DOMAIN_URI') + '/' + domainId + '/' + objectType + '/' + objectId
   var options = getHttpOptions(url, null, 'GET', false, headers)
   sendRequest(options, cb)
 }
 
 getConceptById = function (conceptId, headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('GET_CONCEPT_URI') + '/' + conceptId
+  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('GET_CONCEPT_URI') + '/' + conceptId
   var options = getHttpOptions(url, null, 'GET', false, headers)
   sendRequest(options, cb)
 }
 
 searchObjectsType = function (data, domainId, objectType, headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('GET_DOMAIN_URI') + '/' + domainId + '/' + objectType + '/' + 'search'
+  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('GET_DOMAIN_URI') + '/' + domainId + '/' + objectType + '/' + 'search'
   var options = getHttpOptions(url, data, 'POST', false, headers)
   sendRequest(options, cb)
 }
 
 createObjectType = function (data, domainId, objectType, headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('GET_DOMAIN_URI') + '/' + domainId + '/' + objectType + '/'
+  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('GET_DOMAIN_URI') + '/' + domainId + '/' + objectType + '/'
   var options = getHttpOptions(url, data, 'POST', false, headers)
   sendRequest(options, cb)
 }
 
 updateObjectType = function (data, domainId, objectType, objectId, headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('GET_DOMAIN_URI') + '/' + domainId + '/' + objectType + '/' + objectId
+  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('GET_DOMAIN_URI') + '/' + domainId + '/' + objectType + '/' + objectId
   var options = getHttpOptions(url, data, 'PATCH', false, headers)
   sendRequest(options, cb)
 }
 
 retireObjectType = function (data, domainId, objectType, objectId, headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('GET_DOMAIN_URI') + '/' + domainId + '/' + objectType + '/' + objectId + '/retire'
+  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('GET_DOMAIN_URI') + '/' + domainId + '/' + objectType + '/' + objectId + '/retire'
   var options = getHttpOptions(url, data, 'POST', false, headers)
   sendRequest(options, cb)
 }
 
 rejectContent = function (data, content_id, headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('REJECT_CONTENT_URI') + '/' + content_id
+  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('REJECT_CONTENT_URI') + '/' + content_id
   var options = getHttpOptions(url, data, 'POST', false, headers)
   sendRequest(options, cb)
 }
 
 listTerms = function (headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('LIST_TERMS_URI')
+  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('LIST_TERMS_URI')
   var options = getHttpOptions(url, null, 'GET', false, headers)
   sendRequest(options, cb)
 }
 
 listResourceBundles = function (headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('LIST_RESOURCE_BUNDLES_URI')
+  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('LIST_RESOURCE_BUNDLES_URI')
   var options = getHttpOptions(url, null, 'GET', false, headers)
   sendRequest(options, cb)
 }
 
 listOrdinals = function (headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('LIST_ORDINALS_URI')
+  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('LIST_ORDINALS_URI')
   var options = getHttpOptions(url, null, 'GET', false, headers)
   sendRequest(options, cb)
 }
 
 flagContent = function (data, contentId, headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('FLAG_CONTENT_URI') + '/' + contentId
+  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('FLAG_CONTENT_URI') + '/' + contentId
   var options = getHttpOptions(url, data, 'POST', false, headers)
   sendRequest(options, cb)
 }
 
 acceptFlagContent = function (data, contentId, headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('ACCEPT_FLAG_CONTENT_URI') + '/' + contentId
+  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('ACCEPT_FLAG_CONTENT_URI') + '/' + contentId
   var options = getHttpOptions(url, data, 'POST', false, headers)
   sendRequest(options, cb)
 }
 
 rejectFlagContent = function (data, contentId, headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('REJECT_FLAG_CONTENT_URI') + '/' + contentId
+  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('REJECT_FLAG_CONTENT_URI') + '/' + contentId
   var options = getHttpOptions(url, data, 'POST', false, headers)
   sendRequest(options, cb)
 }
 
 uploadContentUrl = function (data, content_id, headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('CONTENT_UPLOAD_URL_URI') + '/' + content_id
+  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('CONTENT_UPLOAD_URL_URI') + '/' + content_id
   var options = getHttpOptions(url, data, 'POST', false, headers)
   sendRequest(options, cb)
 }
 
 uploadContentWithFileUrl = function (content_id, query, headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('UPLOAD_CONTENT_URI') + '/' + content_id
+  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('UPLOAD_CONTENT_URI') + '/' + content_id
   var options = getHttpOptions(url, null, 'POST', {}, headers)
   options.qs = query
   sendRequest(options, cb)
@@ -267,7 +267,7 @@ getChannel = function (defaultTenent, cb) {
 }
 
 ekStepHealthCheck = function (cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('HEALTH_CHECK')
+  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('HEALTH_CHECK')
   var options = getHttpOptions(url, null, 'GET', false, false)
   sendRequest(options, cb)
 }
@@ -279,104 +279,104 @@ learnerServiceHealthCheck = function (cb) {
 }
 
 unlistedPublishContent = function (data, content_id, headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('UNLISTED_PUBLISH_CONTENT_URI') + '/' + content_id
+  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('UNLISTED_PUBLISH_CONTENT_URI') + '/' + content_id
   var options = getHttpOptions(url, data, 'POST', false, headers)
   sendRequest(options, cb)
 }
 
 generateDialCode = function (data, headers, cb) {
-  var url = configUtil.getConfig('DIAL_SERVICE_BASE_URL') + configUtil.getConfig('GENERATE_DIALCODE_URI')
-  var options = getHttpOptions(url, data, 'POST', false, headers)
+  var url = configUtil.getConfig('DIAL_REPO_BASE_URL') + configUtil.getConfig('GENERATE_DIALCODE_URI')
+  var options = getHttpOptions(url, data, 'POST', false, headers, configUtil.getConfig('DIAL_REPO_AUTHORIZATION_TOKEN'))
   sendRequest(options, cb)
 }
 
 getDialCode = function (dialCode_id, headers, cb) {
-  var url = configUtil.getConfig('DIAL_SERVICE_BASE_URL') + configUtil.getConfig('GET_DIALCODE_URI') + '/' + dialCode_id
-  var options = getHttpOptions(url, null, 'GET', false, headers)
+  var url = configUtil.getConfig('DIAL_REPO_BASE_URL') + configUtil.getConfig('GET_DIALCODE_URI') + '/' + dialCode_id
+  var options = getHttpOptions(url, null, 'GET', false, headers, configUtil.getConfig('DIAL_REPO_AUTHORIZATION_TOKEN'))
   sendRequest(options, cb)
 }
 
 updateDialCode = function (data, dialCode_id, headers, cb) {
-  var url = configUtil.getConfig('DIAL_SERVICE_BASE_URL') + configUtil.getConfig('UPDATE_DIALCODE_URI') + '/' + dialCode_id
-  var options = getHttpOptions(url, data, 'PATCH', false, headers)
+  var url = configUtil.getConfig('DIAL_REPO_BASE_URL') + configUtil.getConfig('UPDATE_DIALCODE_URI') + '/' + dialCode_id
+  var options = getHttpOptions(url, data, 'PATCH', false, headers, configUtil.getConfig('DIAL_REPO_AUTHORIZATION_TOKEN'))
   sendRequest(options, cb)
 }
 
 dialCodeList = function (data, headers, cb) {
-  var url = configUtil.getConfig('DIAL_SERVICE_BASE_URL') + configUtil.getConfig('LIST_DIALCODE_URI')
-  var options = getHttpOptions(url, data, 'POST', false, headers)
+  var url = configUtil.getConfig('DIAL_REPO_BASE_URL') + configUtil.getConfig('LIST_DIALCODE_URI')
+  var options = getHttpOptions(url, data, 'POST', false, headers, configUtil.getConfig('DIAL_REPO_AUTHORIZATION_TOKEN'))
   sendRequest(options, cb)
 }
 
 contentLinkDialCode = function (data, headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('CONTENT_LINK_DIALCODE_URI')
+  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('CONTENT_LINK_DIALCODE_URI')
   var options = getHttpOptions(url, data, 'POST', false, headers)
   sendRequest(options, cb)
 }
 
 searchDialCode = function (data, headers, cb) {
-  var url = configUtil.getConfig('DIAL_SERVICE_BASE_URL') + configUtil.getConfig('SEARCH_DIALCODE_URI')
-  var options = getHttpOptions(url, data, 'POST', false, headers)
+  var url = configUtil.getConfig('DIAL_REPO_BASE_URL') + configUtil.getConfig('SEARCH_DIALCODE_URI')
+  var options = getHttpOptions(url, data, 'POST', false, headers, configUtil.getConfig('DIAL_REPO_AUTHORIZATION_TOKEN'))
   sendRequest(options, cb)
 }
 
 publishDialCode = function (data, dialCode_id, headers, cb) {
-  var url = configUtil.getConfig('DIAL_SERVICE_BASE_URL') + configUtil.getConfig('PUBLISH_DIALCODE_URI') + '/' + dialCode_id
-  var options = getHttpOptions(url, data, 'POST', false, headers)
+  var url = configUtil.getConfig('DIAL_REPO_BASE_URL') + configUtil.getConfig('PUBLISH_DIALCODE_URI') + '/' + dialCode_id
+  var options = getHttpOptions(url, data, 'POST', false, headers, configUtil.getConfig('DIAL_REPO_AUTHORIZATION_TOKEN'))
   sendRequest(options, cb)
 }
 
 createPublisher = function (data, headers, cb) {
-  var url = configUtil.getConfig('DIAL_SERVICE_BASE_URL') + configUtil.getConfig('CREATE_PUBLISHER_URI')
-  var options = getHttpOptions(url, data, 'POST', false, headers)
+  var url = configUtil.getConfig('DIAL_REPO_BASE_URL') + configUtil.getConfig('CREATE_PUBLISHER_URI')
+  var options = getHttpOptions(url, data, 'POST', false, headers, configUtil.getConfig('DIAL_REPO_AUTHORIZATION_TOKEN'))
   sendRequest(options, cb)
 }
 
 getPublisher = function (publisher_id, headers, cb) {
-  var url = configUtil.getConfig('DIAL_SERVICE_BASE_URL') + configUtil.getConfig('GET_PUBLISHER_URI') + '/' + publisher_id
-  var options = getHttpOptions(url, null, 'GET', false, headers)
+  var url = configUtil.getConfig('DIAL_REPO_BASE_URL') + configUtil.getConfig('GET_PUBLISHER_URI') + '/' + publisher_id
+  var options = getHttpOptions(url, null, 'GET', false, headers, configUtil.getConfig('DIAL_REPO_AUTHORIZATION_TOKEN'))
   sendRequest(options, cb)
 }
 
 updatePublisher = function (data, publisher_id, headers, cb) {
-  var url = configUtil.getConfig('DIAL_SERVICE_BASE_URL') + configUtil.getConfig('UPDATE_PUBLISHER_URI') + '/' + publisher_id
-  var options = getHttpOptions(url, data, 'PATCH', false, headers)
+  var url = configUtil.getConfig('DIAL_REPO_BASE_URL') + configUtil.getConfig('UPDATE_PUBLISHER_URI') + '/' + publisher_id
+  var options = getHttpOptions(url, data, 'PATCH', false, headers, configUtil.getConfig('DIAL_REPO_AUTHORIZATION_TOKEN'))
   sendRequest(options, cb)
 }
 
 contentHierarchyUpdate = function (data, headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('CONTENT_HIERARCHY_UPDATE_URI') + '/'
+  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('CONTENT_HIERARCHY_UPDATE_URI') + '/'
   var options = getHttpOptions(url, data, 'PATCH', false, headers)
   sendRequest(options, cb)
 }
 
 submitDataSetRequest = function (data, headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('SUBMIT_DATA_EXHAUST_URI')
-  var options = getHttpOptions(url, data, 'POST', false, headers)
+  var url = configUtil.getConfig('DATA_SERVICE_BASE_URL') + configUtil.getConfig('SUBMIT_DATA_EXHAUST_URI')
+  var options = getHttpOptions(url, data, 'POST', false, headers, configUtil.getConfig('DATA_SERVICE_AUTHORIZATION_TOKEN'))
   sendRequest(options, cb)
 }
 
 getListOfDataSetRequest = function (query, clientKey, headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('LIST_DATA_EXHAUST_URI') + '/' + clientKey
-  var options = getHttpOptions(url, null, 'GET', false, headers)
+  var url = configUtil.getConfig('DATA_SERVICE_BASE_URL') + configUtil.getConfig('LIST_DATA_EXHAUST_URI') + '/' + clientKey
+  var options = getHttpOptions(url, null, 'GET', false, headers, configUtil.getConfig('DATA_SERVICE_AUTHORIZATION_TOKEN'))
   options.qs = query
   sendRequest(options, cb)
 }
 
 getDataSetDetailRequest = function (clientKey, requestId, headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('READ_DATA_EXHAUST_URI') + '/' + clientKey + '/' + requestId
-  var options = getHttpOptions(url, null, 'GET', false, headers)
+  var url = configUtil.getConfig('DATA_SERVICE_BASE_URL') + configUtil.getConfig('READ_DATA_EXHAUST_URI') + '/' + clientKey + '/' + requestId
+  var options = getHttpOptions(url, null, 'GET', false, headers, configUtil.getConfig('DATA_SERVICE_AUTHORIZATION_TOKEN'))
   sendRequest(options, cb)
 }
 
 getChannelDataSetRequest = function (query, dataSetId, channel, headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('CHANNEL_DATA_EXHAUST_URI') + '/' + dataSetId + '/' + channel
-  var options = getHttpOptions(url, null, 'GET', false, headers)
+  var url = configUtil.getConfig('DATA_SERVICE_BASE_URL') + configUtil.getConfig('CHANNEL_DATA_EXHAUST_URI') + '/' + dataSetId + '/' + channel
+  var options = getHttpOptions(url, null, 'GET', false, headers, configUtil.getConfig('DATA_SERVICE_AUTHORIZATION_TOKEN'))
   options.qs = query
   sendRequest(options, cb)
 }
 systemUpdateContent = function (data, contentId, headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('SYSTEM_UPDATE_CONTENT_URI') + '/' + contentId
+  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('SYSTEM_UPDATE_CONTENT_URI') + '/' + contentId
   var options = getHttpOptions(url, data, 'PATCH', false, headers)
   sendRequest(options, cb)
 }
@@ -400,15 +400,22 @@ learnerServiceUpdateForm = function (data, headers, cb) {
 }
 
 copyContent = function (data, content_id, headers, cb) {
-  var url = configUtil.getConfig('BASE_URL') + configUtil.getConfig('COPY_CONTENT_URI') + '/' + content_id
+  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('COPY_CONTENT_URI') + '/' + content_id
   var options = getHttpOptions(url, data, 'POST', false, headers)
   sendRequest(options, cb)
 }
+
 
 getAllRootOrgs = function (data, cb) {
   var url = configUtil.getConfig('LEARNER_SERVICE_LOCAL_BASE_URL') + configUtil.getConfig('LS_ORG_SEARCH')
   var options = getHttpOptionsForLS(url, data, 'POST', false)
   postRequest(options, cb)
+}
+
+pluginsSearch = function (data, headers, cb) {
+  var url = configUtil.getConfig('PLUGIN_REPO_BASE_URL') + configUtil.getConfig('PLUGINS_SEARCH_URI')
+  var options = getHttpOptions(url, data, 'POST', false, headers, configUtil.getConfig('PLUGIN_REPO_AUTHORIZATION_TOKEN'))
+  sendRequest(options, cb)
 }
 
 /**
@@ -517,5 +524,6 @@ module.exports = {
   learnerServiceCreateForm: learnerServiceCreateForm,
   learnerServiceUpdateForm: learnerServiceUpdateForm,
   copyContent: copyContent,
-  getAllRootOrgs: getAllRootOrgs
+  getAllRootOrgs: getAllRootOrgs,
+  pluginsSearch: pluginsSearch
 }
