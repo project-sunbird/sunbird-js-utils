@@ -405,7 +405,6 @@ copyContent = function (data, content_id, headers, cb) {
   sendRequest(options, cb)
 }
 
-
 getAllRootOrgs = function (data, cb) {
   var url = configUtil.getConfig('LEARNER_SERVICE_LOCAL_BASE_URL') + configUtil.getConfig('LS_ORG_SEARCH')
   var options = getHttpOptionsForLS(url, data, 'POST', false)
