@@ -36,7 +36,7 @@ log4js.configure(options)
 var logger = log4js.getLogger('api')
 
 var isLoggerEnabled = function () {
-  var loggerEnabled = configUtil.getConfig('SERVICE_LOGGER_ENABLED')
+  var loggerEnabled = configUtil.getConfig('ENABLE_LOGGING')
   return (loggerEnabled !== undefined && loggerEnabled === 'true')
 }
 
