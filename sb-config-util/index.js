@@ -12,7 +12,8 @@ var config_data = {
   LS_FORM_READ: '/v1/org/preferences/read',
   LS_FORM_CREATE: '/v1/org/preferences/create',
   LS_FORM_UPDATE: '/v1/org/preferences/update',
-  LS_ORG_SEARCH: '/v1/org/search'
+  LS_ORG_SEARCH: '/v1/org/search',
+  FORM_READ: '/api/data/v1/form/read'
 }
 
 setConfig = function (name, value) {

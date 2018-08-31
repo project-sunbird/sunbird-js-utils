@@ -79,5 +79,6 @@ module.exports = {
   copyContent: ekStepContentUtil.copyContent,
   frameworkPublish: ekStepFrameworkUtil.frameworkPublish,
   getAllRootOrgs: ekStepContentUtil.getAllRootOrgs,
-  pluginsSearch: ekStepContentUtil.pluginsSearch
+  pluginsSearch: ekStepContentUtil.pluginsSearch,
+  getForm: ekStepContentUtil.getForm
 }
