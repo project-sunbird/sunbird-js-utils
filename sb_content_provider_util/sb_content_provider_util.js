@@ -423,6 +423,12 @@ getForm = function (data, headers, cb) {
   sendRequest(options, cb)
 }
 
+userSearch = function (data, headers, cb) {
+  var url = configUtil.getConfig('SUNBIRD_PORTAL_BASE_URL') + '/api/user/v1/search'
+  var options = getHttpOptionsForLS(url, data, 'POST', false, headers)
+  sendRequest(options, cb)
+}
+
 /**
  * This function used to generate api_call log event
  * @param {Object} data
@@ -531,5 +537,6 @@ module.exports = {
   copyContent: copyContent,
   getAllRootOrgs: getAllRootOrgs,
   pluginsSearch: pluginsSearch,
-  getForm: getForm
+  getForm: getForm,
+  userSearch: userSearch
 }
