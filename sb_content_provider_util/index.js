@@ -80,5 +80,6 @@ module.exports = {
   frameworkPublish: ekStepFrameworkUtil.frameworkPublish,
   getAllRootOrgs: ekStepContentUtil.getAllRootOrgs,
   pluginsSearch: ekStepContentUtil.pluginsSearch,
-  getForm: ekStepContentUtil.getForm
+  getForm: ekStepContentUtil.getForm,
+  userSearch: ekStepContentUtil.userSearch
 }
