@@ -424,7 +424,7 @@ getForm = function (data, headers, cb) {
 }
 
 userSearch = function (data, headers, cb) {
-  var url = configUtil.getConfig('SUNBIRD_PORTAL_BASE_URL') + '/api/user/v1/search'
+  var url = configUtil.getConfig('LEARNER_SERVICE_LOCAL_BASE_URL') + '/v1/user/search'
   var options = getHttpOptionsForLS(url, data, 'POST', false, headers)
   sendRequest(options, cb)
 }
