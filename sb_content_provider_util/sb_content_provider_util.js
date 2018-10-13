@@ -213,7 +213,7 @@ listResourceBundles = function (headers, cb) {
 }
 
 listOrdinals = function (headers, cb) {
-  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('LIST_ORDINALS_URI')
+  var url = configUtil.getConfig('DIAL_REPO_BASE_URL') + configUtil.getConfig('LIST_ORDINALS_URI')
   var options = getHttpOptions(url, null, 'GET', false, headers)
   sendRequest(options, cb)
 }
@@ -225,7 +225,7 @@ flagContent = function (data, contentId, headers, cb) {
 }
 
 acceptFlagContent = function (data, contentId, headers, cb) {
-  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('ACCEPT_FLAG_CONTENT_URI') + '/' + contentId
+  var url = configUtil.getConfig('DIAL_REPO_BASE_URL') + configUtil.getConfig('ACCEPT_FLAG_CONTENT_URI') + '/' + contentId
   var options = getHttpOptions(url, data, 'POST', false, headers)
   sendRequest(options, cb)
 }
