@@ -429,6 +429,12 @@ userSearch = function (data, headers, cb) {
   sendRequest(options, cb)
 }
 
+getFramework = function (frameworkId, headers, cb) {
+  var url = configUtil.getConfig('SUNBIRD_PORTAL_BASE_URL') + '/api/framework/v1/read/' + frameworkId
+  var options = getHttpOptions(url, null, 'GET', false, headers)
+  sendRequest(options, cb)
+}
+
 /**
  * This function used to generate api_call log event
  * @param {Object} data
@@ -538,5 +544,6 @@ module.exports = {
   getAllRootOrgs: getAllRootOrgs,
   pluginsSearch: pluginsSearch,
   getForm: getForm,
-  userSearch: userSearch
+  userSearch: userSearch,
+  getFramework: getFramework
 }
