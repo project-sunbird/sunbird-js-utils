@@ -1,6 +1,7 @@
 var httpUtil = require('sb-http-util')
 var configUtil = require('sb-config-util')
 const TelemetryUtil = require('sb_telemetry_util')
+var LOG = require('sb_logger_util')
 const telemetry = new TelemetryUtil()
 
 var getHttpOptions = function (url, data, method, formData, headers, authToken) {
@@ -433,7 +434,7 @@ userSearch = function (data, headers, cb) {
  * This function used to generate api_call log event
  * @param {Object} data
  */
-function generateApiCallLogEvent (http_options) {
+function generateApiCallLogEvent(http_options) {
   const telemetryData = Object.assign({}, http_options.headers.telemetryData)
   const message = telemetryData.message || 'Calling content provider api'
   const level = 'api_call'
@@ -447,7 +448,7 @@ function generateApiCallLogEvent (http_options) {
   })
 }
 
-function sendRequest (http_options, cb) {
+function sendRequest(http_options, cb) {
   var options = Object.assign({}, http_options)
   // removed api call event
   //generateApiCallLogEvent(http_options)
@@ -458,6 +459,11 @@ function sendRequest (http_options, cb) {
       body.statusCode = resp.statusCode ? resp.statusCode : 500
       cb(null, body)
     } else {
+      if (err) {
+        LOG.error({ 'errorMessage': err })
+      } else {
+        LOG.error({ 'errorBody': body, 'errorResponse': resp });
+      }
       cb(true, null)
     }
   })
@@ -472,6 +478,11 @@ function postRequest(http_options, cb) {
       body.statusCode = resp.statusCode ? resp.statusCode : 500
       cb(null, body)
     } else {
+      if (err) {
+        LOG.error({ 'errorMessage': err })
+      } else {
+        LOG.error({ 'errorBody': body, 'errorResponse': resp });
+      }
       cb(err, null)
     }
   })
