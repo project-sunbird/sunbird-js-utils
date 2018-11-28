@@ -462,11 +462,7 @@ function sendRequest(http_options, cb) {
       }
       cb(null, body)
     } else {
-      if (err) {
-        LOG.error({ 'errorMessage': err })
-      } else {
-        LOG.error({ 'errorBody': body, 'errorResponse': resp });
-      }
+      LOG.error({ 'errorMessage': err, 'errorBody': body, 'errorResponse': resp })
       cb(true, null)
     }
   })
@@ -480,15 +476,11 @@ function postRequest(http_options, cb) {
     if (resp && resp.statusCode && body) {
       body.statusCode = resp.statusCode ? resp.statusCode : 500
       if (body.statusCode === 500) {
-        LOG.error({ 'errorMessage': err })
+        LOG.error({ 'errorBody': body, 'errorResponse': resp })
       }
       cb(null, body)
     } else {
-      if (err) {
-        LOG.error({ 'errorMessage': err })
-      } else {
-        LOG.error({ 'errorBody': body, 'errorResponse': resp });
-      }
+      LOG.error({ 'errorMessage': err, 'errorBody': body, 'errorResponse': resp })
       cb(err, null)
     }
   })
