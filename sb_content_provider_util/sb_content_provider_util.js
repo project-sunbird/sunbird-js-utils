@@ -457,6 +457,9 @@ function sendRequest(http_options, cb) {
   httpUtil.sendRequest(options, function (err, resp, body) {
     if (resp && resp.statusCode && body) {
       body.statusCode = resp.statusCode ? resp.statusCode : 500
+      if (body.statusCode === 500) {
+        LOG.error({ 'errorMessage': err })
+      }
       cb(null, body)
     } else {
       if (err) {
@@ -476,6 +479,9 @@ function postRequest(http_options, cb) {
   httpUtil.sendRequest(options, function (err, resp, body) {
     if (resp && resp.statusCode && body) {
       body.statusCode = resp.statusCode ? resp.statusCode : 500
+      if (body.statusCode === 500) {
+        LOG.error({ 'errorMessage': err })
+      }
       cb(null, body)
     } else {
       if (err) {
