@@ -129,7 +129,6 @@ contentHierarchy = function (content_id, headers, cb) {
 }
 
 contentHierarchyUsingQuery = function (content_id, query, headers, cb) {
-  delete headers['content-type']
   var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('HIERARCHY_CONTENT_URI') + '/' + content_id
   var options = getHttpOptions(url, null, 'GET', false, headers)
   options.qs = query
