@@ -81,5 +81,7 @@ module.exports = {
   getAllRootOrgs: ekStepContentUtil.getAllRootOrgs,
   pluginsSearch: ekStepContentUtil.pluginsSearch,
   getForm: ekStepContentUtil.getForm,
-  userSearch: ekStepContentUtil.userSearch
+  userSearch: ekStepContentUtil.userSearch,
+  releaseDialcode: ekStepContentUtil.releaseDialcode,
+  reserveDialcode: ekStepContentUtil.reserveDialcode
 }

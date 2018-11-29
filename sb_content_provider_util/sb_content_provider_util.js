@@ -430,6 +430,17 @@ userSearch = function (data, headers, cb) {
   sendRequest(options, cb)
 }
 
+releaseDialcode = function (dialCodeId, data, headers, cb) {
+  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') +  configUtil.getConfig('RELEASE_DIALCODE') + dialCodeId
+  var options = getHttpOptions(url, data, 'POST', false, headers)
+  sendRequest(options, cb)
+}
+
+reserveDialcode = function (dialCodeId, data, headers, cb) {
+  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') +  configUtil.getConfig('RESERVE_DIALCODE') + dialCodeId
+  var options = getHttpOptions(url, data, 'POST', false, headers)
+  sendRequest(options, cb)
+}
 /**
  * This function used to generate api_call log event
  * @param {Object} data
@@ -547,5 +558,7 @@ module.exports = {
   getAllRootOrgs: getAllRootOrgs,
   pluginsSearch: pluginsSearch,
   getForm: getForm,
-  userSearch: userSearch
+  userSearch: userSearch,
+  releaseDialcode: releaseDialcode,
+  reserveDialcode: reserveDialcode
 }
