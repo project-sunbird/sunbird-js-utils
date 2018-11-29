@@ -56,6 +56,48 @@ CacheManager.prototype.get = function(key, callback) {
 };
 
 /**
+ * [set store the cache in bulk]
+ * @param {[object]}   data     [data (key and value) - required, ttl - optional]
+ * @param {Function} callback [If error or success]
+ */
+CacheManager.prototype.mset = function(input, callback) {
+
+    if(typeof callback !== "function") {
+        return;
+    }
+
+    var ttl = input.ttl || this.ttl;
+    this.cache.mset(...input.data, {ttl: ttl}, function(err) {
+        if (err) {
+            return callback(err, null);
+        } else {
+            return callback(null, {success : true});
+        }
+    });
+};
+
+/**
+ * [get bulk data - the store cache]
+ * @param  {[string]}   key      [cache store key comma seperated values]
+ * @param  {Function} callback [error or cache data]
+ * @return {[Function]} callback [error or cache data]
+ */
+CacheManager.prototype.mget = function(key, callback) {
+
+    if(typeof callback !== "function") {
+        return;
+    }
+
+    this.cache.mget(...key, function(err, cacheData) {
+        if (err) {
+            return callback(err, null);
+        } else {
+            return callback(null, cacheData);
+        }
+    });
+};
+
+/**
  * [delete- Delete the store cache ]
  * @param  {[string]}   key      [cache store key]
  * @param  {Function} callback [error or success]
