@@ -432,13 +432,13 @@ userSearch = function (data, headers, cb) {
 
 releaseDialcode = function (dialCodeId, data, headers, cb) {
   var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') +  configUtil.getConfig('RELEASE_DIALCODE') + dialCodeId
-  var options = getHttpOptionsForLS(url, data, 'POST', false, headers)
+  var options = getHttpOptions(url, data, 'POST', false, headers)
   sendRequest(options, cb)
 }
 
 reserveDialcode = function (dialCodeId, data, headers, cb) {
   var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') +  configUtil.getConfig('RESERVE_DIALCODE') + dialCodeId
-  var options = getHttpOptionsForLS(url, data, 'POST', false, headers)
+  var options = getHttpOptions(url, data, 'POST', false, headers)
   sendRequest(options, cb)
 }
 /**
