@@ -430,14 +430,14 @@ userSearch = function (data, headers, cb) {
   sendRequest(options, cb)
 }
 
-releaseDialcode = function (dialCodeId, data, headers, cb) {
-  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') +  configUtil.getConfig('RELEASE_DIALCODE') + dialCodeId
+releaseDialcode = function (contentId, data, headers, cb) {
+  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') +  configUtil.getConfig('RELEASE_DIALCODE') + '/' + contentId
   var options = getHttpOptions(url, data, 'POST', false, headers)
   sendRequest(options, cb)
 }
 
-reserveDialcode = function (dialCodeId, data, headers, cb) {
-  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') +  configUtil.getConfig('RESERVE_DIALCODE') + dialCodeId
+reserveDialcode = function (contentId, data, headers, cb) {
+  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') +  configUtil.getConfig('RESERVE_DIALCODE') + '/' +contentId
   var options = getHttpOptions(url, data, 'POST', false, headers)
   sendRequest(options, cb)
 }
