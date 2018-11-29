@@ -435,6 +435,18 @@ getFramework = function (frameworkId, headers, cb) {
   sendRequest(options, cb)
 }
 
+releaseDialcode = function (dialCodeId, data, headers, cb) {
+  var url = configUtil.getConfig('LEARNER_SERVICE_LOCAL_BASE_URL') + '/content/v3/dialcode/release' + dialCodeId
+  var options = getHttpOptionsForLS(url, data, 'POST', false, headers)
+  sendRequest(options, cb)
+}
+
+reserveDialcode = function (dialCodeId, data, headers, cb) {
+  var url = configUtil.getConfig('LEARNER_SERVICE_LOCAL_BASE_URL') + '/content/v3/dialcode/reserve' + dialCodeId
+  var options = getHttpOptionsForLS(url, data, 'POST', false, headers)
+  sendRequest(options, cb)
+}
+
 /**
  * This function used to generate api_call log event
  * @param {Object} data
@@ -545,5 +557,7 @@ module.exports = {
   pluginsSearch: pluginsSearch,
   getForm: getForm,
   userSearch: userSearch,
-  getFramework: getFramework
+  getFramework: getFramework,
+  releaseDialcode: releaseDialcode,
+  reserveDialcode: reserveDialcode
 }
