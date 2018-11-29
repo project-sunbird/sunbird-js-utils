@@ -430,12 +430,6 @@ userSearch = function (data, headers, cb) {
   sendRequest(options, cb)
 }
 
-getFramework = function (frameworkId, headers, cb) {
-  var url = configUtil.getConfig('SUNBIRD_PORTAL_BASE_URL') + '/api/framework/v1/read/' + frameworkId
-  var options = getHttpOptions(url, null, 'GET', false, headers)
-  sendRequest(options, cb)
-}
-
 releaseDialcode = function (dialCodeId, data, headers, cb) {
   var url = configUtil.getConfig('LEARNER_SERVICE_LOCAL_BASE_URL') + '/content/v3/dialcode/release' + dialCodeId
   var options = getHttpOptionsForLS(url, data, 'POST', false, headers)
@@ -447,7 +441,6 @@ reserveDialcode = function (dialCodeId, data, headers, cb) {
   var options = getHttpOptionsForLS(url, data, 'POST', false, headers)
   sendRequest(options, cb)
 }
-
 /**
  * This function used to generate api_call log event
  * @param {Object} data
@@ -566,7 +559,6 @@ module.exports = {
   pluginsSearch: pluginsSearch,
   getForm: getForm,
   userSearch: userSearch,
-  getFramework: getFramework,
   releaseDialcode: releaseDialcode,
   reserveDialcode: reserveDialcode
 }
