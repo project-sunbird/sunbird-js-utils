@@ -431,13 +431,13 @@ userSearch = function (data, headers, cb) {
 }
 
 releaseDialcode = function (contentId, data, headers, cb) {
-  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') +  configUtil.getConfig('RELEASE_DIALCODE') + '/' + contentId
-  var options = getHttpOptions(url, data, 'POST', false, headers)
+  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('RELEASE_DIALCODE') + '/' + contentId
+  var options = getHttpOptions(url, data, 'PATCH', false, headers)
   sendRequest(options, cb)
 }
 
 reserveDialcode = function (contentId, data, headers, cb) {
-  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') +  configUtil.getConfig('RESERVE_DIALCODE') + '/' +contentId
+  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('RESERVE_DIALCODE') + '/' + contentId
   var options = getHttpOptions(url, data, 'POST', false, headers)
   sendRequest(options, cb)
 }
