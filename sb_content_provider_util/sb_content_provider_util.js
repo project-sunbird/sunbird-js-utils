@@ -82,14 +82,14 @@ updateContent = function (data, content_id, headers, cb) {
 getContent = function (content_id, headers, cb) {
   var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('GET_CONTENT_URI') + '/' + content_id
   var options = getHttpOptions(url, null, 'GET', false, headers)
-  sendRequest(options, cb)
+  postRequest(options, cb)
 }
 
 getContentUsingQuery = function (content_id, query, headers, cb) {
   var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('GET_CONTENT_URI') + '/' + content_id
   var options = getHttpOptions(url, null, 'GET', false, headers)
   options.qs = query
-  sendRequest(options, cb)
+  postRequest(options, cb)
 }
 
 reviewContent = function (data, content_id, headers, cb) {
@@ -433,13 +433,13 @@ userSearch = function (data, headers, cb) {
 releaseDialcode = function (contentId, data, headers, cb) {
   var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('RELEASE_DIALCODE') + '/' + contentId
   var options = getHttpOptions(url, data, 'PATCH', false, headers)
-  sendRequest(options, cb)
+  postRequest(options, cb)
 }
 
 reserveDialcode = function (contentId, data, headers, cb) {
   var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('RESERVE_DIALCODE') + '/' + contentId
   var options = getHttpOptions(url, data, 'POST', false, headers)
-  sendRequest(options, cb)
+  postRequest(options, cb)
 }
 /**
  * This function used to generate api_call log event
