@@ -474,7 +474,7 @@ function sendRequest(http_options, cb) {
       cb(null, body)
     } else {
       LOG.error({ 'errorMessage': err, 'errorBody': body, 'errorResponse': resp })
-      cb(true, null)
+      cb(err, null)
     }
   })
 }
