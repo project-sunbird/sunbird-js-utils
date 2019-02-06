@@ -8,7 +8,7 @@ let config;
 const init = (appConfig) => {
 
     const defaultConfig = {
-        path: '../logs/microservice.log',
+        path: 'logs/microservice.log',
         enableLogger: true,
         logLevel: 'error'
     }
