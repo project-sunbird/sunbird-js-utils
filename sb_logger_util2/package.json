@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "log4js": "^4.0.2"
+    "log4js": "^4.0.2",
+    "mkdirp": "^0.5.1"
   }
 }

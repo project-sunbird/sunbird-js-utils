@@ -1,19 +1,24 @@
 const log4js = require('log4js');
+var mkdirp = require('mkdirp');
 const fs = require('fs');
+const path = require('path');
 let loggerInit = false;
 let config;
 
 const init = (newConfig) => {
+
     const defaultConfig = {
         path: '../logs',
         enableLogger: true,
         logLevel: 'error'
     }
+
     config = { ...defaultConfig, ...newConfig }
-    if (config.path && !fs.existsSync(config.path)) {
-        fs.mkdirSync(config.path)
+
+    if (config.path) {
+        mkdirp.sync(path.dirname(config.path));
     }
-    
+
     log4js.configure({
         appenders: {
             console: {
@@ -22,7 +27,7 @@ const init = (newConfig) => {
             logs: {
                 'type': 'file',
                 'maxLogSize': 26214400,
-                'filename': `${config.path}/microserviceLogs.log`
+                'filename': `${config.path}`
             }
         },
         categories: {
