@@ -6,19 +6,15 @@ let loggerInitialized = false;
 let config;
 
 const init = (appConfig) => {
-
     const defaultConfig = {
         path: 'logs/microservice.log',
         enableLogger: true,
         logLevel: 'error'
     }
-
     config = { ...defaultConfig, ...appConfig }
-
     if (config.path) {
         mkdirp.sync(path.dirname(config.path));
     }
-
     log4js.configure({
         appenders: {
             console: {
@@ -41,9 +37,7 @@ const init = (appConfig) => {
 var processRequestObject = (request) => {
     if (request) {
         return {
-            id: request.id,
-            path: request.path,
-            method: request.method
+            id: request.id
         }
     } else {
         return {}
