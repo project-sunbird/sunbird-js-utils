@@ -1,13 +1,12 @@
 const log4js = require('log4js');
-var mkdirp = require('mkdirp');
-const fs = require('fs');
+const mkdirp = require('mkdirp');
 const path = require('path');
 let loggerInitialized = false;
 let config;
 
 const init = (appConfig) => {
     const defaultConfig = {
-        path: 'logs/microservice.log',
+        path: './logs/microservice.log',
         enableLogger: true,
         logLevel: 'error'
     }
@@ -30,19 +29,10 @@ const init = (appConfig) => {
             default: { appenders: ['console', 'logs'], level: config.logLevel }
         }
     });
-
     loggerInitialized = true;
 }
 
-var processRequestObject = (request) => {
-    if (request) {
-        return {
-            id: request.id
-        }
-    } else {
-        return {}
-    }
-}
+var processRequestObject = request => (request) ? { id: request.id } : {};
 
 const logger = log4js.getLogger('api');
 
