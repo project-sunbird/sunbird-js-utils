@@ -32,7 +32,7 @@ const init = (appConfig) => {
     loggerInitialized = true;
 }
 
-var processRequestObject = request => (request) ? { id: request.id } : {};
+var processRequestObject = request => (request && request.id) ? { id: request.id } : {};
 
 const logger = log4js.getLogger('api');
 
