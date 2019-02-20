@@ -7,13 +7,13 @@ let config;
 const init = (appConfig) => {
     const defaultConfig = {
         path: './logs/microservice.log',
-        enableLogger: true,
         logLevel: 'error'
     }
     config = { ...defaultConfig, ...appConfig }
     if (config.path) {
         mkdirp.sync(path.dirname(config.path));
     }
+
     log4js.configure({
         appenders: {
             console: {
@@ -37,43 +37,43 @@ var processRequestObject = request => (request && request.id) ? { id: request.id
 const logger = log4js.getLogger('api');
 
 var info = function (data, request) {
-    if (loggerInitialized && config.enableLogger) {
+    if (loggerInitialized) {
         logger.info(JSON.stringify({ ...processRequestObject(request), ...data }))
     }
 }
 
 var debug = function (data, request) {
-    if (loggerInitialized && config.enableLogger) {
+    if (loggerInitialized) {
         logger.debug(JSON.stringify({ ...processRequestObject(request), ...data }))
     }
 }
 
 var fatal = function (data, request) {
-    if (loggerInitialized && config.enableLogger) {
+    if (loggerInitialized) {
         logger.fatal(JSON.stringify({ ...processRequestObject(request), ...data }))
     }
 }
 
 var mark = function (data, request) {
-    if (loggerInitialized && config.enableLogger) {
+    if (loggerInitialized) {
         logger.mark(JSON.stringify({ ...processRequestObject(request), ...data }))
     }
 }
 
 var error = function (data, request) {
-    if (loggerInitialized && config.enableLogger) {
+    if (loggerInitialized) {
         logger.error(JSON.stringify({ ...processRequestObject(request), ...data }))
     }
 }
 
 var warn = function (data, request) {
-    if (loggerInitialized && config.enableLogger) {
+    if (loggerInitialized) {
         logger.warn(JSON.stringify({ ...processRequestObject(request), ...data }))
     }
 }
 
 var trace = function (data, request) {
-    if (loggerInitialized && config.enableLogger) {
+    if (loggerInitialized) {
         logger.trace(JSON.stringify({ ...processRequestObject(request), ...data }))
     }
 }
