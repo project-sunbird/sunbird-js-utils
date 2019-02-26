@@ -1,7 +1,6 @@
 var httpUtil = require('sb-http-util')
 var configUtil = require('sb-config-util')
 const TelemetryUtil = require('sb_telemetry_util')
-var LOG = require('sb_logger_util')
 const logger = require('sb_logger_util_v2')
 const telemetry = new TelemetryUtil()
 
