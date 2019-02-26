@@ -2,6 +2,7 @@ var httpUtil = require('sb-http-util')
 var configUtil = require('sb-config-util')
 const TelemetryUtil = require('sb_telemetry_util')
 var LOG = require('sb_logger_util')
+const logger = require('sb_logger_util_v2')
 const telemetry = new TelemetryUtil()
 
 var getHttpOptions = function (url, data, method, formData, headers, authToken) {
@@ -466,14 +467,35 @@ function sendRequest(http_options, cb) {
   delete options.headers['telemetryData']
 
   httpUtil.sendRequest(options, function (err, resp, body) {
+    if (err) {
+      logger.error({
+        msg: 'Error while sending httpRequest ', err, additionalInfo: {
+          url: options.url,
+          method: options.method,
+          body
+        }
+      })
+    }
     if (resp && resp.statusCode && body) {
       body.statusCode = resp.statusCode ? resp.statusCode : 500
       if (body.statusCode === 500) {
-        LOG.error({ 'errorBody': body, 'errorResponse': resp })
+        logger.error({
+          msg: 'Error due to http status code 500 in response', err: { errCode: body.statusCode }, additionalInfo: {
+            url: options.url,
+            method: options.method,
+            body
+          }
+        })
       }
       cb(null, body)
     } else {
-      LOG.error({ 'errorMessage': err, 'errorBody': body, 'errorResponse': resp })
+      logger.error({
+        msg: 'Error due to missing body or response or status code in response', additionalInfo: {
+          url: options.url,
+          method: options.method,
+          body
+        }
+      })
       cb(true, null)
     }
   })
@@ -484,14 +506,35 @@ function postRequest(http_options, cb) {
   delete options.headers['telemetryData']
 
   httpUtil.sendRequest(options, function (err, resp, body) {
+    if (err) {
+      logger.error({
+        msg: 'Error while sending http post Request', err, additionalInfo: {
+          url: options.url,
+          method: options.method,
+          body
+        }
+      })
+    }
     if (resp && resp.statusCode && body) {
       body.statusCode = resp.statusCode ? resp.statusCode : 500
       if (body.statusCode === 500) {
-        LOG.error({ 'errorBody': body, 'errorResponse': resp })
+        logger.error({
+          msg: 'Error due to http status code 500 in response', err: { errCode: body.statusCode }, additionalInfo: {
+            url: options.url,
+            method: options.method,
+            body
+          }
+        })
       }
       cb(null, body)
     } else {
-      LOG.error({ 'errorMessage': err, 'errorBody': body, 'errorResponse': resp })
+      logger.error({
+        msg: 'Error due to missing body or response or status code in response', additionalInfo: {
+          url: options.url,
+          method: options.method,
+          body
+        }
+      })
       cb(err, null)
     }
   })

@@ -1,8 +1,8 @@
 var httpUtil = require('sb-http-util')
 var configUtil = require('sb-config-util')
-const TelemetryUtil = require('sb_telemetry_util') 
-const telemetry = new TelemetryUtil() 
-
+const TelemetryUtil = require('sb_telemetry_util')
+const telemetry = new TelemetryUtil()
+const logger = require('sb_logger_util_v2')
 var getHttpOptions = function (url, data, method, formData, headers) {
   var defaultHeaders = {
     'Content-Type': 'application/json',
@@ -155,7 +155,7 @@ frameworkPublish = function (data, frameworkId, headers, cb) {
  * This function used to generate api_call log event
  * @param {Object} data
  */
-function generateApiCallLogEvent (http_options) {
+function generateApiCallLogEvent(http_options) {
   const telemetryData = Object.assign({}, http_options.headers.telemetryData)
   const message = telemetryData.message || 'Calling content provider api'
   const level = 'api_call'
@@ -169,17 +169,42 @@ function generateApiCallLogEvent (http_options) {
   })
 }
 
-function sendRequest (http_options, cb) {
+function sendRequest(http_options, cb) {
   var options = Object.assign({}, http_options)
   //removed api call event
   //generateApiCallLogEvent(http_options)
   delete options.headers['telemetryData']
 
   httpUtil.sendRequest(options, function (err, resp, body) {
+    if (err) {
+      logger.error({
+        msg: 'Error while sending httpRequest ', err, additionalInfo: {
+          url: options.url,
+          method: options.method,
+          body
+        }
+      })
+    }
     if (resp && resp.statusCode && body) {
       body.statusCode = resp.statusCode ? resp.statusCode : 500
+      if (body.statusCode === 500) {
+        logger.error({
+          msg: 'Error due to http status code 500 in response', err: { errCode: body.statusCode }, additionalInfo: {
+            url: options.url,
+            method: options.method,
+            body
+          }
+        })
+      }
       cb(null, body)
     } else {
+      logger.error({
+        msg: 'Error due to missing body or response or status code in response', additionalInfo: {
+          url: options.url,
+          method: options.method,
+          body
+        }
+      })
       cb(true, null)
     }
   })
