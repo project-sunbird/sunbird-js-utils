@@ -471,7 +471,8 @@ function sendRequest(http_options, cb) {
         msg: 'Error while sending httpRequest ', err, additionalInfo: {
           url: options.url,
           method: options.method,
-          body
+          body,
+          qs: options['qs']
         }
       })
     }
@@ -482,7 +483,8 @@ function sendRequest(http_options, cb) {
           msg: 'Error due to http status code 500 in response', err: { errCode: body.statusCode }, additionalInfo: {
             url: options.url,
             method: options.method,
-            body
+            body,
+            qs: options['qs']
           }
         })
       }
@@ -492,7 +494,8 @@ function sendRequest(http_options, cb) {
         msg: 'Error due to missing body or response or status code in response', additionalInfo: {
           url: options.url,
           method: options.method,
-          body
+          body,
+          qs: options['qs']
         }
       })
       cb(true, null)
@@ -510,7 +513,8 @@ function postRequest(http_options, cb) {
         msg: 'Error while sending http post Request', err, additionalInfo: {
           url: options.url,
           method: options.method,
-          body
+          body,
+          qs: options['qs']
         }
       })
     }
@@ -521,7 +525,8 @@ function postRequest(http_options, cb) {
           msg: 'Error due to http status code 500 in response', err: { errCode: body.statusCode }, additionalInfo: {
             url: options.url,
             method: options.method,
-            body
+            body,
+            qs: options['qs']
           }
         })
       }
@@ -531,7 +536,8 @@ function postRequest(http_options, cb) {
         msg: 'Error due to missing body or response or status code in response', additionalInfo: {
           url: options.url,
           method: options.method,
-          body
+          body,
+          qs: options['qs']
         }
       })
       cb(err, null)
