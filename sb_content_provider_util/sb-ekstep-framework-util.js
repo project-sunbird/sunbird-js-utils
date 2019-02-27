@@ -176,37 +176,32 @@ function sendRequest(http_options, cb) {
   delete options.headers['telemetryData']
 
   httpUtil.sendRequest(options, function (err, resp, body) {
+    let logInfo = {
+      url: options.url,
+      method: options.method,
+      body
+    }
+
+    if (options.qs) {
+      logInfo.qs = options['qs']
+    }
+
     if (err) {
       logger.error({
-        msg: 'Error while sending httpRequest ', err, additionalInfo: {
-          url: options.url,
-          method: options.method,
-          body,
-          qs: options['qs']
-        }
+        msg: 'Error while sending httpRequest ', error: err.toString(), logInfo
       })
     }
     if (resp && resp.statusCode && body) {
       body.statusCode = resp.statusCode ? resp.statusCode : 500
       if (body.statusCode === 500) {
         logger.error({
-          msg: 'Error due to http status code 500 in response', err: { errCode: body.statusCode }, additionalInfo: {
-            url: options.url,
-            method: options.method,
-            body,
-            qs: options['qs']
-          }
+          msg: 'Error due to http status code 500 in response', err: { errCode: body.statusCode }, logInfo
         })
       }
       cb(null, body)
     } else {
       logger.error({
-        msg: 'Error due to missing body or response or status code in response', additionalInfo: {
-          url: options.url,
-          method: options.method,
-          body,
-          qs: options['qs']
-        }
+        msg: 'Error due to missing body or response or status code in response', logInfo
       })
       cb(true, null)
     }
