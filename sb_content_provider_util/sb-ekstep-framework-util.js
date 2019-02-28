@@ -181,15 +181,17 @@ function sendRequest(http_options, cb) {
       method: options.method,
       body
     }
-
     if (options.qs) {
       logInfo.qs = options['qs']
     }
-
-    if (err) {
-      logger.error({
-        msg: 'Error while sending httpRequest ', error: err.toString(), logInfo
-      })
+    try {
+      if (err) {
+        logger.error({
+          msg: 'Error while sending httpRequest ', error: err.toString(), logInfo
+        })
+      }
+    } catch (err) {
+      logger.error({msg: 'Error object not present', err: {name: err.name, message: err.message}, logInfo})
     }
     if (resp && resp.statusCode && body) {
       body.statusCode = resp.statusCode ? resp.statusCode : 500
