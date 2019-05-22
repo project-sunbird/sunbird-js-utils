@@ -12,7 +12,6 @@ var getHttpOptions = function (url, data, method, formData, headers, authToken) 
 
   var http_options = {
     url: url,
-    forever: true,
     headers: defaultHeaders,
     method: method,
     json: true
