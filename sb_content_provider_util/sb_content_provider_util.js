@@ -57,7 +57,7 @@ getHttpOptionsForLS = function (url, data, method, formData, headers) {
 }
 
 createContent = function (data, headers, cb) {
-  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('CREATE_CONTENT_URI')
+  var url = configUtil.getConfig('CONTENT_SERVICE_BASE_URL') + configUtil.getConfig('CREATE_CONTENT_URI')
   var options = getHttpOptions(url, data, 'POST', false, headers)
   sendRequest(options, cb)
 }
