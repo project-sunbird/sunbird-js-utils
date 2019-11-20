@@ -75,19 +75,19 @@ compositeSearch = function (data, headers, cb) {
 }
 
 updateContent = function (data, content_id, headers, cb) {
-  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('UPDATE_CONTENT_URI') + '/' + content_id
+  var url = configUtil.getConfig('CONTENT_SERVICE_BASE_URL') + configUtil.getConfig('UPDATE_CONTENT_URI') + '/' + content_id
   var options = getHttpOptions(url, data, 'PATCH', false, headers)
   sendRequest(options, cb)
 }
 
 getContent = function (content_id, headers, cb) {
-  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('GET_CONTENT_URI') + '/' + content_id
+  var url = configUtil.getConfig('CONTENT_SERVICE_BASE_URL') + configUtil.getConfig('GET_CONTENT_URI') + '/' + content_id
   var options = getHttpOptions(url, null, 'GET', false, headers)
   postRequest(options, cb)
 }
 
 getContentUsingQuery = function (content_id, query, headers, cb) {
-  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('GET_CONTENT_URI') + '/' + content_id
+  var url = configUtil.getConfig('CONTENT_SERVICE_BASE_URL') + configUtil.getConfig('GET_CONTENT_URI') + '/' + content_id
   var options = getHttpOptions(url, null, 'GET', false, headers)
   options.qs = query
   postRequest(options, cb)
