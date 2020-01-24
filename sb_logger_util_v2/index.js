@@ -19,10 +19,15 @@ const init = (appConfig) => {
         appenders: {
             console: {
                 'type': 'console'
+            },	
+            logs: {	
+                'type': 'file',	
+                'maxLogSize': 26214400,	
+                'filename': `${config.path}`	
             }
         },
         categories: {
-            default: { appenders: ['console'], level: config.logLevel }
+            default: { appenders: ['console', 'logs'], level: config.logLevel }
         }
     });
     loggerInitialized = true;
