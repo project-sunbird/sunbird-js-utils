@@ -7,14 +7,14 @@ let config;
 
 const init = (appConfig) => {
     const defaultConfig = {
-        path: './logs/microservice.log',
+        path: './logs/microservice-' + new Date().toLocaleDateString() + '.log',
+        maxLogSize: 5000000,
         logLevel: 'error'
     }
     config = _.merge(defaultConfig, appConfig)
     if (config.path) {
         mkdirp.sync(path.dirname(config.path));
     }
- 
     log4js.configure({
         appenders: {
             console: {
@@ -22,7 +22,7 @@ const init = (appConfig) => {
             },	
             logs: {	
                 'type': 'file',	
-                'maxLogSize': 26214400,	
+                'maxLogSize': config.maxLogSize,	
                 'filename': `${config.path}`	
             }
         },
