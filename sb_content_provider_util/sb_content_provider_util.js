@@ -124,13 +124,13 @@ uploadContent = function (formData, content_id, headers, cb) {
 }
 
 contentHierarchy = function (content_id, headers, cb) {
-  var url = configUtil.getConfig('CONTENT_SERVICE_BASE_URL') + configUtil.getConfig('HIERARCHY_CONTENT_URI') + '/' + content_id
+  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('HIERARCHY_CONTENT_URI') + '/' + content_id
   var options = getHttpOptions(url, null, 'GET', false, headers)
   sendRequest(options, cb)
 }
 
 contentHierarchyUsingQuery = function (content_id, query, headers, cb) {
-  var url = configUtil.getConfig('CONTENT_SERVICE_BASE_URL') + configUtil.getConfig('HIERARCHY_CONTENT_URI') + '/' + content_id
+  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('HIERARCHY_CONTENT_URI') + '/' + content_id
   var options = getHttpOptions(url, null, 'GET', false, headers)
   options.qs = query
   sendRequest(options, cb)
