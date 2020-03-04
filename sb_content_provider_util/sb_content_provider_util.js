@@ -62,6 +62,13 @@ createContent = function (data, headers, cb) {
   sendRequest(options, cb)
 }
 
+updateContentHierarchy = function (data, headers, cb) {
+  var url = configUtil.getConfig('CONTENT_SERVICE_BASE_URL') + configUtil.getConfig('CONTENT_HIERARCHY_UPDATE_URI')
+  var options = getHttpOptions(url, data, 'PATCH', false, headers)
+  sendRequest(options, cb)
+}
+
+
 searchContent = function (data, headers, cb) {
   var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('SEARCH_CONTENT_URI')
   var options = getHttpOptions(url, data, 'POST', false, headers)
@@ -561,5 +568,6 @@ module.exports = {
   getForm: getForm,
   userSearch: userSearch,
   releaseDialcode: releaseDialcode,
-  reserveDialcode: reserveDialcode
+  reserveDialcode: reserveDialcode,
+  updateContentHierarchy: updateContentHierarchy
 }
