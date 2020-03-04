@@ -62,13 +62,6 @@ createContent = function (data, headers, cb) {
   sendRequest(options, cb)
 }
 
-updateContentHierarchy = function (data, headers, cb) {
-  var url = configUtil.getConfig('CONTENT_SERVICE_BASE_URL') + configUtil.getConfig('CONTENT_HIERARCHY_UPDATE_URI')
-  var options = getHttpOptions(url, data, 'PATCH', false, headers)
-  sendRequest(options, cb)
-}
-
-
 searchContent = function (data, headers, cb) {
   var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('SEARCH_CONTENT_URI')
   var options = getHttpOptions(url, data, 'POST', false, headers)
@@ -354,7 +347,7 @@ updatePublisher = function (data, publisher_id, headers, cb) {
 }
 
 contentHierarchyUpdate = function (data, headers, cb) {
-  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('CONTENT_HIERARCHY_UPDATE_URI') + '/'
+  var url = configUtil.getConfig('CONTENT_SERVICE_BASE_URL') + configUtil.getConfig('CONTENT_HIERARCHY_UPDATE_URI') + '/'
   var options = getHttpOptions(url, data, 'PATCH', false, headers)
   sendRequest(options, cb)
 }
@@ -568,6 +561,5 @@ module.exports = {
   getForm: getForm,
   userSearch: userSearch,
   releaseDialcode: releaseDialcode,
-  reserveDialcode: reserveDialcode,
-  updateContentHierarchy: updateContentHierarchy
+  reserveDialcode: reserveDialcode
 }
