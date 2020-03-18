@@ -118,7 +118,7 @@ retireContent = function (content_id, headers, cb) {
 }
 
 uploadContent = function (formData, content_id, headers, cb) {
-  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('UPLOAD_CONTENT_URI') + '/' + content_id
+  var url = configUtil.getConfig('CONTENT_SERVICE_BASE_URL') + configUtil.getConfig('UPLOAD_CONTENT_URI') + '/' + content_id
   var options = getHttpOptions(url, null, 'POST', formData, headers)
   sendRequest(options, cb)
 }
@@ -239,13 +239,13 @@ rejectFlagContent = function (data, contentId, headers, cb) {
 }
 
 uploadContentUrl = function (data, content_id, headers, cb) {
-  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('CONTENT_UPLOAD_URL_URI') + '/' + content_id
+  var url = configUtil.getConfig('CONTENT_SERVICE_BASE_URL') + configUtil.getConfig('CONTENT_UPLOAD_URL_URI') + '/' + content_id
   var options = getHttpOptions(url, data, 'POST', false, headers)
   sendRequest(options, cb)
 }
 
 uploadContentWithFileUrl = function (content_id, query, headers, cb) {
-  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('UPLOAD_CONTENT_URI') + '/' + content_id
+  var url = configUtil.getConfig('CONTENT_SERVICE_BASE_URL') + configUtil.getConfig('UPLOAD_CONTENT_URI') + '/' + content_id
   var options = getHttpOptions(url, null, 'POST', {}, headers)
   options.qs = query
   sendRequest(options, cb)
