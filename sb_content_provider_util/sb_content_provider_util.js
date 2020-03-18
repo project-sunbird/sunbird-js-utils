@@ -402,7 +402,7 @@ learnerServiceUpdateForm = function (data, headers, cb) {
 }
 
 copyContent = function (data, content_id, headers, cb) {
-  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('COPY_CONTENT_URI') + '/' + content_id
+  var url = configUtil.getConfig('CONTENT_SERVICE_BASE_URL') + configUtil.getConfig('COPY_CONTENT_URI') + '/' + content_id
   var options = getHttpOptions(url, data, 'POST', false, headers)
   sendRequest(options, cb)
 }
