@@ -31,31 +31,19 @@ var getHttpOptions = function (url, data, method, formData, headers) {
 }
 
 getChannelValuesById = function (channelId, headers, cb) {
-  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('CHANNEL_URI') + '/' + channelId
+  var url = configUtil.getConfig('CONTENT_SERVICE_BASE_URL') + configUtil.getConfig('CHANNEL_URI') + '/' + channelId
   var options = getHttpOptions(url, null, 'GET', false, headers)
   sendRequest(options, cb)
 }
 
-ChannelList = function (data, headers, cb) {
-  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('CHANNEL_LIST_URI')
-  var options = getHttpOptions(url, data, 'POST', false, headers)
-  sendRequest(options, cb)
-}
-
-ChannelSearch = function (data, headers, cb) {
-  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('CHANNEL_SEARCH_URI')
-  var options = getHttpOptions(url, data, 'POST', false, headers)
-  sendRequest(options, cb)
-}
-
 ChannelCreate = function (data, headers, cb) {
-  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('CHANNEL_CREATE_URI')
+  var url = configUtil.getConfig('CONTENT_SERVICE_BASE_URL') + configUtil.getConfig('CHANNEL_CREATE_URI')
   var options = getHttpOptions(url, data, 'POST', false, headers)
   sendRequest(options, cb)
 }
 
 ChannelUpdate = function (data, channelId, headers, cb) {
-  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('CHANNEL_UPDATE_URI') + '/' + channelId
+  var url = configUtil.getConfig('CONTENT_SERVICE_BASE_URL') + configUtil.getConfig('CHANNEL_UPDATE_URI') + '/' + channelId
   var options = getHttpOptions(url, data, 'PATCH', false, headers)
   sendRequest(options, cb)
 }
@@ -190,8 +178,6 @@ module.exports = {
   getChannelValuesById: getChannelValuesById,
   ChannelCreate: ChannelCreate,
   ChannelUpdate: ChannelUpdate,
-  ChannelList: ChannelList,
-  ChannelSearch: ChannelSearch,
   getFrameworkById: getFrameworkById,
   frameworklList: frameworklList,
   frameworkCreate: frameworkCreate,
