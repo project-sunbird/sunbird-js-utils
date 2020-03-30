@@ -36,18 +36,6 @@ getChannelValuesById = function (channelId, headers, cb) {
   sendRequest(options, cb)
 }
 
-ChannelList = function (data, headers, cb) {
-  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('CHANNEL_LIST_URI')
-  var options = getHttpOptions(url, data, 'POST', false, headers)
-  sendRequest(options, cb)
-}
-
-ChannelSearch = function (data, headers, cb) {
-  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('CHANNEL_SEARCH_URI')
-  var options = getHttpOptions(url, data, 'POST', false, headers)
-  sendRequest(options, cb)
-}
-
 ChannelCreate = function (data, headers, cb) {
   var url = configUtil.getConfig('CONTENT_SERVICE_BASE_URL') + configUtil.getConfig('CHANNEL_CREATE_URI')
   var options = getHttpOptions(url, data, 'POST', false, headers)
@@ -190,8 +178,6 @@ module.exports = {
   getChannelValuesById: getChannelValuesById,
   ChannelCreate: ChannelCreate,
   ChannelUpdate: ChannelUpdate,
-  ChannelList: ChannelList,
-  ChannelSearch: ChannelSearch,
   getFrameworkById: getFrameworkById,
   frameworklList: frameworklList,
   frameworkCreate: frameworkCreate,

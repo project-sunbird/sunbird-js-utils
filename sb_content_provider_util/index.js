@@ -50,8 +50,6 @@ module.exports = {
   getPublisher: ekStepContentUtil.getPublisher,
   updatePublisher: ekStepContentUtil.updatePublisher,
   getChannelValuesById: ekStepFrameworkUtil.getChannelValuesById,
-  ChannelList: ekStepFrameworkUtil.ChannelList,
-  ChannelSearch: ekStepFrameworkUtil.ChannelSearch,
   ChannelCreate: ekStepFrameworkUtil.ChannelCreate,
   ChannelUpdate: ekStepFrameworkUtil.ChannelUpdate,
   getFrameworkById: ekStepFrameworkUtil.getFrameworkById,
