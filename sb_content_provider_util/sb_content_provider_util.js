@@ -227,7 +227,7 @@ flagContent = function (data, contentId, headers, cb) {
 }
 
 acceptFlagContent = function (data, contentId, headers, cb) {
-  var url = configUtil.getConfig('DIAL_REPO_BASE_URL') + configUtil.getConfig('ACCEPT_FLAG_CONTENT_URI') + '/' + contentId
+  var url = configUtil.getConfig('CONTENT_SERVICE_BASE_URL') + configUtil.getConfig('ACCEPT_FLAG_CONTENT_URI') + '/' + contentId
   var options = getHttpOptions(url, data, 'POST', false, headers)
   sendRequest(options, cb)
 }
