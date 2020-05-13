@@ -3,6 +3,7 @@ var configUtil = require('sb-config-util')
 const TelemetryUtil = require('sb_telemetry_util')
 var LOG = require('sb_logger_util')
 const telemetry = new TelemetryUtil()
+var loggerV2 = require('sb_logger_util_v2')
 
 var getHttpOptions = function (url, data, method, formData, headers, authToken) {
   var defaultHeaders = {
@@ -474,6 +475,7 @@ function sendRequest(http_options, cb) {
       }
       cb(null, body)
     } else {
+      loggerV2.error({msg:"Got error in send Request", body, statusCode: resp.statusCode})
       LOG.error({ 'errorMessage': err, 'errorBody': body, 'errorResponse': resp })
       cb(true, null)
     }
