@@ -6,6 +6,7 @@
 
 var keyCloakAuthUtils = require('keycloak-auth-utils');
 var CacheManager  = require('sb_cache_manager');
+const Token = require('keycloak-auth-utils/lib/token.js')
 
 function ApiInterceptor(keyclock_config, cache_config) {
 	this.config = keyclock_config;
@@ -26,16 +27,24 @@ ApiInterceptor.prototype.validateToken = function(token, callback) {
 	var self = this;
 	self.cacheManager.get(token, function(err, tokenData) {
         if(err || !tokenData) {
-            self.grantManager.userInfo(token, function(err, userData) {
-				if(err) {
-					return callback(err, null);
-				} else {
-					if(self.cacheManagerConfig.ttl) {
-						self.cacheManager.set({key : token, value : {token : token, userId : userData.sub}}, function(err, res){ });
-					}
-					return callback(null, {token : token, userId : userData.sub});
+            // self.grantManager.userInfo(token, function(err, userData) {
+			// 	if(err) {
+			// 		return callback(err, null);
+			// 	} else {
+			// 		if(self.cacheManagerConfig.ttl) {
+			// 			self.cacheManager.set({key : token, value : {token : token, userId : userData.sub}}, function(err, res){ });
+			// 		}
+			// 		return callback(null, {token : token, userId : userData.sub});
+			// 	}
+			// });
+			self.grantManager.validateToken(new Token(token))
+			.then(userData => {
+				if(self.cacheManagerConfig.ttl) {
+					self.cacheManager.set({key : token, value : {token : token, userId : userData.content.sub}}, function(err, res){ });
 				}
-			});
+				callback(null, {token : token, userId : userData.content.sub});
+			})
+			.catch(err => callback(err, null))
         } else {
             return callback(null, tokenData);
         }
