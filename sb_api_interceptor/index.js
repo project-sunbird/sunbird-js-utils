@@ -13,7 +13,7 @@ function ApiInterceptor(keyclock_config, cache_config) {
 	this.keyCloakConfig = new keyCloakAuthUtils.Config(this.config);
 	this.grantManager = new keyCloakAuthUtils.GrantManager(this.keyCloakConfig);
 
-	this.cacheManagerConfig = cache_config;
+	// this.cacheManagerConfig = cache_config;
 	// this.cacheManager = new CacheManager(cache_config);
 }
 
