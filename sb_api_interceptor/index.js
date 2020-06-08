@@ -23,11 +23,11 @@ function ApiInterceptor(keyclock_config, cache_config) {
  * @param  {Function} callback []
  * @return {[Function]} callback [its retrun err or object with fields(token, userId)]
  */
-ApiInterceptor.prototype.validateToken = function(token, callback) {
+ApiInterceptor.prototype.validateToken = function (token, callback) {
 	// var self = this;
 	// self.cacheManager.get(token, function(err, tokenData) {
-    //     if(err || !tokenData) {
-    //         self.grantManager.userInfo(token, function(err, userData) {
+	//     if(err || !tokenData) {
+	//         self.grantManager.userInfo(token, function(err, userData) {
 	// 			if(err) {
 	// 				return callback(err, null);
 	// 			} else {
@@ -37,13 +37,13 @@ ApiInterceptor.prototype.validateToken = function(token, callback) {
 	// 				return callback(null, {token : token, userId : userData.sub});
 	// 			}
 	// 		});
-    //     } else {
-    //         return callback(null, tokenData);
-    //     }
+	//     } else {
+	//         return callback(null, tokenData);
+	//     }
 	// });
 	this.grantManager.validateToken(new Token(token))
-	.then(userData => callback(null, {token : token, userId : userData.content.sub}))
-	.catch(err => callback(err, null))
+		.then(userData => callback(null, { token, userId: userData.content.sub }))
+		.catch(err => callback(err, null))
 };
 
 module.exports = ApiInterceptor;
