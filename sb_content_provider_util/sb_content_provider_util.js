@@ -475,7 +475,7 @@ function sendRequest(http_options, cb) {
       }
       cb(null, body)
     } else {
-      loggerV2.error({msg:"Got error in send Request", body, statusCode: resp.statusCode})
+      loggerV2.error({msg:"Got error in send Request", body})
       LOG.error({ 'errorMessage': err, 'errorBody': body, 'errorResponse': resp })
       cb(true, null)
     }
