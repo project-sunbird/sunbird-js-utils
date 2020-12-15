@@ -122,4 +122,4 @@ function loadTokenPublicKeys(basePath){
     });
 }
 
-module.exports = { ApiInterceptor , loadTokenPublicKeys };
+module.exports = ApiInterceptor , loadTokenPublicKeys ;
