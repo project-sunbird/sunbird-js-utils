@@ -443,6 +443,12 @@ reserveDialcode = function (contentId, data, headers, cb) {
   var options = getHttpOptions(url, data, 'POST', false, headers)
   postRequest(options, cb)
 }
+
+readQuestion = function (identifer, headers, cb) {
+  var url = configUtil.getConfig('ASSESSMENT_SERVICE_BASE_URL') + '/question/v1/read/'+ identifer;
+  var options = getHttpOptions(url, null, 'GET', false, headers)
+  sendRequest(options, cb)
+}
 /**
  * This function used to generate api_call log event
  * @param {Object} data
@@ -563,5 +569,6 @@ module.exports = {
   getForm: getForm,
   userSearch: userSearch,
   releaseDialcode: releaseDialcode,
-  reserveDialcode: reserveDialcode
+  reserveDialcode: reserveDialcode,
+  readQuestion: readQuestion
 }

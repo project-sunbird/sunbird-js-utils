@@ -81,5 +81,6 @@ module.exports = {
   getForm: ekStepContentUtil.getForm,
   userSearch: ekStepContentUtil.userSearch,
   releaseDialcode: ekStepContentUtil.releaseDialcode,
-  reserveDialcode: ekStepContentUtil.reserveDialcode
+  reserveDialcode: ekStepContentUtil.reserveDialcode,
+  readQuestion: ekStepContentUtil.readQuestion
 }
