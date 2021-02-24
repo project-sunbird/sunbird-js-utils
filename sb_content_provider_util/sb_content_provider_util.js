@@ -408,6 +408,14 @@ copyContent = function (data, content_id, headers, cb) {
   sendRequest(options, cb)
 }
 
+copyContentWithQuery = function (data, query, content_id, headers, cb) {
+  var url = configUtil.getConfig('CONTENT_SERVICE_BASE_URL') + configUtil.getConfig('COPY_CONTENT_URI') + '/' + content_id
+  var options = getHttpOptions(url, data, 'POST', false, headers)
+  options.query = query;
+  console.log('copyContentWithQuery_request : ',options);
+  sendRequest(options, cb)
+}
+
 getAllRootOrgs = function (data, cb) {
   var url = configUtil.getConfig('LEARNER_SERVICE_LOCAL_BASE_URL') + configUtil.getConfig('LS_ORG_SEARCH')
   var options = getHttpOptionsForLS(url, data, 'POST', false)
@@ -564,6 +572,7 @@ module.exports = {
   learnerServiceCreateForm: learnerServiceCreateForm,
   learnerServiceUpdateForm: learnerServiceUpdateForm,
   copyContent: copyContent,
+  copyContentWithQuery: copyContentWithQuery,
   getAllRootOrgs: getAllRootOrgs,
   pluginsSearch: pluginsSearch,
   getForm: getForm,
