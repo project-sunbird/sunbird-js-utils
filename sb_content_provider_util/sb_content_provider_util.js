@@ -411,7 +411,7 @@ copyContent = function (data, content_id, headers, cb) {
 copyContentWithQuery = function (data, query, content_id, headers, cb) {
   var url = configUtil.getConfig('CONTENT_SERVICE_BASE_URL') + configUtil.getConfig('COPY_CONTENT_URI') + '/' + content_id
   var options = getHttpOptions(url, data, 'POST', false, headers)
-  options.query = query;
+  options.qs = query;
   console.log('copyContentWithQuery_request : ',options);
   sendRequest(options, cb)
 }
