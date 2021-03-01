@@ -455,6 +455,7 @@ reserveDialcode = function (contentId, data, headers, cb) {
 readQuestion = function (identifer, headers, cb) {
   var url = configUtil.getConfig('ASSESSMENT_SERVICE_BASE_URL') + '/question/v4/read/'+ identifer;
   var options = getHttpOptions(url, null, 'GET', false, headers)
+  delete options.headers['Content-Type']
   sendRequest(options, cb)
 }
 /**
