@@ -452,10 +452,11 @@ reserveDialcode = function (contentId, data, headers, cb) {
   postRequest(options, cb)
 }
 
-readQuestion = function (identifer, headers, cb) {
+readQuestion = function (identifer, query, headers, cb) {
   var url = configUtil.getConfig('ASSESSMENT_SERVICE_BASE_URL') + '/question/v4/read/'+ identifer;
   var options = getHttpOptions(url, null, 'GET', false, headers)
   delete options.headers['Content-Type']
+  options.qs = query
   sendRequest(options, cb)
 }
 /**
