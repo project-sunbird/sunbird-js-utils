@@ -1,6 +1,5 @@
 var Telemetry = require('./telemetryLibrary.js')
 var telemetrySyncManager = require('./telemetrySyncManager.js')
-const telemetryHelper = require('../../helpers/telemetryHelper.js')
 const _ = require('lodash')
 
 var default_config = {
