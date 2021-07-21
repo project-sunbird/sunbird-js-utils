@@ -7,7 +7,7 @@ var default_config = {
   'batchsize': 200
 }
 
-function telemetryService () {
+function telemetryService() {
 
 }
 
@@ -293,6 +293,39 @@ telemetryService.prototype.generateApiCallLogEvent = function (data) {
     tags: telemetryData && telemetryData.tags,
     object: telemetryData && telemetryData.object
   })
+}
+
+/**
+ * This function used to generate api_ERROR log event
+ */
+telemetryService.prototype.getTelemetryAPIError = function (data, res, req, options) {
+  try {
+    const result = options ? options : data.params
+    const edata = {
+      err: result.err || res.statusMessage,
+      errtype: result.errtype || data.responseCode || res.statusCode,
+      traceid: result.msgid || 'null',
+      status: result.status || '',
+      errmsg: result.errmsg || '',
+      params: JSON.stringify([{ url: req.path }])
+    }
+    return { edata };
+  } catch (error) {
+    console.log('error', error)
+  }
+}
+/**
+ * This function used to generate api_call log telemetryData
+*/
+telemetryService.prototype.getTelemetryAPISuceessData = function (req, result, uri) {
+  const telemetryData = {
+    reqObj: req,
+    statusCode: '200',
+    resp: result,
+    uri: uri,
+    channel: req.get('x-channel-id') || ''
+  }
+  return telemetryData;
 }
 
 module.exports = telemetryService
