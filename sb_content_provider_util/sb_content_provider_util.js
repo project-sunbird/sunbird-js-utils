@@ -95,7 +95,7 @@ getContentUsingQuery = function (content_id, query, headers, cb) {
 }
 
 reviewContent = function (data, content_id, headers, cb) {
-  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('REVIEW_CONTENT_URI') + '/' + content_id
+  var url = configUtil.getConfig('CONTENT_SERVICE_BASE_URL') + configUtil.getConfig('REVIEW_CONTENT_URI') + '/' + content_id
   var options = getHttpOptions(url, data, 'POST', false, headers)
   sendRequest(options, cb)
 }
@@ -198,7 +198,7 @@ retireObjectType = function (data, domainId, objectType, objectId, headers, cb) 
 }
 
 rejectContent = function (data, content_id, headers, cb) {
-  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('REJECT_CONTENT_URI') + '/' + content_id
+  var url = configUtil.getConfig('CONTENT_SERVICE_BASE_URL') + configUtil.getConfig('REJECT_CONTENT_URI') + '/' + content_id
   var options = getHttpOptions(url, data, 'POST', false, headers)
   sendRequest(options, cb)
 }
