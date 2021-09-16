@@ -99,4 +99,4 @@
          });
      });
  }
- module.exports = { ApiInterceptor, loadTokenPublicKeys};
+ module.exports = ApiInterceptor, loadTokenPublicKeys;
