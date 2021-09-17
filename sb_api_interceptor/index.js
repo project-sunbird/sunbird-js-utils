@@ -70,7 +70,7 @@
      });
  };
  
- function loadTokenPublicKeys(basePath){
+ ApiInterceptor.prototype.loadTokenPublicKeys = function(basePath){
      return new Promise((resolve, reject) => {
          fs.readdir(basePath, function(err, filenames) {
              if (err || !filenames.length) {
@@ -99,4 +99,4 @@
          });
      });
  }
- module.exports = ApiInterceptor, loadTokenPublicKeys;
+ module.exports = ApiInterceptor;
