@@ -299,8 +299,20 @@ getDialCode = function (dialCode_id, headers, cb) {
   sendRequest(options, cb)
 }
 
+getDialCodeV2 = function (dialCode_id, headers, cb) {
+  var url = configUtil.getConfig('DIAL_REPO_BASE_URL') + configUtil.getConfig('GET_DIALCODEV4_URI') + '/' + dialCode_id
+  var options = getHttpOptions(url, null, 'GET', false, headers, configUtil.getConfig('DIAL_REPO_AUTHORIZATION_TOKEN'))
+  sendRequest(options, cb)
+}
+
 updateDialCode = function (data, dialCode_id, headers, cb) {
   var url = configUtil.getConfig('DIAL_REPO_BASE_URL') + configUtil.getConfig('UPDATE_DIALCODE_URI') + '/' + dialCode_id
+  var options = getHttpOptions(url, data, 'PATCH', false, headers, configUtil.getConfig('DIAL_REPO_AUTHORIZATION_TOKEN'))
+  sendRequest(options, cb)
+}
+
+updateDialCodeV2 = function (data, dialCode_id, headers, cb) {
+  var url = configUtil.getConfig('DIAL_REPO_BASE_URL') + configUtil.getConfig('UPDATE_DIALCODEV4_URI') + '/' + dialCode_id
   var options = getHttpOptions(url, data, 'PATCH', false, headers, configUtil.getConfig('DIAL_REPO_AUTHORIZATION_TOKEN'))
   sendRequest(options, cb)
 }
