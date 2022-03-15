@@ -301,7 +301,7 @@ getDialCode = function (dialCode_id, headers, cb) {
 
 getDialCodeV2 = function (dialCode_id, headers, cb) {
   var url = configUtil.getConfig('DIAL_REPO_BASE_URL') + configUtil.getConfig('GET_DIALCODEV4_URI') + '/' + dialCode_id
-  var options = getHttpOptions(url, null, 'GET', false, headers, configUtil.getConfig('DIAL_REPO_AUTHORIZATION_TOKEN'))
+  var options = getHttpOptions(url, null, 'GET', false, headers)
   sendRequest(options, cb)
 }
 
