@@ -298,7 +298,7 @@ telemetryService.prototype.generateApiCallLogEvent = function (data) {
 /**
  * This function used to generate api_ERROR log event
  */
-telemetryService.prototype.getTelemetryAPIError = function (data, res, req, options) {
+ telemetryService.prototype.getTelemetryAPIError = function (data, res, req, options) {
   try {
     const result = options ? options : data.params
     const edata = {
