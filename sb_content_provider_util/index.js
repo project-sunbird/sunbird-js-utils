@@ -42,6 +42,8 @@ module.exports = {
   generateDialCode: ekStepContentUtil.generateDialCode,
   getDialCode: ekStepContentUtil.getDialCode,
   updateDialCode: ekStepContentUtil.updateDialCode,
+  getDialCodeV2: ekStepContentUtil.getDialCodeV2,
+  updateDialCodeV2: ekStepContentUtil.updateDialCodeV2,
   dialCodeList: ekStepContentUtil.dialCodeList,
   contentLinkDialCode: ekStepContentUtil.contentLinkDialCode,
   searchDialCode: ekStepContentUtil.searchDialCode,
