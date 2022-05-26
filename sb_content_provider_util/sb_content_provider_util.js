@@ -81,6 +81,12 @@ updateContent = function (data, content_id, headers, cb) {
   sendRequest(options, cb)
 }
 
+updateQuestionset = function (data, questionset_id, headers, cb) {
+  var url = configUtil.getConfig('CONTENT_SERVICE_BASE_URL') + configUtil.getConfig('UPDATE_QUESTION_SET_URI') + '/' + questionset_id
+  var options = getHttpOptions(url, data, 'PATCH', false, headers)
+  sendRequest(options, cb)
+}
+
 getContent = function (content_id, headers, cb) {
   var url = configUtil.getConfig('CONTENT_SERVICE_BASE_URL') + configUtil.getConfig('GET_CONTENT_URI') + '/' + content_id
   var options = getHttpOptions(url, null, 'GET', false, headers)
@@ -595,5 +601,6 @@ module.exports = {
   userSearch: userSearch,
   releaseDialcode: releaseDialcode,
   reserveDialcode: reserveDialcode,
-  readQuestion: readQuestion
+  readQuestion: readQuestion,
+  updateQuestionset: updateQuestionset
 }
