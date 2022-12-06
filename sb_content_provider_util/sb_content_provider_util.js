@@ -347,6 +347,12 @@ publishDialCode = function (data, dialCode_id, headers, cb) {
   sendRequest(options, cb)
 }
 
+getDialCodeBatch = function (processId, headers, cb) {
+  var url = configUtil.getConfig('DIAL_REPO_BASE_URL') + configUtil.getConfig('GET_DIALCODE_BATCH') + '/' + processId
+  var options = getHttpOptions(url, null, 'GET', false, headers, configUtil.getConfig('DIAL_REPO_AUTHORIZATION_TOKEN'))
+  sendRequest(options, cb)
+}
+
 createPublisher = function (data, headers, cb) {
   var url = configUtil.getConfig('DIAL_REPO_BASE_URL') + configUtil.getConfig('CREATE_PUBLISHER_URI')
   var options = getHttpOptions(url, data, 'POST', false, headers, configUtil.getConfig('DIAL_REPO_AUTHORIZATION_TOKEN'))
@@ -581,6 +587,7 @@ module.exports = {
   contentLinkDialCode: contentLinkDialCode,
   searchDialCode: searchDialCode,
   publishDialCode: publishDialCode,
+  getDialCodeBatch: getDialCodeBatch,
   createPublisher: createPublisher,
   getPublisher: getPublisher,
   updatePublisher: updatePublisher,

@@ -48,6 +48,7 @@ module.exports = {
   contentLinkDialCode: ekStepContentUtil.contentLinkDialCode,
   searchDialCode: ekStepContentUtil.searchDialCode,
   publishDialCode: ekStepContentUtil.publishDialCode,
+  getDialCodeBatch: ekStepContentUtil.getDialCodeBatch,
   createPublisher: ekStepContentUtil.createPublisher,
   getPublisher: ekStepContentUtil.getPublisher,
   updatePublisher: ekStepContentUtil.updatePublisher,
