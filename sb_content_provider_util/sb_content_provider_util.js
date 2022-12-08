@@ -511,12 +511,12 @@ function sendRequest(http_options, cb) {
     if (resp && resp.statusCode && body) {
       body.statusCode = resp.statusCode ? resp.statusCode : 500
       if (body.statusCode === 500) {
-        LOG.error({ 'errorBody': body, 'errorResponse': resp })
+        loggerV2.error({ 'errorBody': body, 'errorResponse': resp })
       }
       cb(null, body)
     } else {
       loggerV2.error({msg:"Got error in send Request", body})
-      LOG.error({ 'errorMessage': err, 'errorBody': body, 'errorResponse': resp })
+      loggerV2.error({ 'errorMessage': err, 'errorBody': body, 'errorResponse': resp })
       cb(true, null)
     }
   })
