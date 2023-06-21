@@ -107,7 +107,7 @@ reviewContent = function (data, content_id, headers, cb) {
 }
 
 publishContent = function (data, content_id, headers, cb) {
-  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('PUBLISH_CONTENT_URI') + '/' + content_id
+  var url = configUtil.getConfig('CONTENT_SERVICE_BASE_URL') + configUtil.getConfig('PUBLISH_CONTENT_URI') + '/' + content_id
   var options = getHttpOptions(url, data, 'POST', false, headers)
   sendRequest(options, cb)
 }
@@ -119,7 +119,7 @@ listContent = function (data, headers, cb) {
 }
 
 retireContent = function (content_id, headers, cb) {
-  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('RETIRE_CONTENT_URI') + '/' + content_id
+  var url = configUtil.getConfig('CONTENT_SERVICE_BASE_URL') + configUtil.getConfig('RETIRE_CONTENT_URI') + '/' + content_id
   var options = getHttpOptions(url, null, 'DELETE', false, headers)
   sendRequest(options, cb)
 }
@@ -288,7 +288,7 @@ learnerServiceHealthCheck = function (cb) {
 }
 
 unlistedPublishContent = function (data, content_id, headers, cb) {
-  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('UNLISTED_PUBLISH_CONTENT_URI') + '/' + content_id
+  var url = configUtil.getConfig('CONTENT_SERVICE_BASE_URL') + configUtil.getConfig('UNLISTED_PUBLISH_CONTENT_URI') + '/' + content_id
   var options = getHttpOptions(url, data, 'POST', false, headers)
   sendRequest(options, cb)
 }
@@ -330,7 +330,7 @@ dialCodeList = function (data, headers, cb) {
 }
 
 contentLinkDialCode = function (data, headers, cb) {
-  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('CONTENT_LINK_DIALCODE_URI')
+  var url = configUtil.getConfig('CONTENT_SERVICE_BASE_URL') + configUtil.getConfig('CONTENT_LINK_DIALCODE_URI')
   var options = getHttpOptions(url, data, 'POST', false, headers)
   sendRequest(options, cb)
 }
@@ -403,7 +403,7 @@ getChannelDataSetRequest = function (query, dataSetId, channel, headers, cb) {
   sendRequest(options, cb)
 }
 systemUpdateContent = function (data, contentId, headers, cb) {
-  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('SYSTEM_UPDATE_CONTENT_URI') + '/' + contentId
+  var url = configUtil.getConfig('CONTENT_SERVICE_BASE_URL') + configUtil.getConfig('SYSTEM_UPDATE_CONTENT_URI') + '/' + contentId
   var options = getHttpOptions(url, data, 'PATCH', false, headers)
   sendRequest(options, cb)
 }
@@ -465,13 +465,13 @@ userSearch = function (data, headers, cb) {
 }
 
 releaseDialcode = function (contentId, data, headers, cb) {
-  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('RELEASE_DIALCODE') + '/' + contentId
+  var url = configUtil.getConfig('CONTENT_SERVICE_BASE_URL') + configUtil.getConfig('RELEASE_DIALCODE') + '/' + contentId
   var options = getHttpOptions(url, data, 'PATCH', false, headers)
   postRequest(options, cb)
 }
 
 reserveDialcode = function (contentId, data, headers, cb) {
-  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('RESERVE_DIALCODE') + '/' + contentId
+  var url = configUtil.getConfig('CONTENT_SERVICE_BASE_URL') + configUtil.getConfig('RESERVE_DIALCODE') + '/' + contentId
   var options = getHttpOptions(url, data, 'POST', false, headers)
   postRequest(options, cb)
 }
