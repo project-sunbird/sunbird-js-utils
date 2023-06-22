@@ -49,7 +49,7 @@ ChannelUpdate = function (data, channelId, headers, cb) {
 }
 
 getFrameworkById = function (frameworkId, querystring, headers, cb) {
-  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('FRAMEWORK_URI') + '/' + frameworkId + querystring
+  var url = configUtil.getConfig('TAXONOMY_SERVICE_BASE_URL') + configUtil.getConfig('FRAMEWORK_URI') + '/' + frameworkId + querystring
   var options = getHttpOptions(url, null, 'GET', false, headers)
   sendRequest(options, cb)
 }
@@ -61,25 +61,25 @@ frameworklList = function (data, headers, cb) {
 }
 
 frameworkCreate = function (data, headers, cb) {
-  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('FRAMEWORK_CREATE_URI')
+  var url = configUtil.getConfig('TAXONOMY_SERVICE_BASE_URL') + configUtil.getConfig('FRAMEWORK_CREATE_URI')
   var options = getHttpOptions(url, data, 'POST', false, headers)
   sendRequest(options, cb)
 }
 
 frameworkUpdate = function (data, frameworkId, headers, cb) {
-  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('FRAMEWORK_UPDATE_URI') + '/' + frameworkId
+  var url = configUtil.getConfig('TAXONOMY_SERVICE_BASE_URL') + configUtil.getConfig('FRAMEWORK_UPDATE_URI') + '/' + frameworkId
   var options = getHttpOptions(url, data, 'PATCH', false, headers)
   sendRequest(options, cb)
 }
 
 frameworkCopy = function (data, frameworkId, headers, cb) {
-  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('FRAMEWORK_COPY_URI') + '/' + frameworkId
+  var url = configUtil.getConfig('TAXONOMY_SERVICE_BASE_URL') + configUtil.getConfig('FRAMEWORK_COPY_URI') + '/' + frameworkId
   var options = getHttpOptions(url, data, 'POST', false, headers)
   sendRequest(options, cb)
 }
 
 getFrameworkTerm = function (query, category, headers, cb) {
-  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('FRAMEWORK_TERM_URI') + '/' + category
+  var url = configUtil.getConfig('TAXONOMY_SERVICE_BASE_URL') + configUtil.getConfig('FRAMEWORK_TERM_URI') + '/' + category
   var options = getHttpOptions(url, null, 'GET', false, headers)
   options.qs = query
   sendRequest(options, cb)
@@ -93,21 +93,21 @@ frameworkTermSearch = function (data, query, headers, cb) {
 }
 
 frameworkTermCreate = function (data, query, headers, cb) {
-  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('FRAMEWORK_TERM_CREATE_URI')
+  var url = configUtil.getConfig('TAXONOMY_SERVICE_BASE_URL') + configUtil.getConfig('FRAMEWORK_TERM_CREATE_URI')
   var options = getHttpOptions(url, data, 'POST', false, headers)
   options.qs = query
   sendRequest(options, cb)
 }
 
 frameworkTermUpdate = function (data, query, category, headers, cb) {
-  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('FRAMEWORK_TERM_UPDATE_URI') + '/' + category
+  var url = configUtil.getConfig('TAXONOMY_SERVICE_BASE_URL') + configUtil.getConfig('FRAMEWORK_TERM_UPDATE_URI') + '/' + category
   var options = getHttpOptions(url, data, 'PATCH', false, headers)
   options.qs = query
   sendRequest(options, cb)
 }
 
 getFrameworkCategoryInstance = function (query, category, headers, cb) {
-  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('FRAMEWORK_CATEGORY_INSTANCE_URI') + '/' + category
+  var url = configUtil.getConfig('TAXONOMY_SERVICE_BASE_URL') + configUtil.getConfig('FRAMEWORK_CATEGORY_INSTANCE_URI') + '/' + category
   var options = getHttpOptions(url, null, 'GET', false, headers)
   options.qs = query
   sendRequest(options, cb)
@@ -121,14 +121,14 @@ frameworkCategoryInstanceSearch = function (data, query, headers, cb) {
 }
 
 frameworkCategoryInstanceCreate = function (data, query, headers, cb) {
-  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('FRAMEWORK_CATEGORY_INSTANCE_CREATE_URI')
+  var url = configUtil.getConfig('TAXONOMY_SERVICE_BASE_URL') + configUtil.getConfig('FRAMEWORK_CATEGORY_INSTANCE_CREATE_URI')
   var options = getHttpOptions(url, data, 'POST', false, headers)
   options.qs = query
   sendRequest(options, cb)
 }
 
 frameworkCategoryInstanceUpdate = function (data, query, category, headers, cb) {
-  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('FRAMEWORK_CATEGORY_INSTANCE_UPDATE_URI') + '/' + category
+  var url = configUtil.getConfig('TAXONOMY_SERVICE_BASE_URL') + configUtil.getConfig('FRAMEWORK_CATEGORY_INSTANCE_UPDATE_URI') + '/' + category
   var options = getHttpOptions(url, data, 'PATCH', false, headers)
   options.qs = query
   sendRequest(options, cb)
@@ -136,7 +136,7 @@ frameworkCategoryInstanceUpdate = function (data, query, category, headers, cb) 
 
 
 frameworkPublish = function (data, frameworkId, headers, cb) {
-  var url = configUtil.getConfig('CONTENT_REPO_BASE_URL') + configUtil.getConfig('FRAMEWORK_PUBLISH_URI') + '/' + frameworkId
+  var url = configUtil.getConfig('TAXONOMY_SERVICE_BASE_URL') + configUtil.getConfig('FRAMEWORK_PUBLISH_URI') + '/' + frameworkId
   var options = getHttpOptions(url, data, 'POST', false, headers)
   sendRequest(options, cb)
 }
